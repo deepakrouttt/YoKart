@@ -1,3 +1,4 @@
+
 namespace YoKart.Models
 {
     public class ErrorViewModel

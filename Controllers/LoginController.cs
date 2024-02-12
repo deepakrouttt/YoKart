@@ -19,9 +19,9 @@ namespace YoKart.Controllers
         }
 
         [HttpPost]
-        public IActionResult LoginUser( )
+        public IActionResult LoginUser()
         {
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult Privacy()
         {

@@ -20,6 +20,6 @@ html {
 body {
   margin-bottom: 60px;
 }
-.color-nav {
-    background-color: #ecf2fb !important;
+.sidebar-item > ul{
+    display:none;
 }

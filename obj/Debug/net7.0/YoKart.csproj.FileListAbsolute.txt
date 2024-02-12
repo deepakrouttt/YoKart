@@ -6,6 +6,12 @@ C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\YoKart.deps.
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\YoKart.runtimeconfig.json
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\YoKart.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\YoKart.pdb
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Web.Cors.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.csproj.AssemblyReference.cache
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.AssemblyInfoInputs.cache
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.AssemblyInfo.cs
@@ -13,6 +19,7 @@ C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.cspro
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.RazorAssemblyInfo.cache
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.RazorAssemblyInfo.cs
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.sourcelink.json
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\staticwebassets\msbuild.YoKart.Microsoft.AspNetCore.StaticWebAssets.props
@@ -23,6 +30,7 @@ C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\staticwebass
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\scopedcss\bundle\YoKart.styles.css
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\scopedcss\projectbundle\YoKart.bundle.scp.css
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.csproj.CopyComplete
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\refint\YoKart.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\obj\Debug\net7.0\YoKart.pdb
