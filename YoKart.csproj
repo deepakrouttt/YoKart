@@ -11,8 +11,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.15" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\products\" />
-  </ItemGroup>
-
 </Project>

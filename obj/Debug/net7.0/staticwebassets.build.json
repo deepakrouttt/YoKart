@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "myRQG1ADNrly+pfqmKOPw9afvo/52vsjWo9RRG60Ni0=",
+  "Hash": "E4qNWRydi1TKE69fzq6+GIES01CFmRRLr3iN+xKbV1Y=",
   "Source": "YoKart",
   "BasePath": "_content/YoKart",
   "Mode": "Default",
@@ -283,12 +283,12 @@
       "OriginalItemSpec": "wwwroot\\images\\backgrounds\\rocket.png"
     },
     {
-      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\man.png",
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\addCategory.png",
       "SourceId": "YoKart",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
       "BasePath": "_content/YoKart",
-      "RelativePath": "images/Category/man.png",
+      "RelativePath": "images/Category/addCategory.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -299,7 +299,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Category\\man.png"
+      "OriginalItemSpec": "wwwroot\\images\\Category\\addCategory.png"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\logos\\dark-logo.png",
@@ -433,6 +433,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\s7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\tom.jpg",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/tom.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\tom.jpg"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\profile\\user-1.jpg",
