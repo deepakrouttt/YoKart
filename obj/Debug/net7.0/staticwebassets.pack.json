@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\images\\Category\\addCategory.png"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\editCategory.png",
+      "PackagePath": "staticwebassets\\images\\Category\\editCategory.png"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\backgrounds\\rocket.png",
       "PackagePath": "staticwebassets\\images\\backgrounds\\rocket.png"
     },

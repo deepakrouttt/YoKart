@@ -1,0 +1,39 @@
+﻿@{
+    var categories = ViewBag.Categories as List<Category>;
+}
+@{
+    ViewData["Title"] = "Category";
+}
+<form method="post">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (categories != null)
+            {
+                foreach (var item in categories)
+                {
+                    <tr>
+                        <td>
+                            @item.CategoryName
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-action="IndexSub" asp-route-id="@item.CategoryId" class="btn btn-primary">SubCategory</a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-success">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>

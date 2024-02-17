@@ -1,0 +1,84 @@
+﻿@model YoKart.Models.Category
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="">
+    <h2 class="text-primary">Create</h2>
+    <hr />
+</div>
+
+<form method="post" class="mb-5" asp-action="Create" asp-controller="Category">
+    <div class="border p-2 mt-1">
+        <div class="form-group">
+            <label asp-for="CategoryName" class="inline">Category Name</label>
+            <div class="form-group" id="categoryDropdown">
+                <input asp-for="CategoryName" class="form-control p-1" />
+                <span asp-validation-for="CategoryName" class="text-danger small"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SubCategories" class="inline">SubCategory Name</label>
+            <input asp-for="SubCategories[0].SubCategoryName" class="form-control p-1" />
+            <span asp-validation-for="SubCategories[0].SubCategoryName" class="text-danger small"></span>
+        </div>
+
+        <div id="subcategories-container">
+            <!-- Subcategories will be appended here -->
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Create Categories</button>
+        <button type="button" class="btn btn-success mt-2" id="addSubCategories">Add Subcategory</button>
+        <button type="button" class="btn btn-success mt-2" id="addExist">Add Exist</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        let subcategoryIndex = 1;
+        $("#addSubCategories").click(function () {
+            $("#subcategories-container").append(`<div class="form-group"><label>Subcategory</label><input name="SubCategories[${subcategoryIndex}].SubCategoryName" class="form-control p-1" /><span class="text-danger small" asp-validation-for="SubCategories[${subcategoryIndex}].SubCategoryName"></span></div>`);
+            subcategoryIndex++;
+        });
+
+       
+
+        $('#addExist').click(function () {
+            $.ajax({
+                url: 'https://localhost:44373/api/CategoryApi/categories',
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    var dropdown = $('<select>').addClass('form-control p-1').attr('id', 'CategoryName').attr('name', 'CategoryName');
+                    dropdown.append($('<option>').text('Choose Here').prop('selected', true).prop('disabled', true));
+                    $.each(data, function (index, value) {
+                       dropdown.append($('<option>').text(value.categoryName).attr('data-category-id', value.categoryId));
+                    });
+
+                    $('#categoryDropdown').html(dropdown);
+                    $('form').attr('action', '/Category/ExistCategory');
+                },
+                error: function () {
+                    // Handle error
+                }
+            });
+        });
+        $(document).on('change', 'select', function () {
+            var selectedCategoryId = $(this).find(':selected').data('category-id');
+            alert(selectedCategoryId);
+
+            $.ajax({
+                url: '/Category/SavedCategoryId',
+                method: 'POST',
+                data: { categoryId: selectedCategoryId },
+                success: function (data) {
+                    console.log('Category ID updated successfully!');
+                },
+                error: function () {
+                    console.log('Error updating category ID!');
+                }
+            });
+        });
+    });
+
+</script>

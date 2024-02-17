@@ -1,0 +1,29 @@
+﻿@model SubCategory
+@{
+    ViewData["Title"] = "SubCategory";
+}
+
+<div class="">
+    <h2 class="text-primary">Edit SubCategory</h2>
+    <hr />
+</div>
+
+<form method="post">
+    <div class="border p-2 mt-1">
+        <div class="form-group">
+            <input asp-for="SubCategoryId" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input asp-for="CategoryId" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SubCategoryName" class="inline">Category Name</label>
+            <input asp-for="SubCategoryName" class="form-control" />
+            <span asp-validation-for="SubCategoryName" class="text-danger small"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary mt-2" id="submit">Update</button>
+    </div>
+</form>

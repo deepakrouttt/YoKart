@@ -18,8 +18,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Home/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGUuY3NodG1s
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/EditSub.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdFN1Yi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/Exist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRXhpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/IndexSub.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXhTdWIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Home/Index.cshtml]

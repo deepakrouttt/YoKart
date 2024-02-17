@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E4qNWRydi1TKE69fzq6+GIES01CFmRRLr3iN+xKbV1Y=",
+  "Hash": "8CFWZeJV/ezl52SO2mmOr1ncMNmqGvZ24fK7yR2TU6M=",
   "Source": "YoKart",
   "BasePath": "_content/YoKart",
   "Mode": "Default",
@@ -300,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Category\\addCategory.png"
+    },
+    {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\editCategory.png",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/Category/editCategory.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Category\\editCategory.png"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\logos\\dark-logo.png",
