@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Hosting;
+
 namespace YoKart
 {
     public class Program
@@ -9,6 +11,11 @@ namespace YoKart
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
+
+            var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
+
+            logger.LogInformation("Processing GET request");
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
