@@ -20,11 +20,6 @@ namespace YoKart.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data =await _data.CategoryData();
-
-            ViewBag.Categories = data.CategoryList;
-            ViewBag.Subcategories = data.SubCategoryList;
-
             return View();
         }
         public IActionResult Create()

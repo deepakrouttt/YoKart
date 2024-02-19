@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Text;
 using YoKart.Models;
@@ -11,15 +12,24 @@ namespace YoKart.Controllers
     {
         public readonly ICategoryItem _data;
         public readonly HttpClient _client;
+        public readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(ICategoryItem data, HttpClient client)
+        public ProductController(ICategoryItem data, HttpClient client, IWebHostEnvironment webHostEnvironment)
         {
             _data = data;
             _client = client;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> Index()
         {
+            var _cate = await _data.CategoryData();
+
+            ViewData["Categories"] = _cate.CategoryList;
+            ViewData["Subcategories"] = _cate.SubCategoryList;
+
+            ViewData["Filepath"] = Path.Combine(_webHostEnvironment.WebRootPath, "products");
+
             var url = "https://localhost:44373/api/ProductApi/GetProducts";
             var response = _client.GetAsync(url).Result;
             var product = new List<Product>();
@@ -72,7 +82,7 @@ namespace YoKart.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                var result =await  response.Content.ReadAsStringAsync();
+                var result = await response.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<Product>(result);
 
                 if (data != null)
@@ -91,7 +101,7 @@ namespace YoKart.Controllers
             var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
 
-            var response = _client.PostAsync(url,stringContent).Result;
+            var response = _client.PostAsync(url, stringContent).Result;
 
             if (response.IsSuccessStatusCode)
             {

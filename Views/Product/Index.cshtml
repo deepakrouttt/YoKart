@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<YoKart.Models.Product>
-
 @{
     ViewData["Title"] = "Index";
+    var categories = ViewData["Categories"] as List<Category>;
+    var subcategories = ViewData["subcategories"] as List<SubCategory>;
+    var filepath = ViewData["Filepath"];
 }
 
 <h3>List Product</h3>
-
-<div class="col-6">
+<hr />
+<div class="">
     <a asp-controller="" asp-action="Create" class="btn btn-success">Create New</a>
 </div>
 
@@ -35,32 +37,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubCategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductDescription)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@Html.DisplayFor(modelItem => categories.FirstOrDefault(m => m.CategoryId == item.CategoryId).CategoryName)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => subcategories.FirstOrDefault(m => m.SubCategoryId == item.SubCategoryId).SubCategoryName)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td>
+                <td>
+                        @{
+
+
+                            if (File.Exists(filepath+item.s))
+                            {
+                            <img src="@Url.Content("~/products/" + item.ProductImage)" alt="Product Image" />
+                            }
+                           
+                        }
+                </td>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ProductPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })  @*|
                 @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.ProductId }) *@
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

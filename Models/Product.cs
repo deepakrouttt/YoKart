@@ -10,9 +10,9 @@ namespace YoKart.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
         [Required]
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
         [Required]
-        public string SubCategoryId { get; set; }
+        public int SubCategoryId { get; set; }
         [Required]
         public string ProductName { get; set; }
         [Required]
@@ -21,8 +21,5 @@ namespace YoKart.Models
         public string ProductPrice { get; set; }
         [Required]
         public string ProductDescription { get; set; }
-
-
-
     }
 }
