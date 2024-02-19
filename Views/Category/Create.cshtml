@@ -1,5 +1,4 @@
 ﻿@model YoKart.Models.Category
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 @{
     ViewData["Title"] = "Create";
 }
@@ -33,52 +32,3 @@
     </div>
 </form>
 
-<script>
-    $(document).ready(function () {
-        let subcategoryIndex = 1;
-        $("#addSubCategories").click(function () {
-            $("#subcategories-container").append(`<div class="form-group"><label>Subcategory</label><input name="SubCategories[${subcategoryIndex}].SubCategoryName" class="form-control p-1" /><span class="text-danger small" asp-validation-for="SubCategories[${subcategoryIndex}].SubCategoryName"></span></div>`);
-            subcategoryIndex++;
-        });
-
-       
-
-        $('#addExist').click(function () {
-            $.ajax({
-                url: 'https://localhost:44373/api/CategoryApi/categories',
-                type: 'GET',
-                success: function (data) {
-                    console.log(data);
-                    var dropdown = $('<select>').addClass('form-control p-1').attr('id', 'CategoryName').attr('name', 'CategoryName');
-                    dropdown.append($('<option>').text('Choose Here').prop('selected', true).prop('disabled', true));
-                    $.each(data, function (index, value) {
-                       dropdown.append($('<option>').text(value.categoryName).attr('data-category-id', value.categoryId));
-                    });
-
-                    $('#categoryDropdown').html(dropdown);
-                    $('form').attr('action', '/Category/ExistCategory');
-                },
-                error: function () {
-                    // Handle error
-                }
-            });
-        });
-        $(document).on('change', 'select', function () {
-            var selectedCategoryId = $(this).find(':selected').data('category-id');
-            alert(selectedCategoryId);
-
-            $.ajax({
-                url: '/Category/SavedCategoryId',
-                method: 'POST',
-                data: { categoryId: selectedCategoryId },
-                success: function (data) {
-                    console.log('Category ID updated successfully!');
-                },
-                error: function () {
-                    console.log('Error updating category ID!');
-                }
-            });
-        });
-    });
-
-</script>

@@ -13,6 +13,13 @@ namespace YoKart.Models
         public List<SubCategory> SubCategories { get; set; }
 
     }
-
-
+    public static class GlobalVariable
+    {
+        public static int? categoryId;
+    }
+    public class CategoriesView
+    {
+        public List<Category> CategoryList;
+        public List<SubCategory> SubCategoryList;
+    }
 }

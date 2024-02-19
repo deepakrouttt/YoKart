@@ -1,5 +1,5 @@
 ﻿@{
-    var categories = ViewBag.Categories as List<Category>;
+    var categories = ViewData["Categories"] as List<Category>;
 }
 @{
     ViewData["Title"] = "Category";
@@ -36,4 +36,5 @@
             }
         </tbody>
     </table>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back</a>
 </form>

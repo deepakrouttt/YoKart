@@ -1,7 +1,6 @@
-﻿@using System.Net.Http
-@using System.Text;
-@using Newtonsoft.Json;
+﻿@using Newtonsoft.Json
 @{
+
     var httpClient = new HttpClient();
     var apiUrl = "https://localhost:44373/api/CategoryApi/";
 
@@ -13,7 +12,6 @@
     var subcategoriesJson = await subcategoriesResponse.Content.ReadAsStringAsync();
     var subcategories = JsonConvert.DeserializeObject<List<SubCategory>>(subcategoriesJson);
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +21,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/simplebar/dist/simplebar.css" asp-append-version="true" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <!--  Body Wrapper -->
@@ -50,7 +49,7 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Home" asp-action="Index" aria-expanded="false">
+                            <a class="sidebar-link" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
@@ -108,50 +107,12 @@
     <script src="~/js/site.js"></script>
     <script src="~/js/sidebarmenu.js"></script>
     <script src="~/js/app.min.js"></script>
-    @*   <script src="~/lib/apexcharts/dist/apexcharts.min.js"></script> *@
     <script src="~/lib/simplebar/dist/simplebar.js"></script>
+    @*   <script src="~/lib/apexcharts/dist/apexcharts.min.js"></script> *@
     @*  <script src="~/js/dashboard.js"></script> *@
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <script>
-        $(document).ready(function () {
-
-            $(".sidebar-item > .sidebar-link").click(function (event) {
-                event.preventDefault();
-                var ul = $(this).next("ul");
-                $(".sidebar-item > ul").not(ul).slideUp();
-                ul.slideToggle();
-            });
-
-
-            $(".sidebar-link").click(function (event) {
-                event.preventDefault();
-                var subcategoryId = $(this).data("subcategory-id");
-                showProductsForSubcategory(subcategoryId);
-            });
-
-
-            function showProductsForSubcategory(subcategoryId) {
-                debugger
-                $.ajax({
-                    url: "https://localhost:44373/api/ProductApi/GetProduct?subcategoryId=" + subcategoryId,
-                    method: "GET",
-                    success: function (data) {
-                        console.log(data);
-                        $.each(data, function (index, product) {
-                            console.log(data);
-                            $("#product-list").html(`<div class="col-sm-6 col-xl-3"><div class="card overflow-hidden rounded-2"><div class="position-relative"><a href="javascript:void(0)"><img src=` + product.productImage + `class="card-img-top rounded-0" alt="..."></a><a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bstoggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a></div><div class="card-body pt-3 p-4"><h6 class="fw-semibold fs-4">` + product.productName + `</h6><div class="d-flex align-items-center justify-content-between"><h6 class="fw-semibold fs-4 mb-0">` + product.productPrice + `</h6></div></div></div></div>`);
-                        });
-                    },
-                    error: function (error) {
-                        console.log("Error fetching products:", error);
-                    }
-                });
-            }
-
-        })
-    </script>
 </body>
 
 </html>

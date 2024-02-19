@@ -1,0 +1,91 @@
+﻿@model YoKart.Models.Product
+@{
+    ViewData["Title"] = "Create";
+    var categories = ViewData["Categories"] as List<Category>;
+}
+<h4>Add Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">Category Name</label>
+                <select asp-for="CategoryId" class="form-control CategoryDropDown">
+                    <option disabled selected>Choose Here</option>
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.CategoryId">@category.CategoryName</option>
+                    }
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubCategoryId" class="control-label">SubCategory Name</label>
+                <select asp-for="SubCategoryId" class="form-control SubCategoryDropDown">
+                    <option disabled selected>Choose Here</option>
+                </select>
+                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label">Product Name</label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductImage" class="control-label">Product Image</label>
+                <input asp-for="ProductImage" class="form-control" type="file" />
+                <span asp-validation-for="ProductImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label">Product Price</label>
+                <input asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label">Product Discription</label>
+                <input asp-for="ProductDescription" class="form-control" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    $(document).ready(function () {
+        $(document).on("change", ".CategoryDropDown", function () {
+            var categoryId = $(this).find(':selected').val();
+            var subcategoryOption = "<option disabled selected>Choose Here</option>";
+
+            if (categoryId) {
+                $.ajax({
+                    url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
+                    type: 'GET',
+                    success: function (data) {
+                        data.subCategories.forEach(function (subcategory) {
+                            subcategoryOption += `<option value="${subcategory.subCategoryId}">${subcategory.subCategoryName}</option>`;
+                        });
+                        $(".SubCategoryDropDown").empty().html(subcategoryOption);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("An error occurred: " + status + ", " + error);
+                    }
+                });
+            }
+        });
+    });
+
+</script>
