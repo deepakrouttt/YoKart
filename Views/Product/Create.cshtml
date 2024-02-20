@@ -1,13 +1,13 @@
 ﻿@model YoKart.Models.Product
 @{
     ViewData["Title"] = "Create";
-    var categories = ViewData["Categories"] as List<Category>;
+    var categories = ViewData["categories"] as List<Category>;
 }
 <h4>Add Product</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -34,9 +34,9 @@
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductImage" class="control-label">Product Image</label>
-                <input asp-for="ProductImage" class="form-control" type="file" />
-                <span asp-validation-for="ProductImage" class="text-danger"></span>
+                <label asp-for="ProductImageFile" class="control-label">Product Image</label>
+                <input asp-for="ProductImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ProductImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProductPrice" class="control-label">Product Price</label>
@@ -64,28 +64,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-<script>
-    $(document).ready(function () {
-        $(document).on("change", ".CategoryDropDown", function () {
-            var categoryId = $(this).find(':selected').val();
-            var subcategoryOption = "<option disabled selected>Choose Here</option>";
-
-            if (categoryId) {
-                $.ajax({
-                    url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
-                    type: 'GET',
-                    success: function (data) {
-                        data.subCategories.forEach(function (subcategory) {
-                            subcategoryOption += `<option value="${subcategory.subCategoryId}">${subcategory.subCategoryName}</option>`;
-                        });
-                        $(".SubCategoryDropDown").empty().html(subcategoryOption);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("An error occurred: " + status + ", " + error);
-                    }
-                });
-            }
-        });
-    });
-
-</script>

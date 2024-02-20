@@ -15,7 +15,9 @@
 
     let subcategoryIndex = 1;
     $("#addSubCategories").click(function () {
-        $("#subcategories-container").append(`<div class="form-group"><label>Subcategory</label><input name="SubCategories[${subcategoryIndex}].SubCategoryName" class="form-control p-1" /><span class="text-danger small" asp-validation-for="SubCategories[${subcategoryIndex}].SubCategoryName"></span></div>`);
+        $("#subcategories-container").append(`<div class="form-group"><label>Subcategory</label>
+        <input name="SubCategories[${subcategoryIndex}].SubCategoryName" class="form-control p-1"/>
+        <span class="text-danger small" asp-validation-for="SubCategories[${subcategoryIndex}].SubCategoryName"></span></div>`);
         subcategoryIndex++;
     });
 
@@ -26,13 +28,11 @@
             url: 'https://localhost:44373/api/CategoryApi/categories',
             type: 'GET',
             success: function (data) {
-                console.log(data);
                 var dropdown = $('<select>').addClass('form-control p-1').attr('id', 'CategoryName').attr('name', 'CategoryName');
                 dropdown.append($('<option>').text('Choose Here').prop('selected', true).prop('disabled', true));
                 $.each(data, function (index, value) {
                     dropdown.append($('<option>').text(value.categoryName).attr('data-category-id', value.categoryId));
                 });
-
                 $('#categoryDropdown').html(dropdown);
                 $('form').attr('action', '/Category/Exist');
             },
@@ -41,14 +41,31 @@
             }
         });
     });
+    
     $(document).on('change', 'select', function () {
         var selectedCategoryId = $(this).find(':selected').data('category-id');
+        $('#ExistId').val(selectedCategoryId);
+    });
 
-        $.ajax({
-            url: '/Category/SavedCategoryId',
-            method: 'POST',
-            data: { categoryId: selectedCategoryId }
-        });
+    $(document).on("change", ".CategoryDropDown", function () {
+        var categoryId = $(this).find(':selected').val();
+        var subcategoryOption = "<option disabled selected>Choose Here</option>";
+
+        if (categoryId) {
+            $.ajax({
+                url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
+                type: 'GET',
+                success: function (data) {
+                    data.subCategories.forEach(function (subcategory) {
+                        subcategoryOption += `<option value="${subcategory.subCategoryId}">${subcategory.subCategoryName}</option>`;
+                    });
+                    $(".SubCategoryDropDown").empty().html(subcategoryOption);
+                },
+                error: function (xhr, status, error) {
+                    console.error("An error occurred: " + status + ", " + error);
+                }
+            });
+        }
     });
 });
 
@@ -66,6 +83,21 @@ function showProductsForSubcategory(subcategoryId) {
         },
         error: function (error) {
             console.log("Error fetching products:", error);
+        }
+    });
+}
+
+function getSubCategories() {
+    var categoryId = $(".CategoryDropDown").val();  
+    $.ajax({
+        type: "GET",
+        url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
+        success: function (data) {
+            $(".SubCategoryDropDown").append('<option value="">--Select SubCategory--</option>');
+            data.subCategories.forEach(function (subcategory) {
+                subcategoryOption += `<option value="${subcategory.subCategoryId}">${subcategory.subCategoryName}</option>`;
+            });
+            $(".SubCategoryDropDown").empty().html(subcategoryOption);
         }
     });
 }

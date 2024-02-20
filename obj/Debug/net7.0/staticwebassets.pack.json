@@ -69,6 +69,22 @@
       "PackagePath": "staticwebassets\\images\\logos\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Tshirt.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\Tshirt.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\book.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\book.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\moto.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\moto.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\pent.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\pent.jpg"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\s1.jpg",
       "PackagePath": "staticwebassets\\images\\products\\s1.jpg"
     },
@@ -91,6 +107,14 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\tom.jpg",
       "PackagePath": "staticwebassets\\images\\products\\tom.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\watch 2.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\watch 2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\watch.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\watch.jpg"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\profile\\user-1.jpg",

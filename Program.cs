@@ -13,7 +13,9 @@ namespace YoKart
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
-            builder.Services.AddScoped<ICategoryItem, CategoryItem>();
+            builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+            builder.Services.AddScoped<IProductSevices, ProductSevices>();
+            builder.Services.AddDirectoryBrowser();
 
             var app = builder.Build();
 
@@ -27,6 +29,11 @@ namespace YoKart
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images\\")),
+                RequestPath = "/products"
+            });
 
             app.UseRouting();
 

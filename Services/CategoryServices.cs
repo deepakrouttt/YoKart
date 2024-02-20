@@ -3,7 +3,7 @@ using YoKart.Models;
 
 namespace YoKart.Services
 {
-    public class CategoryItem : ICategoryItem
+    public class CategoryServices : ICategoryServices
     {
         public async Task<CategoriesView> CategoryData()
         {

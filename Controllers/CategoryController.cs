@@ -10,9 +10,9 @@ namespace YoKart.Controllers
     public class CategoryController : Controller
     {
         public HttpClient _client = new HttpClient();
-        public readonly ICategoryItem _data;
+        public readonly ICategoryServices _data;
 
-        public CategoryController(HttpClient client, ICategoryItem data)
+        public CategoryController(HttpClient client, ICategoryServices data)
         {
             _client = client;
             _data = data;
@@ -20,6 +20,10 @@ namespace YoKart.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var _cate = await _data.CategoryData();
+            ViewData["Categories"] = _cate.CategoryList;
+            ViewData["Subcategories"] = _cate.SubCategoryList;
+
             return View();
         }
         public IActionResult Create()
@@ -30,20 +34,14 @@ namespace YoKart.Controllers
         public IActionResult Create(Category category)
         {
             var _url = "https://localhost:44373/api/CategoryApi/addCategories";
-            var categoryWithSubCategories = new
-            {
-                CategoryName = category.CategoryName,
-                SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
-            };
 
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
             var response = _client.PostAsync(_url, stringContent).Result;
 
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-
 
             return View("Create", category);
         }
@@ -94,29 +92,29 @@ namespace YoKart.Controllers
             return View("Edit", category);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Exist(int id)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> Exist(int id)
+        //{
 
-            var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
-            var response = await _client.GetAsync(apiUrl);
+        //    var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
+        //    var response = await _client.GetAsync(apiUrl);
 
-            var category = new Category();
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<Category>(result);
+        //    var category = new Category();
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = await response.Content.ReadAsStringAsync();
+        //        var data = JsonConvert.DeserializeObject<Category>(result);
 
-                if (data != null)
-                {
-                    category = data;
+        //        if (data != null)
+        //        {
+        //            category = data;
 
-                    return View(category);
-                }
-            }
-            return View();
+        //            return View(category);
+        //        }
+        //    }
+        //    return View();
 
-        }
+        //}
 
         [HttpPost]
         public IActionResult Exist(Category category)
@@ -124,7 +122,7 @@ namespace YoKart.Controllers
             var url = "https://localhost:44373/api/CategoryApi/existCategories";
             var categoryWithSubCategories = new
             {
-                categoryId = (GlobalVariable.categoryId == null) ? category.CategoryId : GlobalVariable.categoryId,
+                categoryId =  category.CategoryId,
                 CategoryName = category.CategoryName,
                 SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
             };
@@ -135,7 +133,6 @@ namespace YoKart.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                GlobalVariable.categoryId = null;
                 return RedirectToAction("Index");
             }
 
@@ -149,7 +146,7 @@ namespace YoKart.Controllers
 
             var categoryWithSubCategories = new
             {
-                categoryId = (GlobalVariable.categoryId == null) ? category.CategoryId : GlobalVariable.categoryId,
+                categoryId = category.CategoryId,
                 CategoryName = category.CategoryName,
                 SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
             };
@@ -227,10 +224,11 @@ namespace YoKart.Controllers
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
 
             var response = _client.PutAsync(url, stringContent).Result;
+            var cateid = category.SubCategoryId;
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index","Category");
+                return Redirect("~/Category/IndexSub/" + category.SubCategoryId);
             }
 
             return View("EditSsub", category);
@@ -251,28 +249,19 @@ namespace YoKart.Controllers
 
         }
         [HttpGet]
-        public IActionResult DeleteSub(int id)
+        public IActionResult DeleteSub(int id, int categoryId)
         {
             var url = $"https://localhost:44373/api/CategoryApi/removeSubCategoryies?id={id}";
             var response = _client.DeleteAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("IndexSub");
+                return Redirect("~/Category/IndexSub/"+ categoryId);
             }
 
             return View("Index");
 
         }
-
-        [HttpPost]
-        public IActionResult SavedCategoryId(int categoryId)
-        {
-            GlobalVariable.categoryId = categoryId;
-            return Json(new { success = true });
-        }
-
-
 
     }
 }

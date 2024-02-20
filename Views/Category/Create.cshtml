@@ -10,6 +10,9 @@
 <form method="post" class="mb-5" asp-action="Create" asp-controller="Category">
     <div class="border p-2 mt-1">
         <div class="form-group">
+            <input asp-for="CategoryId" class="form-control p-1" id="ExistId" type="hidden" />
+        </div>
+        <div class="form-group">
             <label asp-for="CategoryName" class="inline">Category Name</label>
             <div class="form-group" id="categoryDropdown">
                 <input asp-for="CategoryName" class="form-control p-1" />
@@ -31,4 +34,3 @@
         <button type="button" class="btn btn-success mt-2" id="addExist">Add Exist</button>
     </div>
 </form>
-

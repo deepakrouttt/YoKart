@@ -1,25 +1,25 @@
 ﻿@model IEnumerable<YoKart.Models.Product>
 @{
     ViewData["Title"] = "Index";
-    var categories = ViewData["Categories"] as List<Category>;
+    var categories = ViewData["categories"] as List<Category>;
     var subcategories = ViewData["subcategories"] as List<SubCategory>;
-    var filepath = ViewData["Filepath"];
+    var filepath = GlobalVariable.imagePaths;
 }
 
 <h3>List Product</h3>
 <hr />
 <div class="">
-    <a asp-controller="" asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-controller="Product" asp-action="Create" class="btn btn-success">Create New</a>
 </div>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
+                @Html.DisplayNameFor(model => categories.FirstOrDefault(m => m.CategoryId == model.CategoryId).CategoryName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubCategoryId)
+                @Html.DisplayNameFor(model => subcategories.FirstOrDefault(m => m.SubCategoryId == model.SubCategoryId).SubCategoryName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
@@ -47,24 +47,23 @@
                 </td>
                 <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
                 <td>
-                <td>
-                        @{
-
-
-                            if (File.Exists(filepath+item.s))
-                            {
-                            <img src="@Url.Content("~/products/" + item.ProductImage)" alt="Product Image" />
-                            }
-                           
+                    @foreach (string imagePath in filepath)
+                    {
+                        bool imageExists = false;
+                        if (imagePath.Contains(item.ProductImage))
+                        {
+                            <img src="~/images/products/@item.ProductImage" alt="Product Image" width="80" height="100" />
+                            imageExists = true;
+                            break;
                         }
+                    }
                 </td>
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.ProductPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.ProductPrice)$</td>
                 <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })  @*|
-                @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ProductId }) *@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+                    @*     |@Html.ActionLink("Details", "Details", new { id=item.ProductId }) | *@
+                    @* @Html.ActionLink("Delete", "Delete", new { id=item.ProductId }) *@
                 </td>
             </tr>
         }

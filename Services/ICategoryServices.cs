@@ -2,7 +2,7 @@
 
 namespace YoKart.Services
 {
-    public interface ICategoryItem
+    public interface ICategoryServices
     {
         Task<CategoriesView> CategoryData();
     }
