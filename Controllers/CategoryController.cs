@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
 using System.Text;
 using YoKart.Models;
 using YoKart.Services;
@@ -10,39 +9,38 @@ namespace YoKart.Controllers
     public class CategoryController : Controller
     {
         public HttpClient _client = new HttpClient();
-        public readonly ICategoryServices _data;
+        public readonly ICategoryServices _service;
 
         public CategoryController(HttpClient client, ICategoryServices data)
         {
             _client = client;
-            _data = data;
+            _service = data;
         }
 
         public async Task<IActionResult> Index()
         {
-            var _cate = await _data.CategoryData();
+            var _cate = await _service.CategoryData();
             ViewData["Categories"] = _cate.CategoryList;
             ViewData["Subcategories"] = _cate.SubCategoryList;
 
             return View();
         }
+
         public IActionResult Create()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Create(Category category)
-        {
-            var _url = "https://localhost:44373/api/CategoryApi/addCategories";
 
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
-            var response = _client.PostAsync(_url, stringContent).Result;
+        [HttpPost]
+        public async Task<IActionResult> Create(Category category)
+        {
+
+            var response = await _service.Create(category);
 
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-
             return View("Create", category);
         }
 
@@ -66,68 +64,14 @@ namespace YoKart.Controllers
                 }
             }
             return View();
-
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(Category category)
         {
             var url = "https://localhost:44373/api/CategoryApi/editCategories";
-            var categoryWithSubCategories = new
-            {
-                categoryId = category.CategoryId,
-                CategoryName = category.CategoryName,
-                SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
-            };
 
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
-
-            var response = _client.PutAsync(url, stringContent).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View("Edit", category);
-        }
-
-        //[HttpGet]
-        //public async Task<IActionResult> Exist(int id)
-        //{
-
-        //    var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
-        //    var response = await _client.GetAsync(apiUrl);
-
-        //    var category = new Category();
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var result = await response.Content.ReadAsStringAsync();
-        //        var data = JsonConvert.DeserializeObject<Category>(result);
-
-        //        if (data != null)
-        //        {
-        //            category = data;
-
-        //            return View(category);
-        //        }
-        //    }
-        //    return View();
-
-        //}
-
-        [HttpPost]
-        public IActionResult Exist(Category category)
-        {
-            var url = "https://localhost:44373/api/CategoryApi/existCategories";
-            var categoryWithSubCategories = new
-            {
-                categoryId =  category.CategoryId,
-                CategoryName = category.CategoryName,
-                SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
-            };
-
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
 
             var response = _client.PutAsync(url, stringContent).Result;
 
@@ -140,25 +84,10 @@ namespace YoKart.Controllers
         }
 
         [HttpPost]
-        public IActionResult ExistCategory(Category category)
+        public async Task<IActionResult> Exist(Category category)
         {
-            var url = "https://localhost:44373/api/CategoryApi/existCategories";
-
-            var categoryWithSubCategories = new
-            {
-                categoryId = category.CategoryId,
-                CategoryName = category.CategoryName,
-                SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
-            };
-
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
-
-            var response = _client.PutAsync(url, stringContent).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
+            var response = await _service.Exist(category);
+            if (response.IsSuccessStatusCode) { return RedirectToAction("Index"); }
 
             return View("Edit", category);
         }
@@ -166,69 +95,62 @@ namespace YoKart.Controllers
         [HttpGet]
         public async Task<IActionResult> IndexSub(int id)
         {
-                var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
-                var response = await _client.GetAsync(apiUrl);
+            var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
+            var response = await _client.GetAsync(apiUrl);
 
-                var category = new Category();
-                if (response.IsSuccessStatusCode)
+            var category = new Category();
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<Category>(result);
+
+                if (data != null)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<Category>(result);
+                    category = data;
 
-                    if (data != null)
-                    {
-                        category = data;
-
-                        return View(category);
-                    }
+                    return View(category);
                 }
-                return View();
-            
+            }
+            return View();
+
         }
 
         [HttpGet]
         public async Task<IActionResult> EditSub(int id)
         {
- 
-                var apiUrl = $"https://localhost:44373/api/CategoryApi/GetSubCategory/{id}";
-                var response = await _client.GetAsync(apiUrl);
 
-                var subcategory = new SubCategory();
-                if (response.IsSuccessStatusCode)
+            var apiUrl = $"https://localhost:44373/api/CategoryApi/GetSubCategory/{id}";
+            var response = await _client.GetAsync(apiUrl);
+
+            var subcategory = new SubCategory();
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<SubCategory>(result);
+
+                if (data != null)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<SubCategory>(result);
+                    subcategory = data;
 
-                    if (data != null)
-                    {
-                        subcategory = data;
-
-                        return View(subcategory);
-                    }
+                    return View(subcategory);
                 }
-                return View();
-            
+            }
+            return View();
+
         }
         [HttpPost]
         public IActionResult EditSub(SubCategory category)
         {
             var url = "https://localhost:44373/api/CategoryApi/existSubCategories";
 
-            var categoryWithSubCategories = new
-            {
-                SubCategoryId = category.SubCategoryId,
-                SubCategoryName = category.SubCategoryName,
-                CategoryId = category.CategoryId
-            };
-
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
 
             var response = _client.PutAsync(url, stringContent).Result;
             var cateid = category.SubCategoryId;
 
             if (response.IsSuccessStatusCode)
             {
-                return Redirect("~/Category/IndexSub/" + category.SubCategoryId);
+                return Redirect("~/Category/IndexSub/" + category.CategoryId);
             }
 
             return View("EditSsub", category);
@@ -256,7 +178,7 @@ namespace YoKart.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return Redirect("~/Category/IndexSub/"+ categoryId);
+                return Redirect("~/Category/IndexSub/" + categoryId);
             }
 
             return View("Index");

@@ -5,5 +5,6 @@ namespace YoKart.Services
     public interface IProductSevices
     {
         Task<ProductUpdate> ProductSerialize(Product obj);
+        Task<ProductUpdate> ProductSerializeImage(Product obj);
     }
 }

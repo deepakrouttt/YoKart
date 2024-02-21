@@ -100,4 +100,10 @@ function getSubCategories() {
             $(".SubCategoryDropDown").empty().html(subcategoryOption);
         }
     });
+
+
+
+
+
+    //$('input[type=file]')[0].files[0].name
 }

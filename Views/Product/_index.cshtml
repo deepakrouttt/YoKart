@@ -1,0 +1,40 @@
+﻿@model IEnumerable<YoKart.Models.Product>
+@{
+    var categories = ViewData["categories"] as List<Category>;
+    var subcategories = ViewData["subcategories"] as List<SubCategory>;
+    var filepath = GlobalVariable.imagePaths;
+}
+
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@Html.DisplayFor(modelItem => categories.FirstOrDefault(m => m.CategoryId == item.CategoryId).CategoryName)</td>
+            <td>
+                @Html.DisplayFor(modelItem => subcategories.FirstOrDefault(m => m.SubCategoryId == item.SubCategoryId).SubCategoryName)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+            <td>
+                @foreach (string imagePath in filepath)
+                {
+                    bool imageExists = false;
+                    if (imagePath.Contains(item.ProductImage))
+                    {
+                        <img src="~/images/products/@item.ProductImage" alt="Product Image" width="80" height="100" />
+                        imageExists = true;
+                        break;
+                    }
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.ProductPrice) &#8377;</td>
+            <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { onclick = "return confirm('Are you sure you want to delete this item?');" })
+            </td>
+        </tr>
+    }
+</tbody>

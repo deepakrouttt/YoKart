@@ -18,7 +18,7 @@ namespace YoKart.Models
         [Required]
         public String ProductImage { get; set; }
 
-        public IFormFile ProductImageFile { get; set; }
+        public IFormFile? ProductImageFile { get; set; }
         [Required]
         public string ProductPrice { get; set; }
         [Required]

@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Reflection;
+using System.IO;
 using System.Text;
-using System.Xml.Linq;
 using YoKart.Models;
 using YoKart.Services;
-using static System.Net.WebRequestMethods;
+
 
 namespace YoKart.Controllers
 {
@@ -20,7 +17,7 @@ namespace YoKart.Controllers
 
         public ProductController(ICategoryServices data, HttpClient client, IWebHostEnvironment webHostEnvironment,
             IProductSevices proService)
-            {
+        {
             _data = data;
             _client = client;
             _webHostEnvironment = webHostEnvironment;
@@ -73,19 +70,19 @@ namespace YoKart.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Product product)
         {
-                if (product.ProductImageFile.Length > 0)
+            if (product.ProductImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
+                var orgFileName = Path.GetFileName(product.ProductImageFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, orgFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
-                    var orgFileName = Path.GetFileName(product.ProductImageFile.FileName);
-                    var filePath = Path.Combine(uploadsFolder, orgFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        product.ProductImageFile.CopyTo(fileStream);
-                    }
+                    product.ProductImageFile.CopyTo(fileStream);
                 }
+            }
 
-            var productUpdate = await _proService.ProductSerialize(product);
+            var productUpdate = await _proService.ProductSerializeImage(product);
 
             var url = "https://localhost:44373/api/ProductApi/AddProduct";
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
@@ -127,18 +124,6 @@ namespace YoKart.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Product product)
         {
-            if (product.ProductImageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
-                var orgFileName = Path.GetFileName(product.ProductImageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, orgFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    product.ProductImageFile.CopyTo(fileStream);
-                }
-            }
-
             var productUpdate = await _proService.ProductSerialize(product);
 
             var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
@@ -153,5 +138,62 @@ namespace YoKart.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditImage(Product product)
+        {
+            if (product.ProductImageFile == null)
+            {
+                ModelState.AddModelError("ProductImageFile", "The Password field is required.");
+                return Redirect("Edit/"+product.ProductId);
+            }
+
+            if (product.ProductImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
+                var orgFileName = Path.GetFileName(product.ProductImageFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, orgFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    product.ProductImageFile.CopyTo(fileStream);
+                }
+            }
+
+            var productUpdate = await _proService.ProductSerializeImage(product);
+
+            var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
+
+            var response = _client.PutAsync(url, stringContent).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("Index");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var url = "https://localhost:44373/api/ProductApi/DeleteProduct?id=" + id;
+            var response = _client.DeleteAsync(url).Result;
+
+            //var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "UploadImage");
+            //var filePath = Path.Combine(uploadsFolder, imagepath);
+
+            //if (System.IO.File.Exists(filePath))
+            //{
+            //    System.IO.File.Delete(filePath);
+            //}
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View("Index");
+        }
     }
 }
