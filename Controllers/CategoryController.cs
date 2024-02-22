@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Text;
 using YoKart.Models;
 using YoKart.Services;
@@ -17,13 +19,25 @@ namespace YoKart.Controllers
             _service = data;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
             var _cate = await _service.CategoryData();
-            ViewData["Categories"] = _cate.CategoryList;
-            ViewData["Subcategories"] = _cate.SubCategoryList;
+            var category = _cate.CategoryList;
 
-            return View();
+            var tempCategory = myVar.PagingCategory(category, page);
+
+            return View("Index", tempCategory);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index_Partial(int? page)
+        {
+            var _cate = await _service.CategoryData();
+            var category = _cate.CategoryList;
+
+            var tempCategory = myVar.PagingCategory(category, page);
+
+            return PartialView("_Index", tempCategory);
         }
 
         public IActionResult Create()
@@ -93,28 +107,43 @@ namespace YoKart.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexSub(int id)
+        public async Task<IActionResult> IndexSub(int id,int? page)
         {
             var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
             var response = await _client.GetAsync(apiUrl);
 
-            var category = new Category();
+            var subCategory = new Category();
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<Category>(result);
-
                 if (data != null)
                 {
-                    category = data;
-
-                    return View(category);
+                    subCategory = myVar.PagingSubCategory(data,page);   
+                    return View("IndexSub",subCategory);
                 }
             }
             return View();
-
         }
 
+        [HttpGet]
+        public async Task<IActionResult> IndexSub_Partial(int id,int? page)
+        {
+            var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
+            var response = await _client.GetAsync(apiUrl);
+
+            var subCategory = new Category();
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<Category>(result);
+                if (data != null)
+                {
+                    subCategory = myVar.PagingSubCategory(data, page);
+                }
+            }     
+            return PartialView("_IndexSub", subCategory);
+        }
         [HttpGet]
         public async Task<IActionResult> EditSub(int id)
         {
@@ -171,14 +200,14 @@ namespace YoKart.Controllers
 
         }
         [HttpGet]
-        public IActionResult DeleteSub(int id, int categoryId)
+        public IActionResult DeleteSub(int id)
         {
             var url = $"https://localhost:44373/api/CategoryApi/removeSubCategoryies?id={id}";
             var response = _client.DeleteAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                return Redirect("~/Category/IndexSub/" + categoryId);
+                return RedirectToAction("Index");
             }
 
             return View("Index");

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kelTkudMPExoXB0pyEUPHo/jACGDEe9XwvBclDw5k/w=",
+  "Hash": "xGJubakluMyYY4vkoZuKNyUF8zAzRLGeL5iY2ugZWD0=",
   "Source": "YoKart",
   "BasePath": "_content/YoKart",
   "Mode": "Default",
@@ -528,6 +528,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\s7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Screenshot 2024-02-22 160705.png",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/Screenshot 2024-02-22 160705.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\Screenshot 2024-02-22 160705.png"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\tom.jpg",

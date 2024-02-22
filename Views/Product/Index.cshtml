@@ -3,38 +3,76 @@
     ViewData["Title"] = "Index";
     var categories = ViewData["categories"] as List<Category>;
     var subcategories = ViewData["subcategories"] as List<SubCategory>;
+    var pageCount = myVar.pageCount;
+    var currentPage = myVar.currentPage;
 }
+<div class="container">
+    <hr />
+    <div class="d-flex">
+        <a asp-controller="Product" asp-action="Create" class="btn btn-success">Create New</a>
+        <div>
+            <select class="form-control">
+                <option selected disabled>Price Range</option>
+                <option data-low="100" data-high="500">100-500</option>
+                <option data-low="500" data-high="700">500-700</option>
+                <option data-low="700" data-high="1000">700-1000</option>
+            </select>
+        </div>
+    </div>
 
-<h3>Products</h3>
-<hr />
-<div class="">
-    <a asp-controller="Product" asp-action="Create" class="btn btn-success">Create New</a>
+    <table class="table">
+        <thead class="">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => categories.FirstOrDefault(m => m.CategoryId == model.CategoryId).CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => subcategories.FirstOrDefault(m => m.SubCategoryId == model.SubCategoryId).SubCategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+                <th width="30%">
+                    @Html.DisplayNameFor(model => model.ProductDescription)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="partial-container">
+            @Html.Partial("_Index")
+        </tbody>
+    </table>
+    <div class="text-end" id="total" style="font-size:15px;">
+        Total Records @myVar.Total
+    </div>
+    <div class="pager" id="pager-container">
+        @for (var i = 1; i <= pageCount; i++)
+        {
+            <a href="#" data-page="@i" class="pager-link @(i == currentPage ? "active" : "") border btn p-1">@i</a>
+        }
+    </div>
 </div>
-
-<table class="table">
-    <thead class="">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => categories.FirstOrDefault(m => m.CategoryId == model.CategoryId).CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => subcategories.FirstOrDefault(m => m.SubCategoryId == model.SubCategoryId).SubCategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductImage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
-            </th>
-            <th width="30%">
-                @Html.DisplayNameFor(model => model.ProductDescription)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-   @Html.Partial("_index")
-</table>
+<script>
+    $(document).ready(function () {
+        $(document).on('change', 'select', function () {
+            var LowRange = $(this).find(':selected').data('low');
+            var HighRange = $(this).find(':selected').data('high');
+            debugger;
+            $.ajax({
+                url: 'Index_Partial',
+                type: 'GET',
+                data: { low: LowRange, high: HighRange },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    })
+</script>

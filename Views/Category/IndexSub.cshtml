@@ -1,8 +1,10 @@
 ﻿@model Category
 @{
     ViewData["Title"] = "SubCategory";
+    var pageCount = myVar.pageCount;
+    var currentPage = myVar.currentPage;
 }
-<form method="post" >
+<div class="container">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -12,24 +14,36 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            @for (int i = 0; i < Model.SubCategories.Count; i++)
-            {
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            @Model.SubCategories[i].SubCategoryName
-                        </div>
-                    </td>
-                    <td>
-                        <a asp-action="EditSub" asp-route-id="@Model.SubCategories[i].SubCategoryId" class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
-                        <a asp-action="DeleteSub" asp-route-id="@Model.SubCategories[i].SubCategoryId" asp-route-categoryId="@Model.CategoryId" class="btn btn-success" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
-                    </td>
-                </tr>
-            }
+        <tbody id="partial-container1">
+            @Html.Partial("_IndexSub")
         </tbody>
     </table>
-     <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Back</a>
-</form>
+    <div class="pager" id="pager-container">
+        @for (var i = 1; i <= pageCount; i++)
+        {
+            <a data-page="@i" data-id="@Model.CategoryId" class="pager-link1 @(i == currentPage ? "active" : "") border btn p-1" asp-route-id="@Model.CategoryId">@i</a>
+        }
+    </div>
+    <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Back</a>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.pager-link1').click(function (e) {
+            e.preventDefault();
+            debugger;
+            var id = $(this).data('id');
+            var page = $(this).data('page');
+            $.ajax({
+                url: 'Student',
+                type: 'GET',
+                data: { page: page ,id : id},
+                success: function (data) {
+                    $('#partial-container1').html(data);
+                },
+                error: function (error) {
+                    $("body").html(error);
+                }
+            });
+        });
+    })
+</script>

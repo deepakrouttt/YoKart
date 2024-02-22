@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
+using System.Security.Policy;
 using System.Text;
 using YoKart.Models;
 using YoKart.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace YoKart.Controllers
@@ -13,7 +16,7 @@ namespace YoKart.Controllers
         public readonly ICategoryServices _data;
         public readonly HttpClient _client;
         public readonly IWebHostEnvironment _webHostEnvironment;
-        public readonly IProductSevices _proService;
+        public readonly IProductSevices _service;
 
         public ProductController(ICategoryServices data, HttpClient client, IWebHostEnvironment webHostEnvironment,
             IProductSevices proService)
@@ -21,46 +24,58 @@ namespace YoKart.Controllers
             _data = data;
             _client = client;
             _webHostEnvironment = webHostEnvironment;
-            _proService = proService;
+            _service = proService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
+        {
+            var _cate = await _data.CategoryData();
+            ViewData["categories"] = _cate.CategoryList;
+            ViewData["subcategories"] = _cate.SubCategoryList;
+            var products = new List<Product>();
+            var response = await _service.Index(page);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<List<Product>>(result);
+                if (data != null)
+                {
+                    products = data;
+                }
+            }
+            var tempProduct = myVar.PagingProduct(products, page);
+            return View("Index", tempProduct);
+        }
+
+        public async Task<IActionResult> Index_Partial(int? page, long? low, long? high)
         {
             var _cate = await _data.CategoryData();
             ViewData["categories"] = _cate.CategoryList;
             ViewData["subcategories"] = _cate.SubCategoryList;
 
-            var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
-            var imageFiles = Directory.GetFiles(uploadsFolder);
-
-            foreach (var image in imageFiles)
-            {
-                GlobalVariable.imagePaths.Add(Path.GetFileName(image));
-            }
-
-            var url = "https://localhost:44373/api/ProductApi/GetProducts";
-            var response = _client.GetAsync(url).Result;
-            var product = new List<Product>();
-
+            var products = new List<Product>();
+            var response = await _service.Index(page);
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<List<Product>>(result);
-
-                if (data != null)
-                {
-                    product = data;
-
-                }
-                return View(product);
+                if (data != null) { products = data; }
             }
 
-            return View();
+            var rangeProduct = products.Where(m => Convert.ToInt64(m.ProductPrice) > (low ?? 0) &&
+            Convert.ToInt64(m.ProductPrice) < (high ?? long.MaxValue));
+
+            var tempProduct = myVar.PagingProduct(rangeProduct, page);
+
+            return PartialView("_Index", tempProduct);
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             var data = await _data.CategoryData();
+
             ViewData["categories"] = data.CategoryList;
             ViewData["subcategories"] = data.SubCategoryList;
 
@@ -82,7 +97,7 @@ namespace YoKart.Controllers
                 }
             }
 
-            var productUpdate = await _proService.ProductSerializeImage(product);
+            var productUpdate = await _service.ProductSerializeImage(product);
 
             var url = "https://localhost:44373/api/ProductApi/AddProduct";
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
@@ -124,54 +139,19 @@ namespace YoKart.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Product product)
         {
-            var productUpdate = await _proService.ProductSerialize(product);
-
-            var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
-
-            var response = _client.PutAsync(url, stringContent).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
+            var response = await _service.Edit(product);
+            if (response.IsSuccessStatusCode) { return RedirectToAction("Index"); }
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> EditImage(Product product)
         {
-            if (product.ProductImageFile == null)
-            {
-                ModelState.AddModelError("ProductImageFile", "The Password field is required.");
-                return Redirect("Edit/"+product.ProductId);
-            }
+            if (product.ProductImageFile == null) { return Redirect("Edit/" + product.ProductId); }
+            var response = await _service.EditImage(product);
+            if (response.IsSuccessStatusCode) { return RedirectToAction("Index"); }
 
-            if (product.ProductImageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
-                var orgFileName = Path.GetFileName(product.ProductImageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, orgFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    product.ProductImageFile.CopyTo(fileStream);
-                }
-            }
-
-            var productUpdate = await _proService.ProductSerializeImage(product);
-
-            var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
-
-            var response = _client.PutAsync(url, stringContent).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View("Index");
+            return View("Edit");
         }
 
 

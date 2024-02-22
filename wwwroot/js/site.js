@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+    PagerEvent();
     $(".sidebar-item > .sidebar-link").click(function (event) {
         event.preventDefault();
         var ul = $(this).next("ul");
@@ -41,7 +42,7 @@
             }
         });
     });
-    
+
     $(document).on('change', 'select', function () {
         var selectedCategoryId = $(this).find(':selected').data('category-id');
         $('#ExistId').val(selectedCategoryId);
@@ -87,8 +88,26 @@ function showProductsForSubcategory(subcategoryId) {
     });
 }
 
+function PagerEvent() {
+    $('.pager-link').click(function (e) {
+        debugger;
+        e.preventDefault();
+        var page = $(this).data('page');
+        $.ajax({
+            url: 'Index_Partial',
+            type: 'GET',
+            data: { page: page },
+            success: function (data) {
+                    $('#partial-container').html(data);
+            },
+            error: function (error) {
+                $("body").html(error);
+            }
+        });
+    });
+}
 function getSubCategories() {
-    var categoryId = $(".CategoryDropDown").val();  
+    var categoryId = $(".CategoryDropDown").val();
     $.ajax({
         type: "GET",
         url: 'https://localhost:44373/api/CategoryApi/' + categoryId,

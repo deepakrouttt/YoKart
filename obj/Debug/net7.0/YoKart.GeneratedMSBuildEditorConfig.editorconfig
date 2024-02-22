@@ -38,6 +38,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXhTdWIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/_Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Category/_IndexSub.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0luZGV4U3ViLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,8 +74,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Product/_index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfaW5kZXguY3NodG1s
+[C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Product/_Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/s12/OneDrive/Documents/Deepak/.Net/YoKart/Views/Shared/Error.cshtml]

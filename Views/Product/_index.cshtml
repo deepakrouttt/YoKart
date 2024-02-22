@@ -1,11 +1,17 @@
-﻿@model IEnumerable<YoKart.Models.Product>
+﻿@model List<YoKart.Models.Product>
 @{
     var categories = ViewData["categories"] as List<Category>;
     var subcategories = ViewData["subcategories"] as List<SubCategory>;
-    var filepath = GlobalVariable.imagePaths;
-}
+    var filepath = myVar.imagePaths;
+    var product = Model;
 
-<tbody>
+}
+<input type="hidden" id="pageCount" value="@myVar.pageCount" />
+<input type="hidden" id="TotalRecord" value="@myVar.Total" />
+
+
+@if (Model.Count() > 0)
+{
     @foreach (var item in Model)
     {
         <tr>
@@ -37,4 +43,4 @@
             </td>
         </tr>
     }
-</tbody>
+}
