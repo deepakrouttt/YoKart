@@ -8,20 +8,21 @@
 }
 <div class="container">
     <hr />
-    <div class="d-flex">
+    <div class="d-flex justify-content-between">
         <a asp-controller="Product" asp-action="Create" class="btn btn-success">Create New</a>
-        <div>
-            <select class="form-control">
-                <option selected disabled>Price Range</option>
+        <div style="display:inline-flex">
+            <label class="m-2">Price</label>
+            <select class="form-control" id="priceRange" style="cursor:pointer;">
+                <option selected>Any</option>
                 <option data-low="100" data-high="500">100-500</option>
                 <option data-low="500" data-high="700">500-700</option>
                 <option data-low="700" data-high="1000">700-1000</option>
             </select>
         </div>
     </div>
-
-    <table class="table">
-        <thead class="">
+    <br />
+    <table class="table table-bordered">
+        <thead class="thead-light">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => categories.FirstOrDefault(m => m.CategoryId == model.CategoryId).CategoryName)
@@ -49,9 +50,7 @@
             @Html.Partial("_Index")
         </tbody>
     </table>
-    <div class="text-end" id="total" style="font-size:15px;">
-        Total Records @myVar.Total
-    </div>
+
     <div class="pager" id="pager-container">
         @for (var i = 1; i <= pageCount; i++)
         {
@@ -60,19 +59,30 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $(document).on('change', 'select', function () {
+    $(function () {
+        $(document).on('change', '#priceRange', function () {
             var LowRange = $(this).find(':selected').data('low');
             var HighRange = $(this).find(':selected').data('high');
             debugger;
             $.ajax({
                 url: 'Index_Partial',
                 type: 'GET',
-                data: { low: LowRange, high: HighRange },
+                data: { page: @currentPage, low: LowRange, high: HighRange },
                 success: function (data) {
-                    console.log(data);
+                    $('#partial-container').html(data);
+                    pagerCreate();
                 }
             });
         });
     })
+    function pagerCreate() {
+        var html = "";
+        var pageCount = $("#pageCount").val();
+        console.log(pageCount);
+        for (i = 1; i <= pageCount; i++) {
+            html += `<a href="#" data-page="${i}" class="pager-link  ${i == @myVar.currentPage ? "active" : ""} border btn p-1 m-1">${i}</a>`;
+        }
+        $("#pager-container").html(html);
+        PagerEvent();//paging function calling if we create a pager dynamic dynamic binding
+    }
 </script>

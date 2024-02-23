@@ -6,7 +6,7 @@ namespace YoKart
     public static class myVar
     {
         public static List<string> imagePaths = new List<string>();
-        public static int pageSize = 3;
+        public static int pageSize = 2;
         public static int pageCount { get; set; }
         public static int Total { get; set; }
         public static int currentPage { get; set; }

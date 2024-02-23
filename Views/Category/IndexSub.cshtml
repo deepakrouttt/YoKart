@@ -21,7 +21,8 @@
     <div class="pager" id="pager-container">
         @for (var i = 1; i <= pageCount; i++)
         {
-            <a data-page="@i" data-id="@Model.CategoryId" class="pager-link1 @(i == currentPage ? "active" : "") border btn p-1" asp-route-id="@Model.CategoryId">@i</a>
+            <a data-page="@i" data-id="@Model.CategoryId" class="pager-link1 @(i == currentPage ? "active" : "") border btn p-1">@i</a>
+
         }
     </div>
     <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Back</a>
@@ -31,12 +32,12 @@
         $('.pager-link1').click(function (e) {
             e.preventDefault();
             debugger;
-            var id = $(this).data('id');
+            var id = $(this).attr('data-id');
             var page = $(this).data('page');
             $.ajax({
-                url: 'Student',
+                url: '/Category/IndexSub_Partial',
                 type: 'GET',
-                data: { page: page ,id : id},
+                data: { id: id, page: page },
                 success: function (data) {
                     $('#partial-container1').html(data);
                 },

@@ -13,7 +13,7 @@
         var subcategoryId = $(this).data("subcategory-id");
         showProductsForSubcategory(subcategoryId);
     });
-
+//Add Subcategory button for add Subcategory input
     let subcategoryIndex = 1;
     $("#addSubCategories").click(function () {
         $("#subcategories-container").append(`<div class="form-group"><label>Subcategory</label>
@@ -22,8 +22,7 @@
         subcategoryIndex++;
     });
 
-
-
+//click on Exist when Dynamic Subcategory Display
     $('#addExist').click(function () {
         $.ajax({
             url: 'https://localhost:44373/api/CategoryApi/categories',
@@ -42,16 +41,17 @@
             }
         });
     });
-
-    $(document).on('change', 'select', function () {
+  
+    $(document).on('change', '#CategoryName', function () {
+        debugger;
         var selectedCategoryId = $(this).find(':selected').data('category-id');
         $('#ExistId').val(selectedCategoryId);
     });
-
+    //Dynamic Subcategory Create
     $(document).on("change", ".CategoryDropDown", function () {
         var categoryId = $(this).find(':selected').val();
         var subcategoryOption = "<option disabled selected>Choose Here</option>";
-
+        debugger;
         if (categoryId) {
             $.ajax({
                 url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
@@ -68,10 +68,11 @@
             });
         }
     });
+
+
 });
-
+//Show Product By there Subcategory Name
 function showProductsForSubcategory(subcategoryId) {
-
     $.ajax({
         url: "https://localhost:44373/api/ProductApi/GetProduct?subcategoryId=" + subcategoryId,
         method: "GET",
@@ -87,16 +88,18 @@ function showProductsForSubcategory(subcategoryId) {
         }
     });
 }
-
+//Pager link for paging 
 function PagerEvent() {
     $('.pager-link').click(function (e) {
         debugger;
         e.preventDefault();
+        var LowRange = $("#priceRange").find(':selected').data('low');
+        var HighRange = $("#priceRange").find(':selected').data('high');
         var page = $(this).data('page');
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
-            data: { page: page },
+            data: { page: page, low: LowRange, high: HighRange }, 
             success: function (data) {
                     $('#partial-container').html(data);
             },
@@ -106,6 +109,7 @@ function PagerEvent() {
         });
     });
 }
+//Edit when I select Category then dynamic Subcategory display
 function getSubCategories() {
     var categoryId = $(".CategoryDropDown").val();
     $.ajax({
@@ -119,10 +123,6 @@ function getSubCategories() {
             $(".SubCategoryDropDown").empty().html(subcategoryOption);
         }
     });
-
-
-
-
-
     //$('input[type=file]')[0].files[0].name
 }
+//Pager creation function

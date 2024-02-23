@@ -4,25 +4,26 @@
     var currentPage = myVar.currentPage;
 }
 <div class="conatiner">
-<form method="post">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Category Name
-                </th>
-            </tr>
-        </thead>
-        <tbody id="partial-container">
-            @Html.Partial("_Index")
-        </tbody>
-    </table>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back</a>
-</form>
+    <form method="post">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Category Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="partial-container">
+                @Html.Partial("_Index")
+            </tbody>
+        </table>
+
+    </form>
     <div class="pager" id="pager-container">
         @for (var i = 1; i <= pageCount; i++)
         {
             <a href="#" data-page="@i" class="pager-link @(i == currentPage ? "active" : "") border btn p-1">@i</a>
         }
     </div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back</a>
 </div>
