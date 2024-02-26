@@ -58,31 +58,3 @@
         }
     </div>
 </div>
-<script>
-    $(function () {
-        $(document).on('change', '#priceRange', function () {
-            var LowRange = $(this).find(':selected').data('low');
-            var HighRange = $(this).find(':selected').data('high');
-            debugger;
-            $.ajax({
-                url: 'Index_Partial',
-                type: 'GET',
-                data: { page: @currentPage, low: LowRange, high: HighRange },
-                success: function (data) {
-                    $('#partial-container').html(data);
-                    pagerCreate();
-                }
-            });
-        });
-    })
-    function pagerCreate() {
-        var html = "";
-        var pageCount = $("#pageCount").val();
-        console.log(pageCount);
-        for (i = 1; i <= pageCount; i++) {
-            html += `<a href="#" data-page="${i}" class="pager-link  ${i == @myVar.currentPage ? "active" : ""} border btn p-1 m-1">${i}</a>`;
-        }
-        $("#pager-container").html(html);
-        PagerEvent();//paging function calling if we create a pager dynamic dynamic binding
-    }
-</script>

@@ -17,12 +17,27 @@ namespace YoKart.Models
         public string ProductName { get; set; }
         [Required]
         public String ProductImage { get; set; }
-
+        [Required]
         public IFormFile? ProductImageFile { get; set; }
         [Required]
         public string ProductPrice { get; set; }
         [Required]
         public string ProductDescription { get; set; }
+    }
+    public class Paging
+    {
+        public int? page { get; set; }
+        public long LowRange { get; set; }
+        public long HighRange { get; set; }
+    }
+
+    public class ProductPagingData
+    {
+        public List<Product> Product { get; set; }
+        public int pageSize = 2;
+        public int pageCount { get; set; }
+        public int Total { get; set; }
+        public int currentPage { get; set; }
     }
     public class ProductUpdate
     {

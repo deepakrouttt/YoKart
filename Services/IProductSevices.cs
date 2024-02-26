@@ -5,11 +5,12 @@ namespace YoKart.Services
 {
     public interface IProductSevices
     {
-        Task<IEnumerable<Product>> Index( long? low, long? high);
+        Task<IEnumerable<Product>> Index(Paging obj);
         Task<HttpResponseMessage> Create(Product product);
         Task<Product> Edit(int id);
         Task<HttpResponseMessage> Edit(Product product);
         Task<HttpResponseMessage> EditImage(Product product);
+        Task<HttpResponseMessage> Delete(int id);
 
         //Product Serialization
         Task<ProductUpdate> ProductSerialize(Product product);

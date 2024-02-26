@@ -34,17 +34,5 @@ namespace YoKart
 
             return tempCategory;
         }
-
-        public static List<Product> PagingProduct(IEnumerable<Product> products,int? page)
-        {
-            var productList = products.ToList();
-            pageCount =(int) Math.Ceiling(productList.Count / (double)pageSize);
-
-            currentPage = page ?? 1;
-            var tempProduct = products.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-
-            return tempProduct;
-        }
-
     }
 }

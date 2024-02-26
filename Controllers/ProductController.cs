@@ -19,26 +19,24 @@ namespace YoKart.Controllers
             _webHostEnvironment = webHostEnvironment;
             _service = proService;
         }
-        public async Task<IActionResult> Index(int? page, long? low, long? high)
+        public async Task<IActionResult> Index(Paging obj)
         {
             var _cate = await _serviceCat.CategoryList();
             ViewData["categories"] = _cate.CategoryList;
             ViewData["subcategories"] = _cate.SubCategoryList;
 
-            var products = await _service.Index( low, high);
-            var tempProduct = myVar.PagingProduct(products, page);
-            return View("Index", tempProduct);
+            var products = await _service.Index(obj);
+            return View("Index", products);
         }
 
-        public async Task<IActionResult> Index_Partial(int? page, long? low, long? high)
+        public async Task<IActionResult> Index_Partial(Paging obj)
         {
             var _cate = await _serviceCat.CategoryList();
             ViewData["categories"] = _cate.CategoryList;
             ViewData["subcategories"] = _cate.SubCategoryList;
 
-            var products = await _service.Index(low, high);
-            var tempProduct = myVar.PagingProduct(products, page);
-            return PartialView("_Index", tempProduct);
+            var products = await _service.Index(obj);
+            return PartialView("_Index", products);
         }
 
 
@@ -84,31 +82,14 @@ namespace YoKart.Controllers
             if (product.ProductImageFile == null) { return Redirect("Edit/" + product.ProductId); }
             var response = await _service.EditImage(product);
             if (response.IsSuccessStatusCode) { return RedirectToAction("Index"); }
-
             return View("Edit");
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _service.Edit(id);
-
-            var url = "https://localhost:44373/api/ProductApi/DeleteProduct?id=" + id;
-            var response = _client.DeleteAsync(url).Result;
-
-            var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "UploadImage");
-            var filePath = Path.Combine(uploadsFolder, product.ProductImage);
-
-            if (System.IO.File.Exists(filePath))
-            {
-                System.IO.File.Delete(filePath);
-            }
-
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
+            var response = await _service.Delete(id);
+            if (response.IsSuccessStatusCode){return RedirectToAction("Index");}
             return View("Index");
         }
     }

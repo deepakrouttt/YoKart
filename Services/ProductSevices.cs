@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using YoKart.Models;
@@ -20,7 +18,7 @@ namespace YoKart.Services
             _serviceCat = serviceCat;
         }
 
-        public async Task<IEnumerable<Product>> Index( long? low, long? high)
+        public async Task<IEnumerable<Product>> Index(Paging obj)
         {
             var products = new List<Product>();
             var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
@@ -30,22 +28,27 @@ namespace YoKart.Services
             {
                 myVar.imagePaths.Add(Path.GetFileName(image));
             }
-            var url = "https://localhost:44373/api/ProductApi/GetProducts";
+
+            if (obj.HighRange is 0) { obj.HighRange = long.MaxValue; };
+
+            var url = $"https://localhost:44373/api/ProductApi/GetProductsRange?Page={obj.page}&LowPrice={obj.LowRange}" +
+                $"&HighPrice={obj.HighRange}";
+
             var response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<List<Product>>(result);
-
+                var data = JsonConvert.DeserializeObject<ProductPagingData>(result);
                 if (data != null)
                 {
-                    products = data;
+                    products = data.Product;
+                    myVar.pageCount = data.pageCount;
+                    myVar.pageSize = data.pageSize;
+                    myVar.Total = data.Total;
+                    myVar.currentPage = data.currentPage;
                 }
             }
-            if (high == null) { high = long.MaxValue; };
-            var rangeProduct = products.Where(m => Convert.ToInt64(m.ProductPrice) > (low ?? 0) &&
-            Convert.ToInt64(m.ProductPrice) < high);
-            return rangeProduct;
+            return products;
         }
 
         public async Task<HttpResponseMessage> Create(Product product)
@@ -79,7 +82,7 @@ namespace YoKart.Services
                 var data = JsonConvert.DeserializeObject<Product>(result);
                 if (data != null)
                 {
-                    product = data ;
+                    product = data;
                 }
             }
             return product;
@@ -98,14 +101,17 @@ namespace YoKart.Services
 
         public async Task<HttpResponseMessage> EditImage(Product product)
         {
+            var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
+            var filePath = Path.Combine(uploadsFolder, product.ProductImage);
+
+            if (System.IO.File.Exists(filePath)) { System.IO.File.Delete(filePath); }
 
             if (product.ProductImageFile.Length > 0)
             {
-                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
                 var orgFileName = Path.GetFileName(product.ProductImageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, orgFileName);
+                var _filePath = Path.Combine(uploadsFolder, orgFileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var fileStream = new FileStream(_filePath, FileMode.Create))
                 {
                     product.ProductImageFile.CopyTo(fileStream);
                 }
@@ -117,6 +123,17 @@ namespace YoKart.Services
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
 
             var response = await _client.PutAsync(url, stringContent);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> Delete(int id)
+        {
+            var product = await Edit(id);
+            var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
+            var filePath = Path.Combine(uploadsFolder, product.ProductImage);
+            if (System.IO.File.Exists(filePath)) { System.IO.File.Delete(filePath); }
+            var url = "https://localhost:44373/api/ProductApi/DeleteProduct?id=" + id;
+            var response = _client.DeleteAsync(url).Result;
             return response;
         }
 
@@ -135,7 +152,7 @@ namespace YoKart.Services
             };
             return productUpdate;
         }
-   
+
         public async Task<ProductUpdate> ProductSerializeImage(Product product)
         {
             var productUpdate = new ProductUpdate

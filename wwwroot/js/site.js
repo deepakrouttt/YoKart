@@ -69,7 +69,21 @@
         }
     });
 
-
+    //Price Filter
+    $(document).on('change', '#priceRange', function () {
+        var page = $(this).data('page');
+        var LowRange = $(this).find(':selected').data('low');
+        var HighRange = $(this).find(':selected').data('high');
+        $.ajax({
+            url: 'Index_Partial',
+            type: 'GET',
+            data: { page: page, LowRange: LowRange, HighRange: HighRange },
+            success: function (data) {
+                $('#partial-container').html(data);
+                pagerCreate();
+            }
+        });
+    });
 });
 //Show Product By there Subcategory Name
 function showProductsForSubcategory(subcategoryId) {
@@ -91,15 +105,15 @@ function showProductsForSubcategory(subcategoryId) {
 //Pager link for paging 
 function PagerEvent() {
     $('.pager-link').click(function (e) {
-        debugger;
         e.preventDefault();
+        debugger;
+        var page = $(this).data('page');
         var LowRange = $("#priceRange").find(':selected').data('low');
         var HighRange = $("#priceRange").find(':selected').data('high');
-        var page = $(this).data('page');
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
-            data: { page: page, low: LowRange, high: HighRange }, 
+            data: { page: page, LowRange: LowRange, HighRange: HighRange },
             success: function (data) {
                     $('#partial-container').html(data);
             },
@@ -109,6 +123,7 @@ function PagerEvent() {
         });
     });
 }
+
 //Edit when I select Category then dynamic Subcategory display
 function getSubCategories() {
     var categoryId = $(".CategoryDropDown").val();
@@ -126,3 +141,13 @@ function getSubCategories() {
     //$('input[type=file]')[0].files[0].name
 }
 //Pager creation function
+function pagerCreate() {
+    var html = "";
+    var pageCount = $("#pageCount").val();
+    var page = $(this).data('page');
+    for (i = 1; i <= pageCount; i++) {
+        html += `<a href="#" data-page="${i}" class="pager-link  ${i == page ? "active" : ""} border btn p-1 m-1">${i}</a>`;
+    }
+    $("#pager-container").html(html);
+    PagerEvent();//paging function calling if we create a pager dynamic dynamic binding
+}
