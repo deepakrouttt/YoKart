@@ -16,20 +16,24 @@
                 @Html.DisplayFor(modelItem => subcategories.FirstOrDefault(m => m.SubCategoryId == item.SubCategoryId).SubCategoryName)
             </td>
             <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-            <td>
-                @foreach (  string imagePath in filepath)
+            <td class="text-center">
+                @foreach (string imagePath in filepath)
                 {
                     bool imageExists = false;
                     if (imagePath.Contains(item.ProductImage))
                     {
-                        <img src="~/images/products/@item.ProductImage" alt="Product Image" width="60" height="80" />
+                        <img src="~/images/products/@item.ProductImage" alt="Product Image" style="width:70px !important;"/>
                         imageExists = true;
                         break;
                     }
                 }
             </td>
             <td>@Html.DisplayFor(modelItem => item.ProductPrice) &#8377;</td>
-            <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+            <td>
+                <div style="max-height:90px; overflow-y:auto">
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </div>
+            </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
             </td>

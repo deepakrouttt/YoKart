@@ -20,25 +20,28 @@ namespace YoKart.Models
         [Required]
         public IFormFile? ProductImageFile { get; set; }
         [Required]
+        [RegularExpression(@"^\d{0,8}(\.\d{1,4})?$", ErrorMessage = "Please enter a valid product price.")]
         public string ProductPrice { get; set; }
         [Required]
         public string ProductDescription { get; set; }
     }
+    //paging class 
     public class Paging
     {
         public int? page { get; set; }
         public long LowRange { get; set; }
         public long HighRange { get; set; }
     }
-
+    //Api class for fetch the data
     public class ProductPagingData
     {
         public List<Product> Product { get; set; }
         public int pageSize = 2;
         public int pageCount { get; set; }
-        public int Total { get; set; }
+        public int totalProduct { get; set; }
         public int currentPage { get; set; }
     }
+    //Api product type
     public class ProductUpdate
     {
         [Required]

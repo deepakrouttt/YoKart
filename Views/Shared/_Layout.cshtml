@@ -49,12 +49,9 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-layout-dashboard"></i>
-                                </span>
-                                <span class="hide-menu">Today's' Deals</span>
-                            </a>
+                            <div class="ps-4 border p-3 rounded">
+                                <a asp-action="Index" asp-controller="Home">Today's' Deals</a>
+                            </div>
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -63,23 +60,23 @@
                         @foreach (var category in categories)
                         {
                             <li class="sidebar-item">
-                                <a class="sidebar-link" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-article"></i>
-                                    </span>
-                                    @Html.Hidden("Category_id",@category.CategoryId)
-                                    <span class="hide-menu">@category.CategoryName</span>
-                                </a>
-                                <ul>
-                                    @foreach (var subcategory in subcategories.Where(s => s.CategoryId == category.CategoryId))
-                                    {
-                                        <li>
-                                            <a class="sidebar-link" aria-expanded="false" href="#" data-subcategory-id="@subcategory.SubCategoryId">
-                                                <span class="hide-menu">@subcategory.SubCategoryName</span>
-                                            </a>
-                                        </li>
-                                    }
-                                </ul>
+                                <div class="border p-2 m-1 rounded">
+                                    <a class="sidebar p-3 " aria-expanded="false">
+
+                                        @Html.Hidden("Category_id", @category.CategoryId)
+                                        <span class="hide-menu">@category.CategoryName</span>
+                                    </a>
+                                    <ul>
+                                        @foreach (var subcategory in subcategories.Where(s => s.CategoryId == category.CategoryId))
+                                        {
+                                            <li>
+                                                <a class="sidebar subcat" aria-expanded="false" href="#" data-subcategory-id="@subcategory.SubCategoryId">
+                                                    <span class="hide-menu" href="">@subcategory.SubCategoryName</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </li>
                         }
                     </ul>
@@ -92,9 +89,9 @@
             <!--  Header Start -->
             <partial name="_Header.cshtml" />
             <!--  Header End -->
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-top: calc(60px + 15px) !important">
                 <div class="container">
-                    <main role="main" class="pb-3">
+                    <main role="main">
                         @RenderBody()
                     </main>
                 </div>

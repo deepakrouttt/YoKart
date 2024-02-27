@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using YoKart.Models;
 using YoKart.Services;
 
@@ -64,7 +65,7 @@ namespace YoKart.Controllers
             ViewData["categories"] = _cate.CategoryList;
             ViewData["subcategories"] = _cate.SubCategoryList;
             var product = await _service.Edit(id);
-            if (product != null){ return View(product);}
+            if (product != null) { return View(product); }
             return View();
         }
 
@@ -89,7 +90,7 @@ namespace YoKart.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _service.Delete(id);
-            if (response.IsSuccessStatusCode){return RedirectToAction("Index");}
+            if (response.IsSuccessStatusCode) { return RedirectToAction("Index"); }
             return View("Index");
         }
     }

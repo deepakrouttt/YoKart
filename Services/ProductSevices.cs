@@ -44,7 +44,7 @@ namespace YoKart.Services
                     products = data.Product;
                     myVar.pageCount = data.pageCount;
                     myVar.pageSize = data.pageSize;
-                    myVar.Total = data.Total;
+                    myVar.totalProduct = data.totalProduct;
                     myVar.currentPage = data.currentPage;
                 }
             }
