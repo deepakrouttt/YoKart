@@ -29,10 +29,8 @@ namespace YoKart.Services
                 myVar.imagePaths.Add(Path.GetFileName(image));
             }
 
-            if (obj.HighRange is 0) { obj.HighRange = long.MaxValue; };
-
             var url = $"https://localhost:44373/api/ProductApi/GetProductsRange?Page={obj.page}&LowPrice={obj.LowRange}" +
-                $"&HighPrice={obj.HighRange}";
+                $"&HighPrice={obj.HighRange}&Sort={obj.Sort}";
 
             var response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode)

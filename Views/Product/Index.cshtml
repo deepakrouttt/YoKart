@@ -17,6 +17,7 @@
                 <option data-low="98" data-high="500">100-500</option>
                 <option data-low="498" data-high="700">500-700</option>
                 <option data-low="698" data-high="1000">700-1000</option>
+                <option data-low="1000" data-high="">1000-upto</option>
             </select>
         </div>
     </div>
@@ -58,3 +59,31 @@
         }
     </div>
 </div>
+<script>
+    $(function () {
+        $("table th").click(function () {
+            var Sort = $(this).html().trim();
+            var page = $("#currentPage").val();
+            var LowRange = $("#priceRange").find(':selected').data('low') ?? 0;
+            var HighRange = $("#priceRange").find(':selected').data('high');
+            debugger;
+            $.ajax({
+                url: 'Index_Partial',
+                type: 'GET',
+                data: {
+                    page: page,
+                    LowRange: LowRange,
+                    HighRange: HighRange,
+                    Sort: Sort,
+                },
+                success: function (data) {
+                    $('#partial-container').html(data);
+                },
+                error: function (error) {
+                    $("body").html(error);
+                }
+            });
+        })
+    })
+</script>
+

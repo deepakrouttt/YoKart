@@ -29,8 +29,9 @@ namespace YoKart.Models
     public class Paging
     {
         public int? page { get; set; }
-        public long LowRange { get; set; }
-        public long HighRange { get; set; }
+        public Decimal LowRange { get; set; }
+        public Decimal HighRange { get; set; }
+        public String? Sort { get; set; }
     }
     //Api class for fetch the data
     public class ProductPagingData
