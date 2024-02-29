@@ -88,7 +88,60 @@
             }
         });
     });
+
+    //table column click sorting
+    $("table th").click(function () {
+        var Sort = $(this).html().trim();
+        var page = $("#currentPage").val();
+        var LowRange = $("#priceRange").find(':selected').data('low') ?? 0;
+        var HighRange = $("#priceRange").find(':selected').data('high');
+        $.ajax({
+            url: 'Index_Partial',
+            type: 'GET',
+            data: {
+                page: page,
+                LowRange: LowRange,
+                HighRange: HighRange,
+                Sort: Sort,
+            },
+            success: function (data) {
+                $('#partial-container').html(data);
+            },
+            error: function (error) {
+                $("body").html(error);
+            }
+        });
+    });
+
+    //search products
+    $("#searchButton").keyup(function () {
+        var search = $("#searchButton").val();
+        $("#product-list").html(`<img src="/images/logos/Rolling-1s-200px.gif" style="width:30%;margin:50px 30%;"> `);
+        $.ajax({
+            url: 'https://localhost:44373/api/ProductApi/GetProductsBySearch?search=' + search,
+            type: 'GET',
+            // data: { page: page, LowRange: LowRange, HighRange: HighRange },
+            success: function (data) {
+                setTimeout(function () {
+                    $("#product-list").empty();
+                    $.each(data, function (index, product) {
+                        $("#product-list").append(`<div class="col-sm-6 col-xl-3" ><div class="card overflow-hidden rounded-2">
+                    <div class="position-relative text-center"><a href="javascript:void(0)"><img src=/images/products/` + product.productImage + ` ` +
+                            `class="card-img-top rounded-0 p-1" alt="..." style="width: 80% !important;"></a><a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
+                        data-bstoggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4">
+                        </i></a></div><div class="card-body"><h6 class="fw-semibold fs-4">` + product.productName +
+                            `</h6><div class="d-flex align-items-center justify-content-between"><h6 class="fw-semibold fs-4 mb-0">`
+                            + product.productPrice + ` &#8377;</h6></div></div></div></div>`);
+                    });
+                }, 200);
+            },
+            error: function (error) {
+                $("body").html(error);
+            }
+        });
+    })
 });
+
 //Show Product By there Subcategory Name
 function showProductsForSubcategory(subcategoryId) {
     $("#product-list").empty();
@@ -111,11 +164,11 @@ function showProductsForSubcategory(subcategoryId) {
         }
     });
 }
+
 //Pager link for paging 
 function PagerEvent() {
     $('.pager-link').click(function (e) {
         e.preventDefault();
-        debugger;
         var page = $(this).data('page');
         var LowRange = $("#priceRange").find(':selected').data('low');
         var HighRange = $("#priceRange").find(':selected').data('high');
@@ -125,6 +178,15 @@ function PagerEvent() {
             data: { page: page, LowRange: LowRange, HighRange: HighRange },
             success: function (data) {
                 $('#partial-container').html(data);
+                $(".pager-link").each(function (index) {
+                    if ($(this).data('page') == page) {
+                        $(this).addClass("activePage");
+                    }
+                    else {  
+                        $(this).removeClass("activePage");
+                    }
+                })
+               
             },
             error: function (error) {
                 $("body").html(error);
@@ -149,13 +211,15 @@ function getSubCategories() {
     });
     //$('input[type=file]')[0].files[0].name
 }
+
 //Pager creation function
 function pagerCreate() {
     var html = "";
     var pageCount = $("#pageCount").val();
-    var page = $(this).data('page');
+    debugger;
+    var page = $(this).data('page') ?? 1;
     for (i = 1; i <= pageCount; i++) {
-        html += `<a href="#" data-page="${i}" class="pager-link  ${i == page ? "active" : ""} border btn p-1 m-1">${i}</a>`;
+        html += `<a href="#" data-page="${i}" class="pager-link  ${i == page ? "activePage" : ""} border">${i}</a>`;
     }
     $("#pager-container").html(html);
     PagerEvent();//paging function calling if we create a pager dynamic dynamic binding

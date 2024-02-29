@@ -49,6 +49,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\186407_arrow_up_icon.png",
+      "PackagePath": "staticwebassets\\images\\Category\\186407_arrow_up_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\186411_arrow_down_icon.png",
+      "PackagePath": "staticwebassets\\images\\Category\\186411_arrow_down_icon.png"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\addCategory.png",
       "PackagePath": "staticwebassets\\images\\Category\\addCategory.png"
     },
@@ -59,6 +67,10 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\backgrounds\\rocket.png",
       "PackagePath": "staticwebassets\\images\\backgrounds\\rocket.png"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\logos\\Rolling-1s-200px.gif",
+      "PackagePath": "staticwebassets\\images\\logos\\Rolling-1s-200px.gif"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\logos\\dark-logo.png",
@@ -83,6 +95,10 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Asus.jpg",
       "PackagePath": "staticwebassets\\images\\products\\Asus.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\S1_ca27bc84-59b5-4910-8cf4-f544229a00de.webp",
+      "PackagePath": "staticwebassets\\images\\products\\S1_ca27bc84-59b5-4910-8cf4-f544229a00de.webp"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Tshirt.jpg",

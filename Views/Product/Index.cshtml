@@ -4,7 +4,6 @@
     var categories = ViewData["categories"] as List<Category>;
     var subcategories = ViewData["subcategories"] as List<SubCategory>;
     var pageCount = myVar.pageCount;
-    var currentPage = myVar.currentPage;
 }
 <div class="container">
     <hr />
@@ -22,6 +21,7 @@
         </div>
     </div>
     <br />
+    <div class="table-container">
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr>
@@ -51,39 +51,11 @@
             @Html.Partial("_Index")
         </tbody>
     </table>
-
+    </div>
     <div class="pager" id="pager-container">
         @for (var i = 1; i <= pageCount; i++)
         {
-            <a href="#" data-page="@i" class="pager-link @(i == currentPage ? "active" : "") border btn p-1">@i</a>
+            <a href="#" data-page="@i" class="pager-link @(i ==  myVar.currentPage ? "activePage" : "") border">@i</a>
         }
     </div>
 </div>
-<script>
-    $(function () {
-        $("table th").click(function () {
-            var Sort = $(this).html().trim();
-            var page = $("#currentPage").val();
-            var LowRange = $("#priceRange").find(':selected').data('low') ?? 0;
-            var HighRange = $("#priceRange").find(':selected').data('high');
-            debugger;
-            $.ajax({
-                url: 'Index_Partial',
-                type: 'GET',
-                data: {
-                    page: page,
-                    LowRange: LowRange,
-                    HighRange: HighRange,
-                    Sort: Sort,
-                },
-                success: function (data) {
-                    $('#partial-container').html(data);
-                },
-                error: function (error) {
-                    $("body").html(error);
-                }
-            });
-        })
-    })
-</script>
-

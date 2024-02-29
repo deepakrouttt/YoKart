@@ -19,6 +19,9 @@
                 <a asp-controller="Product" asp-action="Index" class="nav-link btn" style="padding: 5px;font-size: 15px !important;border:none;">Show Product</a>
             </li>
         </ul>
+        <div class="nav-item" style="padding: 15px;width:300px;">   
+            <input type="text" class="form-control" id="searchButton" placeholder="Search here">
+        </div>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                 <li class="nav-item dropdown">
@@ -40,7 +43,7 @@
                                 <i class="ti ti-list-check fs-6"></i>
                                 <p class="mb-0 fs-3">My Task</p>
                             </a>
-                            <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                            <a asp-action="Login" asp-controller="Login" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                         </div>
                     </div>
                 </li>

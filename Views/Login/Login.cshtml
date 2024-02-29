@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LoginUser    
+@{
     ViewData["Title"] = "Login";
     Layout = null;
 }
@@ -28,15 +29,17 @@
 
                                 </div>
                                 <p class="text-center">Choose your style</p>
-                                @using (Html.BeginForm("LoginUser", "Login", FormMethod.Post))
+                                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                                 {
                                     <div class="mb-3">
-                                        @Html.Label("exampleInputEmail1", "Username", new { @class = "form-label" })
-                                        @Html.TextBox("exampleInputEmail1", null, new { @class = "form-control", type = "email", aria_describedby = "emailHelp" })
+                                        @Html.Label("Username", "Username", new { @class = "form-label" })
+                                        @Html.TextBox("Username", null, new { @class = "form-control", type = "text"})
+                                        <span asp-validation-for="Username" class="text-danger"></span>
                                     </div>
                                     <div class="mb-4">
-                                        @Html.Label("exampleInputPassword1", "Password", new { @class = "form-label" })
-                                        @Html.Password("exampleInputPassword1", null, new { @class = "form-control" })
+                                        @Html.Label("Password", "Password", new { @class = "form-label" })
+                                        @Html.Password("Password", null, new { @class = "form-control" })
+                                        <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">

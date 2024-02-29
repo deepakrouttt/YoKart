@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Drawing.Printing;
 using YoKart.Models;
 
 namespace YoKart
@@ -6,7 +7,7 @@ namespace YoKart
     public static class myVar
     {
         public static List<string> imagePaths = new List<string>();
-        public static int pageSize = 3;
+        public static int pageSize { get; set; }
         public static int pageCount { get; set; }
         public static int totalProduct { get; set; }
         public static int currentPage { get; set; }
@@ -14,6 +15,7 @@ namespace YoKart
         //paging 
         public static List<Category> PagingCategory(List<Category> categories, int? page)
         {
+            pageSize = 3;
             pageCount = (int)Math.Ceiling(categories.Count / (double)pageSize);
             currentPage = page ?? 1;
             var tempCategory = categories.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
@@ -23,6 +25,7 @@ namespace YoKart
 
         public static Category PagingSubCategory(Category category, int? page)
         {
+            pageSize = 3;
             pageCount = (int)Math.Ceiling(category.SubCategories.Count / (double)pageSize);
             currentPage = page ?? 1;
             var tempSubCategory = category.SubCategories.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();

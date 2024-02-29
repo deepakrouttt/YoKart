@@ -41,21 +41,19 @@ body {
 .subcat {
     padding: 20px 5px;
 }
-#pager-container{
-    position:relative;
-    top:-15px;
-}
 .pager {
     margin: 5px;
     display: inline-block;
-    /*border:2px solid black;*/
 }
 
 .pager a {
         padding: 5px 7px !important;
         margin: 2px !important;
 }
-
+.activePage {
+    color: white !important;
+    background: #68b1ff !important;
+}
 .col-xl-3 {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
@@ -71,4 +69,16 @@ body {
 
 .hide-menu {
     cursor: pointer;
+}
+table th {
+    user-select: none;
+    cursor:pointer;
+}
+
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 20px;
 }
