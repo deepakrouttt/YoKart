@@ -1,0 +1,38 @@
+﻿@model YoKart.Models.Product
+@{
+    ViewData["Title"] = "Products";
+    var subcategories = ViewData["subcategories"] as List<SubCategory>;
+}
+
+<div>
+    <h4>@subcategories.FirstOrDefault(m => m.SubCategoryId == Model.SubCategoryId).SubCategoryName</h4>
+    <hr />
+    <div class="row">
+        <div class="col border">
+            <img src="~/images/products/@Model.ProductImage" alt="Product Image" width="300" class="m-3" />
+        </div>
+        <div class="col m-4" style="flex-grow:3">
+            <div class="row">
+                <table class="table">
+                    <tr>
+                        <th><h1>Product</h1></th>
+                        <td><h2>@Model.ProductName</h2><p style="color:green">In stock</p></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Price</h4></th>
+                        <td><h5 style="color:red;">@myVar.NumberFormeting(Model.ProductPrice)/-</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h5>Discription</h5></th>
+                        <td><h5>@Model.ProductDescription</h5></td>
+                    </tr>
+                </table>
+            </div>  
+            <div class="row">
+                <div>
+                    <button type="button" class="btn btn-danger">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

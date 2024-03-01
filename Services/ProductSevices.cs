@@ -18,7 +18,7 @@ namespace YoKart.Services
             _serviceCat = serviceCat;
         }
 
-        public async Task<IEnumerable<Product>> Index(Paging obj)
+        public async Task<IEnumerable<Product>> Index(filtering obj)
         {
             var products = new List<Product>();
             var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");

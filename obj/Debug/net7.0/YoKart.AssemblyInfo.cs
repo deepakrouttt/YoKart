@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YoKart")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+893a52c7065ce18008af538e338ed1e23da09a5b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd7a4fa5dd3ae6fbc1e3dc9bdbbaa410d6155018")]
 [assembly: System.Reflection.AssemblyProductAttribute("YoKart")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YoKart")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

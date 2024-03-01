@@ -11,7 +11,7 @@ namespace YoKart.Controllers
     {
         private readonly ILogger<LoginController> _logger;
         private readonly HttpClient _client = new HttpClient();
-        private readonly string url = "https://localhost:44373/api/UserApi";
+        private readonly string url = "https://localhost:44373/api/UserApi/Login";
 
         public LoginController(ILogger<LoginController> logger, HttpClient client)
         {
@@ -37,16 +37,18 @@ namespace YoKart.Controllers
                     if (!response.IsSuccessStatusCode)
                     {
                         string errorContent = response.Content.ReadAsStringAsync().Result;
-                        if (errorContent.Contains("System.Exception: User is not valid"))
+                        if (errorContent.Contains("Unauthorized"))
                         {
                             ModelState.AddModelError("Username", "Incorrect username. Please try again.");
                             ModelState.AddModelError("Password", "Incorrect password. Please try again.");
+
+                            return View();
                         }
                     }
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return View("Login");
+            return View();
         }
         public IActionResult Privacy()
         {

@@ -26,7 +26,7 @@ namespace YoKart.Models
         public string ProductDescription { get; set; }
     }
     //paging class 
-    public class Paging
+    public class filtering
     {
         public int? page { get; set; }
         public Decimal LowRange { get; set; }

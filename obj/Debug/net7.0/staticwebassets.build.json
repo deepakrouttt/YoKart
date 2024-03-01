@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eBCAPHzU6z6G4u+gK+GyZKelG43AkSIoMSb0YKiE8qw=",
+  "Hash": "BQdnElA2arTDzoUjYEDP/EVL5TgwWoJ+4a/K7Ye9GQI=",
   "Source": "YoKart",
   "BasePath": "_content/YoKart",
   "Mode": "Default",
@@ -416,6 +416,25 @@
       "OriginalItemSpec": "wwwroot\\images\\logos\\Rolling-1s-200px.gif"
     },
     {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp"
+    },
+    {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\52857700._SY475_.jpg",
       "SourceId": "YoKart",
       "SourceType": "Discovered",
@@ -530,6 +549,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\icse-mathematics-for-class-6-original-imafyjbcd7zghbhg.webp"
     },
     {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\IRS1087C1SG_3_720x.webp",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/IRS1087C1SG_3_720x.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\IRS1087C1SG_3_720x.webp"
+    },
+    {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\l-men-s-stylish-trendy-half-sleeve-digital-printed-latest-design-original-imagqz69mu8sryvh.webp",
       "SourceId": "YoKart",
       "SourceType": "Discovered",
@@ -587,12 +625,12 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\mi_power_bank.jpg"
     },
     {
-      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\moto.jpg",
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\motorola-moto-g54-10.jpg",
       "SourceId": "YoKart",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
       "BasePath": "_content/YoKart",
-      "RelativePath": "images/products/moto.jpg",
+      "RelativePath": "images/products/motorola-moto-g54-10.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -603,7 +641,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\moto.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\products\\motorola-moto-g54-10.jpg"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\old_navy.jpg",
@@ -623,6 +661,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\old_navy.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\-original-imagrk9rypmyhjmq.webp",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/-original-imagrk9rypmyhjmq.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\-original-imagrk9rypmyhjmq.webp"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\-original-imagwyp2uee8zxez.webp",
@@ -889,44 +946,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\tshirt_polo.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\watch.jpg",
-      "SourceId": "YoKart",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
-      "BasePath": "_content/YoKart",
-      "RelativePath": "images/products/watch.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\watch.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\watchpremium.jpg",
-      "SourceId": "YoKart",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
-      "BasePath": "_content/YoKart",
-      "RelativePath": "images/products/watchpremium.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\watchpremium.jpg"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\profile\\user-1.jpg",

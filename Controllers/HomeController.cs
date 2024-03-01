@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
 using System.Text;
 using YoKart.Models;
@@ -9,6 +10,14 @@ namespace YoKart.Controllers
     public class HomeController : Controller
     {
         public readonly HttpClient _client = new HttpClient();
+        public readonly ICategoryServices _serviceCat;
+
+        public HomeController(HttpClient client, ICategoryServices serviceCat)
+        {
+            _client = client;
+            _serviceCat = serviceCat;
+        }
+
         public async Task<IActionResult> Index()
         {
             var url = "https://localhost:44373/api/ProductApi/GetProducts";
@@ -22,6 +31,27 @@ namespace YoKart.Controllers
                 {
                     products = data;
                     return View(products);
+                }
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> ProductIndex(int id)
+        {
+            var _cate = await _serviceCat.CategoryList();
+            ViewData["categories"] = _cate.CategoryList;
+            ViewData["subcategories"] = _cate.SubCategoryList;
+
+            var url = "https://localhost:44373/api/ProductApi/" + id;
+            var response = _client.GetAsync(url).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                var result = JsonConvert.DeserializeObject<Product>(response.Content.ReadAsStringAsync().Result);
+
+                if(result != null)
+                {
+                    return View(result);
                 }
             }
             return View();

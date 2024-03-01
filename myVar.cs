@@ -37,5 +37,12 @@ namespace YoKart
 
             return tempCategory;
         }
+
+        public static string NumberFormeting(string price)
+        {   
+            double num = Convert.ToDouble(price);
+            string formatted = num.ToString("#,##0.00");
+            return formatted;
+        }
     }
 }

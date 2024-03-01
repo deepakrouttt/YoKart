@@ -20,7 +20,7 @@ namespace YoKart.Controllers
             _webHostEnvironment = webHostEnvironment;
             _service = proService;
         }
-        public async Task<IActionResult> Index(Paging obj)
+        public async Task<IActionResult> Index(filtering obj)
         {
             var _cate = await _serviceCat.CategoryList();
             ViewData["categories"] = _cate.CategoryList;
@@ -30,7 +30,7 @@ namespace YoKart.Controllers
             return View("Index", products);
         }
 
-        public async Task<IActionResult> Index_Partial(Paging obj)
+        public async Task<IActionResult> Index_Partial(filtering obj)
         {
             var _cate = await _serviceCat.CategoryList();
             ViewData["categories"] = _cate.CategoryList;

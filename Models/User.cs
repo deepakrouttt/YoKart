@@ -31,9 +31,7 @@ namespace YoKart.Models
         [Required]
         public string Username { get; set; } = null!;
         [Required]
-        public string UserRoll { get; set; } = null!;
-        [Required]
-        [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", ErrorMessage = "Password is required.")]
+        //[RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", ErrorMessage = "Password is required.")]
         public string Password { get; set; }
     }
 }
