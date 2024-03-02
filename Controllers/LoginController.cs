@@ -1,22 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Security.Claims;
 using System.Security.Policy;
 using System.Text;
 using YoKart.Models;
+using YoKart.Services;
 
 namespace YoKart.Controllers
 {
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
-        private readonly HttpClient _client = new HttpClient();
-        private readonly string url = "https://localhost:44373/api/UserApi/Login";
+        private readonly IUserServices _service;
 
-        public LoginController(ILogger<LoginController> logger, HttpClient client)
+        public LoginController(ILogger<LoginController> logger, IUserServices service)
         {
             _logger = logger;
-            _client = client;
+            _service = service;
         }
 
         public IActionResult Login()
@@ -25,31 +28,33 @@ namespace YoKart.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginUser _login)
+        public async Task<IActionResult> Login(LoginUser _login)
         {
             if (ModelState.IsValid)
             {
-                var data = JsonConvert.SerializeObject(_login);
-                StringContent stringContent = new StringContent(data, Encoding.UTF8, "application/json");
-
-                using (var response = _client.PostAsync(url, stringContent).Result)
+                var data = await _service.ValidateUser(_login);
+                if (data == (null, null,null))
                 {
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        string errorContent = response.Content.ReadAsStringAsync().Result;
-                        if (errorContent.Contains("Unauthorized"))
-                        {
-                            ModelState.AddModelError("Username", "Incorrect username. Please try again.");
-                            ModelState.AddModelError("Password", "Incorrect password. Please try again.");
-
-                            return View();
-                        }
-                    }
-                    return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError("Username", "Incorrect username. Please try again.");
+                    ModelState.AddModelError("Password", "Incorrect password. Please try again.");
+                    return View();
                 }
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, data.Item1, data.Item2);
+
+                myVar.Roles = data.Item3.Roles;
+
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return View("Login");
+        }
+
         public IActionResult Privacy()
         {
             return View();

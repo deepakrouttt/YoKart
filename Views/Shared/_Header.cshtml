@@ -6,20 +6,26 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                    <i class="ti ti-bell-ringing"></i>
-                    <div class="notification bg-primary rounded-circle"></div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a asp-controller="Product" asp-action="Create" class="nav-link btn" style="padding: 5px;font-size: 15px !important;border:none;">Add Product</a>
-            </li>
-            <li class="nav-item">
-                <a asp-controller="Product" asp-action="Index" class="nav-link btn" style="padding: 5px;font-size: 15px !important;border:none;">Show Product</a>
-            </li>
+            @if (myVar.Roles == "User")
+            {
+                <li class="nav-item">
+                    <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                        <i class="ti ti-bell-ringing"></i>
+                        <div class="notification bg-primary rounded-circle"></div>
+                    </a>
+                </li>
+            }
+            @if (myVar.Roles == "Admin")
+            {
+                <li class="nav-item">
+                    <a asp-controller="Product" asp-action="Create" class="nav-link btn" style="padding: 5px;font-size: 15px !important;border:none;">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Product" asp-action="Index" class="nav-link btn" style="padding: 5px;font-size: 15px !important;border:none;">Show Product</a>
+                </li>
+            }
         </ul>
-        <div class="nav-item" style="padding: 15px;width:300px;">   
+        <div class="nav-item" style="padding: 15px;width:300px;">
             <input type="text" class="form-control" id="searchButton" placeholder="Search here">
         </div>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -43,7 +49,7 @@
                                 <i class="ti ti-list-check fs-6"></i>
                                 <p class="mb-0 fs-3">My Task</p>
                             </a>
-                            <a asp-action="Login" asp-controller="Login" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                            <a asp-action="Logout" asp-controller="Login" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                         </div>
                     </div>
                 </li>

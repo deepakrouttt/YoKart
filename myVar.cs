@@ -11,6 +11,7 @@ namespace YoKart
         public static int pageCount { get; set; }
         public static int totalProduct { get; set; }
         public static int currentPage { get; set; }
+        public static String  Roles { get; set; }
 
         //paging 
         public static List<Category> PagingCategory(List<Category> categories, int? page)
@@ -38,11 +39,16 @@ namespace YoKart
             return tempCategory;
         }
 
-        public static string NumberFormeting(string price)
+        public static string NumberFormeting(decimal price)
         {   
-            double num = Convert.ToDouble(price);
-            string formatted = num.ToString("#,##0.00");
+            string formatted = price.ToString("#,##0.00");
             return formatted;
+        }
+
+        public static List<string> DiscriptionFormat(string discription)
+        {
+            var ListDiscription = discription.Split(',').ToList();
+            return ListDiscription;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -8,8 +9,10 @@ using YoKart.Services;
 
 namespace YoKart.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
+      
         public HttpClient _client = new HttpClient();
         public readonly ICategoryServices _service;
 

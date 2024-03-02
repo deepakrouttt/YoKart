@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
 using System.Text;
@@ -7,6 +8,7 @@ using YoKart.Services;
 
 namespace YoKart.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public readonly HttpClient _client = new HttpClient();

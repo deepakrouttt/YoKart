@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BQdnElA2arTDzoUjYEDP/EVL5TgwWoJ+4a/K7Ye9GQI=",
+  "Hash": "nCxeeNU/coac8rqW6B5nPhIZO5i/niIYZbFPQhZG850=",
   "Source": "YoKart",
   "BasePath": "_content/YoKart",
   "Mode": "Default",
@@ -435,6 +435,25 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp"
     },
     {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\51YAeanLGQL._AC_UL320_.jpg",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/51YAeanLGQL._AC_UL320_.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\51YAeanLGQL._AC_UL320_.jpg"
+    },
+    {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\52857700._SY475_.jpg",
       "SourceId": "YoKart",
       "SourceType": "Discovered",
@@ -452,6 +471,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\52857700._SY475_.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\81Rq93HMLJL._SY425_.jpg",
+      "SourceId": "YoKart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
+      "BasePath": "_content/YoKart",
+      "RelativePath": "images/products/81Rq93HMLJL._SY425_.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\81Rq93HMLJL._SY425_.jpg"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\8905241261758_1.webp",
@@ -490,25 +528,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\Asus.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\book.jpg",
-      "SourceId": "YoKart",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
-      "BasePath": "_content/YoKart",
-      "RelativePath": "images/products/book.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\book.jpg"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\daypack-small-bags-backpack-for-daily-use-library-office-outdoor-original-imagdm57a6rraauc.webp",
@@ -889,25 +908,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\s-st28-vebnor-original-imagq6aqgh2hzv22.webp"
-    },
-    {
-      "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\tom.jpg",
-      "SourceId": "YoKart",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\",
-      "BasePath": "_content/YoKart",
-      "RelativePath": "images/products/tom.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\tom.jpg"
     },
     {
       "Identity": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Tshirt.jpg",

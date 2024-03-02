@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using YoKart.Services;
@@ -14,9 +15,24 @@ namespace YoKart
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+            builder.Services.AddScoped<IUserServices,UserServices>();
             builder.Services.AddScoped<IProductSevices, ProductSevices>();
             builder.Services.AddDirectoryBrowser();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
 
+                options.Cookie.Name = "User_Login_token";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                options.LoginPath = "/Login/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

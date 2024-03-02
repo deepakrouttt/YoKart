@@ -15,8 +15,8 @@
             <div class="row">
                 <table class="table">
                     <tr>
-                        <th><h1>Product</h1></th>
-                        <td><h2>@Model.ProductName</h2><p style="color:green">In stock</p></td>
+                        <th><h2>Product</h2></th>
+                        <td><h3>@Model.ProductName</h3><p style="color:green">In stock</p></td>
                     </tr>
                     <tr>
                         <th><h4>Price</h4></th>
@@ -24,15 +24,25 @@
                     </tr>
                     <tr>
                         <th><h5>Discription</h5></th>
-                        <td><h5>@Model.ProductDescription</h5></td>
+                        <td>
+                            <div style="max-height:15em; overflow-y:auto">
+                                @foreach (var Discription in @myVar.DiscriptionFormat(Model.ProductDescription))
+                                {
+                                    <h5>@Discription</h5>
+                                }
+                            </div>                             
+                        </td>
                     </tr>
                 </table>
-            </div>  
-            <div class="row">
-                <div>
-                    <button type="button" class="btn btn-danger">Add To Cart</button>
-                </div>
             </div>
+            @if (myVar.Roles == "User")
+            {
+                <div class="row">
+                    <div>
+                        <button type="button" class="btn btn-danger">Add To Cart</button>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

@@ -81,6 +81,7 @@ table th {
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 20px;
+    border:1px solid grey;
 }
 {
     position: absolute;

@@ -21,7 +21,7 @@ namespace YoKart.Models
         public IFormFile? ProductImageFile { get; set; }
         [Required]
         [RegularExpression(@"^\d{0,8}(\.\d{1,4})?$", ErrorMessage = "Please enter a valid product price.")]
-        public string ProductPrice { get; set; }
+        public Decimal ProductPrice { get; set; }
         [Required]
         public string ProductDescription { get; set; }
     }
@@ -58,7 +58,7 @@ namespace YoKart.Models
         [Required]
         public String ProductImage { get; set; }
         [Required]
-        public string ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
         [Required]
         public string ProductDescription { get; set; }
     }
