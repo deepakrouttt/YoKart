@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
+using YoKart.IServices;
 using YoKart.Models;
-using YoKart.Services;
 
 namespace YoKart.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class ProductController : Controller
     {
         public readonly ICategoryServices _serviceCat;

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using YoKart.IServices;
 using YoKart.Services;
 
 namespace YoKart
@@ -17,6 +18,7 @@ namespace YoKart
             builder.Services.AddScoped<ICategoryServices, CategoryServices>();
             builder.Services.AddScoped<IUserServices,UserServices>();
             builder.Services.AddScoped<IProductSevices, ProductSevices>();
+            builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddDirectoryBrowser();
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
@@ -33,6 +35,7 @@ namespace YoKart
                 options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
             });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

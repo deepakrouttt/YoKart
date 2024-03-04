@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Security.Policy;
 using System.Text;
 using YoKart.Models;
-using YoKart.Services;
+using YoKart.IServices;
 
 namespace YoKart.Controllers
 {
@@ -41,8 +41,7 @@ namespace YoKart.Controllers
                 }
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, data.Item1, data.Item2);
 
-                myVar.Roles = data.Item3.Roles;
-
+                myVar.userDetails(data.Item3);
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -52,7 +51,7 @@ namespace YoKart.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return View("Login");
+            return RedirectToAction("Login");
         }
 
         public IActionResult Privacy()

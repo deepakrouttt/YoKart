@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
+using YoKart.IServices;
 using YoKart.Models;
-using YoKart.Services;
 
 namespace YoKart.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class CategoryController : Controller
     {
       

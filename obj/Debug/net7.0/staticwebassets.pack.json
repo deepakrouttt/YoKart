@@ -61,8 +61,16 @@
       "PackagePath": "staticwebassets\\images\\Category\\addCategory.png"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\checkout.png",
+      "PackagePath": "staticwebassets\\images\\Category\\checkout.png"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\editCategory.png",
       "PackagePath": "staticwebassets\\images\\Category\\editCategory.png"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\Category\\trolley.png",
+      "PackagePath": "staticwebassets\\images\\Category\\trolley.png"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\backgrounds\\rocket.png",
@@ -81,8 +89,16 @@
       "PackagePath": "staticwebassets\\images\\logos\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\-original-imagpphxg8pnhnxm.webp",
+      "PackagePath": "staticwebassets\\images\\products\\-original-imagpphxg8pnhnxm.webp"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\-original-imagrk9rypmyhjmq.webp",
       "PackagePath": "staticwebassets\\images\\products\\-original-imagrk9rypmyhjmq.webp"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\-original-imagtqqdw4tnwjbh.webp",
+      "PackagePath": "staticwebassets\\images\\products\\-original-imagtqqdw4tnwjbh.webp"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\-original-imagwyp2uee8zxez.webp",
@@ -91,6 +107,10 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp",
       "PackagePath": "staticwebassets\\images\\products\\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\4MST2094-10-M2.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4MST2094-10-M2.jpg"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\51YAeanLGQL._AC_UL320_.jpg",
@@ -109,20 +129,12 @@
       "PackagePath": "staticwebassets\\images\\products\\8905241261758_1.webp"
     },
     {
-      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Asus.jpg",
-      "PackagePath": "staticwebassets\\images\\products\\Asus.jpg"
-    },
-    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\IRS1087C1SG_3_720x.webp",
       "PackagePath": "staticwebassets\\images\\products\\IRS1087C1SG_3_720x.webp"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\S1_ca27bc84-59b5-4910-8cf4-f544229a00de.webp",
       "PackagePath": "staticwebassets\\images\\products\\S1_ca27bc84-59b5-4910-8cf4-f544229a00de.webp"
-    },
-    {
-      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\Tshirt.jpg",
-      "PackagePath": "staticwebassets\\images\\products\\Tshirt.jpg"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\daypack-small-bags-backpack-for-daily-use-library-office-outdoor-original-imagdm57a6rraauc.webp",
@@ -155,10 +167,6 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\pent.jpg",
       "PackagePath": "staticwebassets\\images\\products\\pent.jpg"
-    },
-    {
-      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\powerbank.jpg",
-      "PackagePath": "staticwebassets\\images\\products\\powerbank.jpg"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\rdy061-black-sunglasses-free-size-roadway-original-imagqx7n8azzczan.webp",

@@ -1,0 +1,60 @@
+﻿@model YoKartApi.Models.Order
+
+@{
+    ViewData["Title"] = "Cart";
+    var filepath = myVar.imagePaths;
+}
+<div class="container px-3 my-3 clearfix">
+    <div class="card">
+        <div class="card-header">
+            <h2>Shopping Cart</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center py-3 px-4">Product Name &amp; Details</th>
+                        <th class="text-right py-3 px-4">Price</th>
+                        <th class="text-center py-3 px-4">Quantity</th>
+                        <th class="text-right py-3 px-4">Total</th>
+                        @*             <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th> *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderItems)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex">
+
+                                    <img src="~/images/products/@item.Products.ProductImage" class="d-block" alt="" style="width:35px !important;">
+
+                                    <div class="text-center p-3">
+                                        <a href="#" class="d-block text-dark">@item.Products.ProductName</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-right font-weight-semibold align-middle"> @item.Products.ProductPrice &#8377;</td>
+                            <td class="align-middle"><input type="text" class="text-center" value="@item.Quantity"></td>
+                            <td class="text-right font-weight-semibold align-middle">@item.Price</td>
+                            @*    <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td> *@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+        <div class="d-flex">
+            <div class="text-right mt-4">
+                <label class="text-muted font-weight-normal m-0">Total price</label>
+                <div class="text-large"><strong>@Model.TotalPrice</strong></div>
+            </div>
+        </div>
+        <div style="float:right;">
+            <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+        </div>
+    </div>
+
+</div>
