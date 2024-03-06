@@ -1,11 +1,10 @@
 ﻿@model YoKart.Models.Product
 @{
     ViewData["Title"] = "Products";
-    var subcategories = ViewData["subcategories"] as List<SubCategory>;
 }
-
+<link rel="stylesheet" href="~/css/Quantity.css" />
 <div>
-    <h4>@subcategories.FirstOrDefault(m => m.SubCategoryId == Model.SubCategoryId).SubCategoryName</h4>
+    <h4>@myVar.subcategories.FirstOrDefault(m => m.SubCategoryId == Model.SubCategoryId).SubCategoryName</h4>
     <hr />
     <div class="row">
         <div class="col border">
@@ -30,7 +29,7 @@
                                 {
                                     <h5>@Discription</h5>
                                 }
-                            </div>                             
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -38,11 +37,23 @@
             @if (myVar.Roles == "User")
             {
                 <div class="row">
-                    <div>
-                        <a asp-action="AddProductOrder" asp-controller="Cart" asp-route-id="@Model.ProductId" class="btn btn-danger">Add To Cart</a>
-                    </div>
+                    <form asp-action="AddProductOrder" asp-controller="Cart" method="Post">
+                        <div>
+                            <input type="hidden" value="@Model.ProductId" name="id" />
+                        </div>
+                        <div class="input-group">
+                            <input type="button" value="-" class="button-minus" data-field="quantity">
+                            <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field" id="quantity">
+                            <input type="button" value="+" class="button-plus" data-field="quantity">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-danger">Add To Cart</button>
+                        </div>
+                    </form>
                 </div>
             }
         </div>
     </div>
 </div>
+
+<script src="~/js/quantity.js"></script>

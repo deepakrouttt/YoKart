@@ -43,5 +43,12 @@ namespace YoKartApi.Models
                 return OrderItems?.Sum(item => item.Price);
             }
         }
+
+        public class OrderDetails
+        {
+            public int UserId { get; set; }
+            public int ProductId { get; set; }
+            public int Quantity { get; set; }
+        }
     }
 }

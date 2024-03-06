@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YoKart.IServices;
-using YoKart.Services;
-using YoKartApi.Models;
-using static System.Net.WebRequestMethods;
 
 namespace YoKart.Controllers
 {
@@ -21,16 +18,26 @@ namespace YoKart.Controllers
             return View(orders);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> AddProductOrder(int id)
+        [HttpPost]
+        public async Task<IActionResult> AddProductOrder(int id, int quantity)
         {
-            var response =await _service.AddProductOrder(id);
-
+            var response = await _service.AddProductOrder(id,quantity);
             if (response.IsSuccessStatusCode)
             {
-                return View("Index");
+                return RedirectToAction("Index", new { id = myVar.UserId });
             }
-            return View("Index","Cart");
+            return View("Index", "Cart");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveProduct(int id)
+        {
+            var response = await _service.RemoveProductOrder(id);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", new { id = myVar.UserId });
+            }
+            return View("Index", "Cart");
         }
     }
 }

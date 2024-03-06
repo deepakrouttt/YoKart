@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 using YoKart.IServices;
 using YoKart.Models;
@@ -15,26 +16,10 @@ namespace YoKart.Services
             _client = client;
         }
 
-        public async Task<CategoriesView> CategoryList()
-        {
-            var httpClient = new HttpClient();
-            var apiUrl = "https://localhost:44373/api/CategoryApi/";
-
-            var categoriesResponse = await httpClient.GetAsync(apiUrl + "categories");
-            var categoriesJson = await categoriesResponse.Content.ReadAsStringAsync();
-            var categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
-
-            var subcategoriesResponse = await httpClient.GetAsync(apiUrl + "subcategories");
-            var subcategoriesJson = await subcategoriesResponse.Content.ReadAsStringAsync();
-            var subcategories = JsonConvert.DeserializeObject<List<SubCategory>>(subcategoriesJson);
-
-            return new() { CategoryList = categories, SubCategoryList = subcategories };
-        }
-
         public async Task<HttpResponseMessage> Create(Category category)
         {
             var _url = "https://localhost:44373/api/CategoryApi/addCategories";
-
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
             var response = await _client.PostAsync(_url, stringContent);
 
@@ -45,6 +30,7 @@ namespace YoKart.Services
         {
 
             var url = "https://localhost:44373/api/CategoryApi/existCategories";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var categoryWithSubCategories = new
             {
                 categoryId = category.CategoryId,
@@ -60,6 +46,7 @@ namespace YoKart.Services
         public async Task<Category> Edit(int id)
         {
             var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response =  _client.GetAsync(apiUrl).Result;
             var category = new Category();
             if (response.IsSuccessStatusCode)
@@ -78,6 +65,7 @@ namespace YoKart.Services
         public async Task<HttpResponseMessage> Edit(Category category)
         {
             var url = "https://localhost:44373/api/CategoryApi/editCategories";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
 
@@ -89,6 +77,7 @@ namespace YoKart.Services
         public async Task<Category> IndexSub(int? id, int? page)
         {
             var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response = await _client.GetAsync(apiUrl);
 
             var subCategory = new Category();
@@ -109,6 +98,7 @@ namespace YoKart.Services
         {
 
             var apiUrl = $"https://localhost:44373/api/CategoryApi/GetSubCategory/{id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response = await _client.GetAsync(apiUrl);
 
             var subcategory = new SubCategory();
@@ -128,6 +118,7 @@ namespace YoKart.Services
         public async Task<HttpResponseMessage> EditSub(SubCategory category)
         {
             var url = "https://localhost:44373/api/CategoryApi/existSubCategories";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
             var response = await _client.PutAsync(url, stringContent);
             return response;

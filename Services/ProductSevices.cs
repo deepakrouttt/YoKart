@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 using YoKart.IServices;
 using YoKart.Models;
@@ -32,7 +33,7 @@ namespace YoKart.Services
 
             var url = $"https://localhost:44373/api/ProductApi/GetProductsRange?Page={obj.page}&LowPrice={obj.LowRange}" +
                 $"&HighPrice={obj.HighRange}&Sort={obj.Sort}";
-
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
@@ -65,6 +66,7 @@ namespace YoKart.Services
             }
             var productUpdate = await ProductSerializeImage(product);
             var url = "https://localhost:44373/api/ProductApi/AddProduct";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
             var response = _client.PostAsync(url, stringContent).Result;
             return response;
@@ -73,6 +75,7 @@ namespace YoKart.Services
         public async Task<Product> Edit(int id)
         {
             var url = "https://localhost:44373/api/ProductApi/" + id;
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response = _client.GetAsync(url).Result;
             var product = new Product();
             if (response.IsSuccessStatusCode)
@@ -92,6 +95,7 @@ namespace YoKart.Services
             var productUpdate = await ProductSerialize(product);
 
             var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
 
             var response = _client.PutAsync(url, stringContent).Result;
@@ -119,6 +123,7 @@ namespace YoKart.Services
             var productUpdate = await ProductSerializeImage(product);
 
             var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
 
             var response = await _client.PutAsync(url, stringContent);
@@ -132,6 +137,7 @@ namespace YoKart.Services
             var filePath = Path.Combine(uploadsFolder, product.ProductImage);
             if (System.IO.File.Exists(filePath)) { System.IO.File.Delete(filePath); }
             var url = "https://localhost:44373/api/ProductApi/DeleteProduct?id=" + id;
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response = _client.DeleteAsync(url).Result;
             return response;
         }

@@ -2,11 +2,13 @@
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Policy;
 using System.Text;
 using YoKart.IServices;
 using YoKart.Models;
 using YoKartApi.Models;
+using static YoKartApi.Models.Order;
 
 namespace YoKart.Services
 {
@@ -24,6 +26,7 @@ namespace YoKart.Services
         public async Task<Order> Index(int id)
         {
             var url = $"https://localhost:44373/api/OrderApi/GetOrderbyUser?id={id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var response = await _client.GetAsync(url);
             var orders = new Order();
             if (response.IsSuccessStatusCode)
@@ -38,26 +41,27 @@ namespace YoKart.Services
             return orders;
         }
 
-        public async Task<HttpResponseMessage> AddProductOrder(int id)
+        public async Task<HttpResponseMessage> AddProductOrder(int id, int quantity)
         {
             var url = "https://localhost:44373/api/OrderApi/addOrder";
-            var product = await _productService.Edit(id);
-
-            var orderItem = new OrderItem
-            {
-                ProductId = product.ProductId,
-                Products = product,
-                Quantity = 1
-            };
-            var orderProduct = new Order()
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            var orderDetails = new OrderDetails
             {
                 UserId = myVar.UserId,
-                OrderItems = new List<OrderItem> { orderItem },
+                ProductId = id,
+                Quantity = quantity
             };
 
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(orderProduct), Encoding.UTF8, "application/json");
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(orderDetails), Encoding.UTF8, "application/json");
             var response = _client.PostAsync(url, stringContent).Result;
+            return response;
+        }
 
+        public async Task<HttpResponseMessage> RemoveProductOrder(int id)
+        {
+            var url = $"https://localhost:44373/api/OrderApi/RemoveOrder?UserId={myVar.UserId}&ProductId={id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            var response = _client.DeleteAsync(url).Result;
             return response;
         }
 

@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\YoKart.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\css\\Quantity.css",
+      "PackagePath": "staticwebassets\\css\\Quantity.css"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\css\\icons\\tabler-icons\\fonts\\tabler-icons.eot",
       "PackagePath": "staticwebassets\\css\\icons\\tabler-icons\\fonts\\tabler-icons.eot"
     },
@@ -109,6 +113,10 @@
       "PackagePath": "staticwebassets\\images\\products\\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp"
     },
     {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\4MSS2683-01-M6.webp",
+      "PackagePath": "staticwebassets\\images\\products\\4MSS2683-01-M6.webp"
+    },
+    {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\4MST2094-10-M2.jpg",
       "PackagePath": "staticwebassets\\images\\products\\4MST2094-10-M2.jpg"
     },
@@ -155,6 +163,10 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\mi_power_bank.jpg",
       "PackagePath": "staticwebassets\\images\\products\\mi_power_bank.jpg"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\mid-wash-slim-fit-jeans-model-443002298_jetblack-0-202301170041.webp",
+      "PackagePath": "staticwebassets\\images\\products\\mid-wash-slim-fit-jeans-model-443002298_jetblack-0-202301170041.webp"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\images\\products\\motorola-moto-g54-10.jpg",
@@ -211,6 +223,10 @@
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\js\\dashboard.js",
       "PackagePath": "staticwebassets\\js\\dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\js\\quantity.js",
+      "PackagePath": "staticwebassets\\js\\quantity.js"
     },
     {
       "Id": "C:\\Users\\s12\\OneDrive\\Documents\\Deepak\\.Net\\YoKart\\wwwroot\\js\\sidebarmenu.js",

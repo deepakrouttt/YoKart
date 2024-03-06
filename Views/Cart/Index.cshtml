@@ -1,9 +1,9 @@
 ﻿@model YoKartApi.Models.Order
-
 @{
     ViewData["Title"] = "Cart";
     var filepath = myVar.imagePaths;
 }
+<link rel="stylesheet" href="~/css/Quantity.css" />
 <div class="container px-3 my-3 clearfix">
     <div class="card">
         <div class="card-header">
@@ -13,11 +13,11 @@
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
-                        <th class="text-center py-3 px-4">Product Name &amp; Details</th>
+                        <th class="text-center py-3 px-3">Product Name &amp; Details</th>
                         <th class="text-right py-3 px-4">Price</th>
                         <th class="text-center py-3 px-4">Quantity</th>
                         <th class="text-right py-3 px-4">Total</th>
-                        @*             <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th> *@
+                        <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,15 +29,23 @@
 
                                     <img src="~/images/products/@item.Products.ProductImage" class="d-block" alt="" style="width:35px !important;">
 
-                                    <div class="text-center p-3">
+                                    <div class="text-center p-2">
                                         <a href="#" class="d-block text-dark">@item.Products.ProductName</a>
                                     </div>
                                 </div>
                             </td>
                             <td class="text-right font-weight-semibold align-middle"> @item.Products.ProductPrice &#8377;</td>
-                            <td class="align-middle"><input type="text" class="text-center" value="@item.Quantity"></td>
+                            <td >
+                                <div class="input-group" style="justify-content:right">
+                                    <input type="button" value="-" class="button-minus btn-quantity" data-field="quantity">
+                                    <input type="number" step="1" max="" value="@item.Quantity" name="quantity" class="quantity-field" id="quantity">
+                                    <input type="button" value="+" class="button-plus btn-quantity" data-field="quantity">
+                                </div>
+                            </td>
                             <td class="text-right font-weight-semibold align-middle">@item.Price</td>
-                            @*    <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td> *@
+                            <td class="text-center align-middle px-0">
+                                <a asp-action="RemoveProduct" asp-route-id="@item.ProductId" class="shop-tooltip close float-none text-danger btn" title="" data-original-title="Remove" onclick="return confirm('Are you sure you want to remove this item?');">×</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -56,5 +64,12 @@
             <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
         </div>
     </div>
-
 </div>
+
+<script src="~/js/quantity.js"></script>
+<script>
+    $(document).on("change", $((".btn - quantity"), function () {
+
+        })
+
+</script>

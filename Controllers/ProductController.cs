@@ -6,7 +6,6 @@ using YoKart.Models;
 
 namespace YoKart.Controllers
 {
-    [Authorize(Roles ="Admin")]
     public class ProductController : Controller
     {
         public readonly ICategoryServices _serviceCat;
@@ -24,20 +23,12 @@ namespace YoKart.Controllers
         }
         public async Task<IActionResult> Index(filtering obj)
         {
-            var _cate = await _serviceCat.CategoryList();
-            ViewData["categories"] = _cate.CategoryList;
-            ViewData["subcategories"] = _cate.SubCategoryList;
-
             var products = await _service.Index(obj);
             return View("Index", products);
         }
 
         public async Task<IActionResult> Index_Partial(filtering obj)
         {
-            var _cate = await _serviceCat.CategoryList();
-            ViewData["categories"] = _cate.CategoryList;
-            ViewData["subcategories"] = _cate.SubCategoryList;
-
             var products = await _service.Index(obj);
             return PartialView("_Index", products);
         }
@@ -46,9 +37,6 @@ namespace YoKart.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var _cate = await _serviceCat.CategoryList();
-            ViewData["categories"] = _cate.CategoryList;
-            ViewData["subcategories"] = _cate.SubCategoryList;
             return View();
         }
 
@@ -63,9 +51,6 @@ namespace YoKart.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var _cate = await _serviceCat.CategoryList();
-            ViewData["categories"] = _cate.CategoryList;
-            ViewData["subcategories"] = _cate.SubCategoryList;
             var product = await _service.Edit(id);
             if (product != null) { return View(product); }
             return View();

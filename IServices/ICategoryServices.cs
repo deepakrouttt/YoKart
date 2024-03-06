@@ -4,9 +4,7 @@ using YoKart.Models;
 namespace YoKart.IServices
 {
     public interface ICategoryServices
-    {   //category All Data
-        Task<CategoriesView> CategoryList();
-
+    {   
         Task<HttpResponseMessage> Create(Category category);
 
         Task<Category> Edit(int id);

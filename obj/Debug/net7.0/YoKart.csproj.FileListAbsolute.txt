@@ -8,6 +8,8 @@ C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\YoKart.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\YoKart.pdb
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Humanizer.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Web.Cors.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Web.Http.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -26,6 +28,10 @@ C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.Co
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.CodeAnalysis.Workspaces.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.DiaSymReader.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.DotNet.Scaffolding.Shared.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.NET.StringTools.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -53,6 +59,7 @@ C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Compo
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Composition.TypedParts.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\s12\OneDrive\Documents\Deepak\.Net\YoKart\bin\Debug\net7.0\System.Security.Permissions.dll

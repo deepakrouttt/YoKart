@@ -1,5 +1,8 @@
 ﻿@{
     var userId = myVar.UserId;
+    <script>
+        var token = "@myVar.Token";
+    </script>
 }
 <header class="app-header">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -12,10 +15,13 @@
             @if (myVar.Roles == "User")
             {
                 <li class="nav-item">
-                    <a class="nav-link nav-icon-hover" asp-action="Index" asp-controller="Cart" asp-route-id="@userId" >
-                        <img src="~/images/Category/checkout.png" width="25"/>
+                    <form asp-action="Index" asp-controller="Cart" method="Post">
+                        <button class="btn" type="submit">
+                            <input type="hidden" value="@userId" name="id" />
+                            <img src="~/images/Category/checkout.png" width="25" />
+                        </button>
                         <div class="notification bg-primary rounded-circle"></div>
-                    </a>
+                    </form>
                 </li>
             }
             @if (myVar.Roles == "Admin")
@@ -53,7 +59,7 @@
                                 <i class="ti ti-list-check fs-6"></i>
                                 <p class="mb-0 fs-3">My Task</p>
                             </a>
-                            <a asp-action="Logout" asp-controller="Login" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                            <a asp-action="Logout" asp-controller="User" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                         </div>
                     </div>
                 </li>

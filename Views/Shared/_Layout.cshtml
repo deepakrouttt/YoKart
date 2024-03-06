@@ -1,16 +1,17 @@
 ﻿@using Newtonsoft.Json
+@using System.Net.Http.Headers
 @{
-
     var httpClient = new HttpClient();
     var apiUrl = "https://localhost:44373/api/CategoryApi/";
+    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
 
     var categoriesResponse = await httpClient.GetAsync(apiUrl + "categories");
     var categoriesJson = await categoriesResponse.Content.ReadAsStringAsync();
-    var categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
+    myVar.categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
 
     var subcategoriesResponse = await httpClient.GetAsync(apiUrl + "subcategories");
     var subcategoriesJson = await subcategoriesResponse.Content.ReadAsStringAsync();
-    var subcategories = JsonConvert.DeserializeObject<List<SubCategory>>(subcategoriesJson);
+    myVar.subcategories = JsonConvert.DeserializeObject<List<SubCategory>>(subcategoriesJson);
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +61,7 @@
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">categories</span>
                         </li>
-                        @foreach (var category in categories)
+                        @foreach (var category in myVar.categories)
                         {
                             <li class="sidebar-item">
                                 <div class="border p-2 m-1 rounded">
@@ -70,7 +71,7 @@
                                         <span class="hide-menu">@category.CategoryName</span>
                                     </a>
                                     <ul>
-                                        @foreach (var subcategory in subcategories.Where(s => s.CategoryId == category.CategoryId))
+                                        @foreach (var subcategory in myVar.subcategories.Where(s => s.CategoryId == category.CategoryId))
                                         {
                                             <li>
                                                 <a class="sidebar subcat" aria-expanded="false" href="#" data-subcategory-id="@subcategory.SubCategoryId">

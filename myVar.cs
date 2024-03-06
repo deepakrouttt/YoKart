@@ -6,14 +6,21 @@ namespace YoKart
 {
     public static class myVar
     {
+        //CategoriesList
+        public static List<Category> categories = new List<Category>();
+        public static List<SubCategory> subcategories = new List<SubCategory>();
+        //paging
         public static List<string> imagePaths = new List<string>();
         public static int pageSize { get; set; }
         public static int pageCount { get; set; }
         public static int totalProduct { get; set; }
         public static int currentPage { get; set; }
+
+        //User Details
         public static int UserId { get; set; }
         public static String  Roles { get; set; }
         public static String UserName { get; set; }
+        public static string Token { get; set; }
 
         //paging 
         public static List<Category> PagingCategory(List<Category> categories, int? page)
@@ -53,11 +60,5 @@ namespace YoKart
             return ListDiscription;
         }
 
-        public static void userDetails(User user)
-        {
-            UserId = user.Id;
-            Roles = user.Roles;
-            UserName = user.Username;
-        }
     }
 }

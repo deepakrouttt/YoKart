@@ -1,29 +1,32 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
+using NuGet.Common;
+using System.Net.Http.Headers;
 using System.Text;
 using YoKart.IServices;
 using YoKart.Models;
 
 namespace YoKart.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
-        public readonly HttpClient _client = new HttpClient();
+        public readonly HttpClient _client;
         public readonly ICategoryServices _serviceCat;
 
         public HomeController(HttpClient client, ICategoryServices serviceCat)
         {
-            _client = client;
             _serviceCat = serviceCat;
+            _client = client;
         }
-
-        public async Task<IActionResult> Index()
+       
+    public async Task<IActionResult> Index()
         {
             var url = "https://localhost:44373/api/ProductApi/GetProducts";
-            var response =await _client.GetAsync(url);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("JWToken"));
+            var response = await _client.GetAsync(url);
             var products = new List<Product>();
             if (response.IsSuccessStatusCode)
             {
@@ -35,28 +38,23 @@ namespace YoKart.Controllers
                     return View(products);
                 }
             }
-            return View();
+            return RedirectToAction("Login", "User");
         }
 
         public async Task<IActionResult> ProductIndex(int id)
         {
-            var _cate = await _serviceCat.CategoryList();
-            ViewData["categories"] = _cate.CategoryList;
-            ViewData["subcategories"] = _cate.SubCategoryList;
-
             var url = "https://localhost:44373/api/ProductApi/" + id;
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("JWToken"));
             var response = _client.GetAsync(url).Result;
 
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 var result = JsonConvert.DeserializeObject<Product>(response.Content.ReadAsStringAsync().Result);
-
-                if(result != null)
-                {
+                if (result != null)
                     return View(result);
-                }
+                
             }
-            return View();
+            return RedirectToAction("Login", "User");
         }
         public IActionResult privacy()
         {

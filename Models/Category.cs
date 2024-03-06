@@ -13,9 +13,4 @@ namespace YoKart.Models
         public List<SubCategory> SubCategories { get; set; }
 
     }
-    public class CategoriesView
-    {
-        public List<Category> CategoryList;
-        public List<SubCategory> SubCategoryList;
-    }
 }

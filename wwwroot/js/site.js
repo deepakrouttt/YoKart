@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     PagerEvent();
     $(".sidebar-item > div > .sidebar").click(function (event) {
         event.preventDefault();
@@ -32,6 +33,9 @@
         $.ajax({
             url: 'https://localhost:44373/api/CategoryApi/categories',
             type: 'GET',
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: function (data) {
                 var dropdown = $('<select>').addClass('form-control p-1').attr('id', 'CategoryName').attr('name', 'CategoryName');
                 dropdown.append($('<option>').text('Choose Here').prop('selected', true).prop('disabled', true));
@@ -60,6 +64,9 @@
             $.ajax({
                 url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
                 type: 'GET',
+                headers: {
+                    "Authorization": "Bearer " + token
+                },
                 success: function (data) {
                     data.subCategories.forEach(function (subcategory) {
                         subcategoryOption += `<option value="${subcategory.subCategoryId}">${subcategory.subCategoryName}</option>`;
@@ -81,6 +88,9 @@
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             data: { page: page, LowRange: LowRange, HighRange: HighRange },
             success: function (data) {
                 $('#partial-container').html(data);
@@ -98,6 +108,9 @@
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             data: {
                 page: page,
                 LowRange: LowRange,
@@ -115,12 +128,15 @@
 
     //search products
     $("#searchButton").keyup(function () {
+        debugger;
         var search = $("#searchButton").val();
         $("#product-list").html(`<img src="/images/logos/Rolling-1s-200px.gif" style="width:30%;margin:50px 30%;"> `);
         $.ajax({
             url: 'https://localhost:44373/api/ProductApi/GetProductsBySearch?search=' + search,
             type: 'GET',
-            // data: { page: page, LowRange: LowRange, HighRange: HighRange },
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             success: function (data) {
                 setTimeout(function () {
                     $("#product-list").empty();
@@ -148,6 +164,9 @@ function showProductsForSubcategory(subcategoryId) {
     $.ajax({
         url: "https://localhost:44373/api/ProductApi/GetProductsForSubcategory?subcategoryId=" + subcategoryId,
         method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token
+        },
         success: function (data) {
             $.each(data, function (index, product) {
                 $("#product-list").append(`<div class="col-sm-6 col-xl-3" ><div class="card overflow-hidden rounded-2">
@@ -175,6 +194,9 @@ function PagerEvent() {
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
+            headers: {
+                "Authorization": "Bearer " + token
+            },
             data: { page: page, LowRange: LowRange, HighRange: HighRange },
             success: function (data) {
                 $('#partial-container').html(data);
@@ -201,6 +223,9 @@ function getSubCategories() {
     $.ajax({
         type: "GET",
         url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
+        headers: {
+            "Authorization": "Bearer " +token
+        },
         success: function (data) {
             $(".SubCategoryDropDown").append('<option value="">--Select SubCategory--</option>');
             data.subCategories.forEach(function (subcategory) {

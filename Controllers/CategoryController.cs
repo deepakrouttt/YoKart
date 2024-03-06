@@ -3,16 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 using YoKart.IServices;
 using YoKart.Models;
 
 namespace YoKart.Controllers
 {
-    [Authorize(Roles ="Admin")]
     public class CategoryController : Controller
     {
-      
         public HttpClient _client = new HttpClient();
         public readonly ICategoryServices _service;
 
@@ -24,18 +23,14 @@ namespace YoKart.Controllers
 
         public async Task<IActionResult> Index(int? page)
         {
-            var _cate = await _service.CategoryList();
-            var category = _cate.CategoryList;
-            var tempCategory = myVar.PagingCategory(category, page);
+            var tempCategory = myVar.PagingCategory(myVar.categories, page);
             return View("Index", tempCategory);
         }
 
         [HttpGet]
         public async Task<IActionResult> Index_Partial(int? page)
         {
-            var _cate = await _service.CategoryList();
-            var category = _cate.CategoryList;
-            var tempCategory = myVar.PagingCategory(category, page);
+            var tempCategory = myVar.PagingCategory(myVar.categories, page);
             return PartialView("_Index", tempCategory);
         }
 
@@ -112,6 +107,7 @@ namespace YoKart.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var url = $"https://localhost:44373/api/CategoryApi/removeCategoryies?id={id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("JWToken"));
             var response = _client.DeleteAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
@@ -124,6 +120,7 @@ namespace YoKart.Controllers
         public IActionResult DeleteSub(int id)
         {
             var url = $"https://localhost:44373/api/CategoryApi/removeSubCategoryies?id={id}";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("JWToken"));
             var response = _client.DeleteAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
