@@ -39,7 +39,10 @@
                 <div class="row">
                     <form asp-action="AddProductOrder" asp-controller="Cart" method="Post">
                         <div>
-                            <input type="hidden" value="@Model.ProductId" name="id" />
+                            <input type="hidden" value="@Model.ProductId" name="ProductId" />
+                        </div>
+                        <div>
+                            <input type="hidden" value="Cart" name="OrderStatus" />
                         </div>
                         <div class="input-group">
                             <input type="button" value="-" class="button-minus" data-field="quantity">

@@ -41,15 +41,16 @@ namespace YoKart.Services
             return orders;
         }
 
-        public async Task<HttpResponseMessage> AddProductOrder(int id, int quantity)
+        public async Task<HttpResponseMessage> AddProductOrder(OrderDetails obj)
         {
             var url = "https://localhost:44373/api/OrderApi/addOrder";
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
             var orderDetails = new OrderDetails
             {
                 UserId = myVar.UserId,
-                ProductId = id,
-                Quantity = quantity
+                ProductId = obj.ProductId,
+                Quantity = obj.Quantity,
+                OrderStatus= obj.OrderStatus
             };
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(orderDetails), Encoding.UTF8, "application/json");

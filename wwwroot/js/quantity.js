@@ -1,33 +1,19 @@
-﻿function incrementValue(e) {
-    e.preventDefault();
-    var fieldName = $(e.target).data('field');
-    var parent = $(e.target).closest('div');
-    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+﻿$('.button-minus, .button-plus').on('click', function () {
+    var qualityField = $(this).closest('.input-group').find('.quantity-field');
+    var currentQuantity = parseInt(qualityField.val());
 
-    if (!isNaN(currentVal)) {
-        parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+    if ($(this).hasClass('button-minus')) {
+        if (currentQuantity > 1) {
+            qualityField.val(currentQuantity - 1);
+            var unitPrice = parseFloat($(this).closest('tr').find('.UnitPrice').text());
+            var totalPrice = (currentQuantity - 1) * unitPrice;
+            $('#itemPrice').text(totalPrice.toFixed(2));
+
+        }
     } else {
-        parent.find('input[name=' + fieldName + ']').val(0);
+        qualityField.val(currentQuantity + 1);
+        var unitPrice = parseFloat($(this).closest('tr').find('.UnitPrice').text());
+        var totalPrice = (currentQuantity + 1) * unitPrice;
+        $('#itemPrice').text(totalPrice.toFixed(2));
     }
-}
-
-function decrementValue(e) {
-    e.preventDefault();
-    var fieldName = $(e.target).data('field');
-    var parent = $(e.target).closest('div');
-    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-    if (!isNaN(currentVal) && currentVal > 0) {
-        parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-    } else {
-        parent.find('input[name=' + fieldName + ']').val(0);
-    }
-}
-
-$('.input-group').on('click', '.button-plus', function (e) {
-    incrementValue(e);
-});
-
-$('.input-group').on('click', '.button-minus', function (e) {
-    decrementValue(e);
 });

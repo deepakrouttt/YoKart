@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YoKart.IServices;
+using static YoKartApi.Models.Order;
 
 namespace YoKart.Controllers
 {
@@ -19,9 +20,9 @@ namespace YoKart.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductOrder(int id, int quantity)
+        public async Task<IActionResult> AddProductOrder(OrderDetails orderDetails)
         {
-            var response = await _service.AddProductOrder(id,quantity);
+            var response = await _service.AddProductOrder(orderDetails);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", new { id = myVar.UserId });
