@@ -1,7 +1,8 @@
 ﻿@{
-    var userId = myVar.UserId;
+    var userId = Context.Session.GetInt32("UserId");
     <script>
-        var token = "@myVar.Token";
+        var token = "@Context.Session.GetString("JWToken")";
+        var userId = "@Context.Session.GetInt32("UserId")";
     </script>
 }
 <header class="app-header">
@@ -12,7 +13,7 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
-            @if (myVar.Roles == "User")
+            @if (Context.Session.GetString("Roles") == "User")
             {
                 <li class="nav-item">
                     <form asp-action="Index" asp-controller="Cart" method="Post">
@@ -24,7 +25,7 @@
                     </form>
                 </li>
             }
-            @if (myVar.Roles == "Admin")
+            @if (Context.Session.GetString("Roles") == "Admin")
             {
                 <li class="nav-item">
                     <a asp-controller="Product" asp-action="Create" class="nav-link btn" style="padding: 5px;font-size: 15px !important;border:none;">Add Product</a>
@@ -39,7 +40,7 @@
         </div>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                <li style="color:black;">@myVar.UserName</li>
+                <li style="color:black;">@Context.Session.GetString("UserName")</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                        aria-expanded="false">

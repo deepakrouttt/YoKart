@@ -85,6 +85,7 @@ $(document).ready(function () {
         var page = $(this).data('page');
         var LowRange = $(this).find(':selected').data('low');
         var HighRange = $(this).find(':selected').data('high');
+   
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
@@ -248,4 +249,24 @@ function pagerCreate() {
     }
     $("#pager-container").html(html);
     PagerEvent();//paging function calling if we create a pager dynamic dynamic binding
+}
+
+//QuantityUpdate Function
+function quantityUpdate(UserId, productId, updatedQuantity) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: 'UpdateProduct',
+        data: {
+            UserId: UserId,
+            ProductId: productId,
+            Quantity: updatedQuantity,
+            OrderStatus: "Cart"
+        },
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+        success: function () {
+        }
+    });
 }

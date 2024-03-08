@@ -9,6 +9,8 @@ using System.Text;
 using YoKart.Models;
 using YoKart.IServices;
 using System.IdentityModel.Tokens.Jwt;
+using NuGet.Common;
+using System.Data;
 
 
 namespace YoKart.Controllers
@@ -34,14 +36,20 @@ namespace YoKart.Controllers
         {
             if (ModelState.IsValid)
             {
-                myVar.Token = await _service.ValidateUser(_login);
-                if (myVar.Token == null)
+                var token = await _service.ValidateUser(_login);
+                if (token == null)
                 {
                     ModelState.AddModelError("Username", "Incorrect username. Please try again.");
                     ModelState.AddModelError("Password", "Incorrect password. Please try again.");
                     return View();
                 }
-                HttpContext.Session.SetString("JWToken", myVar.Token);
+
+                HttpContext.Response.Cookies.Append("JWToken", token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddMinutes(10)
+                });
 
                 return RedirectToAction("Index", "Home");
             }
@@ -52,6 +60,7 @@ namespace YoKart.Controllers
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear();
+            HttpContext.Response.Cookies.Delete("JWToken");
             return RedirectToAction("Login");
         }
 

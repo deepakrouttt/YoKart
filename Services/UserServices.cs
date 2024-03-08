@@ -11,6 +11,7 @@ using YoKartApi.Models;
 using System.Net.Http.Headers;
 using NuGet.Common;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http;
 
 namespace YoKart.Services
 {
@@ -18,6 +19,12 @@ namespace YoKart.Services
     {
         private readonly HttpClient _client = new HttpClient();
         private readonly string url = "https://localhost:44373/api/UserApi/Login";
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public UserServices(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public async Task<String> ValidateUser(LoginUser _login)
         {
@@ -33,9 +40,14 @@ namespace YoKart.Services
                     {
                         var decodedValue = new JwtSecurityTokenHandler().ReadJwtToken(validateToken);
 
-                        myVar.UserId = Int32.Parse(decodedValue.Claims.FirstOrDefault(x => x.Type == "Id").Value);
-                        myVar.Roles = decodedValue.Claims.FirstOrDefault(x => x.Type == "Roles").Value;
-                        myVar.UserName = decodedValue.Claims.FirstOrDefault(x => x.Type == "UserName").Value;
+                        var UserId = Int32.Parse(decodedValue.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+                        var Roles = decodedValue.Claims.FirstOrDefault(x => x.Type == "Roles").Value;
+                        var UserName = decodedValue.Claims.FirstOrDefault(x => x.Type == "UserName").Value;
+
+                        _httpContextAccessor.HttpContext.Session.SetString("JWToken", validateToken);
+                        _httpContextAccessor.HttpContext.Session.SetInt32("UserId", UserId);
+                        _httpContextAccessor.HttpContext.Session.SetString("Roles", Roles);
+                        _httpContextAccessor.HttpContext.Session.SetString("UserName", UserName);
 
                         return validateToken;
                     }

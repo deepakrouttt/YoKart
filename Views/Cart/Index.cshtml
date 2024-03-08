@@ -13,11 +13,11 @@
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
-                        <th class="text-center py-3 px-3" style="width:45%;">Product Name &amp; Details</th>
-                        <th class="text-center">Order Date</th>
-                        <th class="text-right py-3 px-4">Price</th>
+                        <th class="text-center py-3 px-3" style="width:40%;">Product Name &amp; Details</th>
+                        <th class="text-center" style="width:15%;">Order Date</th>
+                        <th class="text-right py-3 px-4" style="width:15%;">Price</th>
                         <th class="text-center py-3 px-4">Quantity</th>
-                        <th class="text-right py-3 px-4">Total</th>
+                        <th class="text-right py-3 px-4" style="width:10%">Total</th>
                         <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                     </tr>
                 </thead>
@@ -42,13 +42,13 @@
                                 @item.UnitPrice &#8377;
                             </td>
                             <td>
-                                <div class="input-group">
+                                <div class="input-group" style="flex-wrap:unset;">
                                     <input type="button" value="-" class="button-minus" data-field="quantity">
-                                    <input type="number" value="@item.Quantity" name="quantity" class="quantity-field" id="quantity" disabled>
+                                    <input type="number" value="@item.Quantity" name="quantity" class="quantity-field" id="quantity" disabled data-productId="@item.Products.ProductId">
                                     <input type="button" value="+" class="button-plus" data-field="quantity">
                                 </div>
                             </td>
-                            <td class="text-right font-weight-semibold align-middle" id="itemPrice">@item.Price</td>
+                            <td class="text-right font-weight-semibold align-middle itemPrice">@item.Price</td>
                             <td class="text-center align-middle px-0">
                                 <a asp-action="RemoveProduct" asp-route-id="@item.ProductId" class="shop-tooltip close float-none text-danger btn" title="" data-original-title="Remove" onclick="return confirm('Are you sure you want to remove this item?');">×</a>
                             </td>
@@ -63,7 +63,7 @@
         <div class="d-flex">
             <div class="text-right mt-4">
                 <label class="text-muted font-weight-normal m-0">Total price</label>
-                <div class="text-large"><strong>@Model.TotalPrice</strong></div>
+                <div class="text-large "><strong class="TotalPrice">@Model.TotalPrice</strong></div>
             </div>
         </div>
         <div style="float:right;">
@@ -71,5 +71,4 @@
         </div>
     </div>
 </div>
-
 <script src="~/js/quantity.js"></script>

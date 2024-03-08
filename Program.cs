@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.FileProviders;
 using YoKart.IServices;
 using YoKart.Services;
@@ -18,6 +19,18 @@ namespace YoKart
             builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddDirectoryBrowser();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie("JWToken", options =>
+                {
+                    options.Events.OnRedirectToLogin = context =>
+                    {
+                        context.Response.StatusCode = 401;
+                        return Task.CompletedTask;
+                    };
+                    options.LoginPath = "/User/Login";
+                });
 
             builder.Services.AddSession(options =>
             {
@@ -30,7 +43,7 @@ namespace YoKart
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-             
+
                 app.UseHsts();
             }
 
@@ -41,15 +54,16 @@ namespace YoKart
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images\\")),
                 RequestPath = "/products"
             });
+
             app.UseRouting();
             app.UseSession();
-
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=User}/{action=Login}/{id?}");
             app.Run();
+
         }
     }
 }

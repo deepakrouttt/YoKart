@@ -1,15 +1,17 @@
 ﻿@using Newtonsoft.Json
 @using System.Net.Http.Headers
 @{
-    var httpClient = new HttpClient();
+    // private readonly IHttpContextAccessor httpContextAccessor;
+    var _client = new HttpClient();
     var apiUrl = "https://localhost:44373/api/CategoryApi/";
-    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
-
-    var categoriesResponse = await httpClient.GetAsync(apiUrl + "categories");
+    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+    @Context.Session.GetString("JWToken"));
+   
+    var categoriesResponse = await _client.GetAsync(apiUrl + "categories");
     var categoriesJson = await categoriesResponse.Content.ReadAsStringAsync();
     myVar.categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
 
-    var subcategoriesResponse = await httpClient.GetAsync(apiUrl + "subcategories");
+    var subcategoriesResponse = await _client.GetAsync(apiUrl + "subcategories");
     var subcategoriesJson = await subcategoriesResponse.Content.ReadAsStringAsync();
     myVar.subcategories = JsonConvert.DeserializeObject<List<SubCategory>>(subcategoriesJson);
 }
@@ -36,7 +38,7 @@
                     <a asp-action="Index" asp-controller="Home" class="text-nowrap logo-img">
                         <img src="~/images/logos/dark-logo.png" width="100" height="50" alt="" />
                     </a>
-                    @if (myVar.Roles == "Admin")
+                    @if (Context.Session.GetString("Roles") == "Admin")
                     {
                         <a asp-controller="Category" asp-action="Index"><img src="~/images/Category/editCategory.png" /></a>
                         <a asp-controller="Category" asp-action="Create"><img src="~/images/Category/addCategory.png" /></a>

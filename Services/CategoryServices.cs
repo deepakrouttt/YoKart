@@ -10,16 +10,18 @@ namespace YoKart.Services
     public class CategoryServices : ICategoryServices
     {
         HttpClient _client = new HttpClient();
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CategoryServices(HttpClient client)
+        public CategoryServices(HttpClient client, IHttpContextAccessor httpContextAccessor)
         {
             _client = client;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<HttpResponseMessage> Create(Category category)
         {
             var _url = "https://localhost:44373/api/CategoryApi/addCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
             var response = await _client.PostAsync(_url, stringContent);
 
@@ -30,7 +32,7 @@ namespace YoKart.Services
         {
 
             var url = "https://localhost:44373/api/CategoryApi/existCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var categoryWithSubCategories = new
             {
                 categoryId = category.CategoryId,
@@ -46,7 +48,7 @@ namespace YoKart.Services
         public async Task<Category> Edit(int id)
         {
             var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response =  _client.GetAsync(apiUrl).Result;
             var category = new Category();
             if (response.IsSuccessStatusCode)
@@ -65,19 +67,16 @@ namespace YoKart.Services
         public async Task<HttpResponseMessage> Edit(Category category)
         {
             var url = "https://localhost:44373/api/CategoryApi/editCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
-
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
-
             var response = _client.PutAsync(url, stringContent).Result;
-
             return response;
         }
 
         public async Task<Category> IndexSub(int? id, int? page)
         {
             var apiUrl = $"https://localhost:44373/api/CategoryApi/{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response = await _client.GetAsync(apiUrl);
 
             var subCategory = new Category();
@@ -98,7 +97,7 @@ namespace YoKart.Services
         {
 
             var apiUrl = $"https://localhost:44373/api/CategoryApi/GetSubCategory/{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response = await _client.GetAsync(apiUrl);
 
             var subcategory = new SubCategory();
@@ -118,7 +117,7 @@ namespace YoKart.Services
         public async Task<HttpResponseMessage> EditSub(SubCategory category)
         {
             var url = "https://localhost:44373/api/CategoryApi/existSubCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", myVar.Token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
             var response = await _client.PutAsync(url, stringContent);
             return response;

@@ -9,5 +9,6 @@ namespace YoKart.IServices
         Task<Order> Index(int id);
         Task<HttpResponseMessage> AddProductOrder(OrderDetails orderDetails);
         Task<HttpResponseMessage> RemoveProductOrder(int id);
+        Task<HttpResponseMessage> UpdateProduct(OrderDetails orderDetails);
     }
 }

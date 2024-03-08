@@ -16,12 +16,6 @@ namespace YoKart
         public static int totalProduct { get; set; }
         public static int currentPage { get; set; }
 
-        //User Details
-        public static int UserId { get; set; }
-        public static String  Roles { get; set; }
-        public static String UserName { get; set; }
-        public static string Token { get; set; }
-
         //paging 
         public static List<Category> PagingCategory(List<Category> categories, int? page)
         {
@@ -59,6 +53,7 @@ namespace YoKart
             var ListDiscription = discription.Split(',').ToList();
             return ListDiscription;
         }
+
 
     }
 }
