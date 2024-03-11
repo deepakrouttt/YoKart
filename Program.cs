@@ -22,13 +22,8 @@ namespace YoKart
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie("JWToken", options =>
+                .AddCookie(options =>
                 {
-                    options.Events.OnRedirectToLogin = context =>
-                    {
-                        context.Response.StatusCode = 401;
-                        return Task.CompletedTask;
-                    };
                     options.LoginPath = "/User/Login";
                 });
 

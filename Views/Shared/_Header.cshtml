@@ -16,13 +16,10 @@
             @if (Context.Session.GetString("Roles") == "User")
             {
                 <li class="nav-item">
-                    <form asp-action="Index" asp-controller="Cart" method="Post">
-                        <button class="btn" type="submit">
-                            <input type="hidden" value="@userId" name="id" />
-                            <img src="~/images/Category/checkout.png" width="25" />
-                        </button>
-                        <div class="notification bg-primary rounded-circle"></div>
-                    </form>
+                    <a asp-action="Index" asp-controller="Cart">
+                        <img src="~/images/Category/checkout.png" width="25" />
+                    </a>
+                    <div class="notification bg-primary rounded-circle"></div>
                 </li>
             }
             @if (Context.Session.GetString("Roles") == "Admin")

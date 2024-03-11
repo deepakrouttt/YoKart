@@ -44,12 +44,13 @@ namespace YoKart.Controllers
                     return View();
                 }
 
-                HttpContext.Response.Cookies.Append("JWToken", token, new CookieOptions
-                {
-                    HttpOnly = true,
-                    SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.UtcNow.AddMinutes(10)
-                });
+                var identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, HttpContext.Session.GetString("UserName"))
+                }, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var principal = new ClaimsPrincipal(identity);
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -60,7 +61,8 @@ namespace YoKart.Controllers
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear();
-            HttpContext.Response.Cookies.Delete("JWToken");
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             return RedirectToAction("Login");
         }
 

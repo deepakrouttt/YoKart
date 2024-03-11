@@ -10,5 +10,6 @@ namespace YoKart.IServices
         Task<HttpResponseMessage> AddProductOrder(OrderDetails orderDetails);
         Task<HttpResponseMessage> RemoveProductOrder(int id);
         Task<HttpResponseMessage> UpdateProduct(OrderDetails orderDetails);
+        Task<bool> Checkout(int UserId);
     }
 }

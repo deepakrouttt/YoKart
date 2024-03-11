@@ -18,7 +18,7 @@ namespace YoKart.Services
     public class UserServices : IUserServices
     {
         private readonly HttpClient _client = new HttpClient();
-        private readonly string url = "https://localhost:44373/api/UserApi/Login";
+        private readonly string baseUrl = "https://localhost:44373/api/UserApi/Login";
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserServices(IHttpContextAccessor httpContextAccessor)
@@ -30,7 +30,7 @@ namespace YoKart.Services
         {
             var data = JsonConvert.SerializeObject(_login);
             StringContent stringContent = new StringContent(data, Encoding.UTF8, "application/json");
-            using (var response = await _client.PostAsync(url, stringContent))
+            using (var response = await _client.PostAsync(baseUrl, stringContent))
             {
                 if (response.IsSuccessStatusCode)
                 {

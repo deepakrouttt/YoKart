@@ -6,6 +6,7 @@ using YoKart.Models;
 
 namespace YoKart.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         public readonly ICategoryServices _serviceCat;

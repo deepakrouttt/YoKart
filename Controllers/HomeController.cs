@@ -11,6 +11,7 @@ using YoKart.Models;
 
 namespace YoKart.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public readonly HttpClient _client;

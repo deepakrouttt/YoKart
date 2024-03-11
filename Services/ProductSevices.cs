@@ -13,6 +13,7 @@ namespace YoKart.Services
         public readonly HttpClient _client;
         public readonly ICategoryServices _serviceCat;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly string baseUrl = "https://localhost:44373/api/ProductApi/";
 
         public ProductSevices(IWebHostEnvironment webHostEnvironment, HttpClient client, ICategoryServices serviceCat, IHttpContextAccessor httpContextAccessor)
         {
@@ -33,7 +34,7 @@ namespace YoKart.Services
                 myVar.imagePaths.Add(Path.GetFileName(image));
             }
 
-            var url = $"https://localhost:44373/api/ProductApi/GetProductsRange?Page={obj.page}&LowPrice={obj.LowRange}" +
+            var url = $"{baseUrl}GetProductsRange?Page={obj.page}&LowPrice={obj.LowRange}" +
                 $"&HighPrice={obj.HighRange}&Sort={obj.Sort}";
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response = await _client.GetAsync(url);
@@ -67,7 +68,7 @@ namespace YoKart.Services
                 }
             }
             var productUpdate = await ProductSerializeImage(product);
-            var url = "https://localhost:44373/api/ProductApi/AddProduct";
+            var url = $"{baseUrl}AddProduct";
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
             var response = _client.PostAsync(url, stringContent).Result;
@@ -76,7 +77,7 @@ namespace YoKart.Services
 
         public async Task<Product> Edit(int id)
         {
-            var url = "https://localhost:44373/api/ProductApi/" + id;
+            var url = baseUrl+ id;
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response = _client.GetAsync(url).Result;
             var product = new Product();
@@ -96,7 +97,7 @@ namespace YoKart.Services
         {
             var productUpdate = await ProductSerialize(product);
 
-            var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
+            var url = $"{baseUrl}UpdateProduct";
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
 
@@ -124,7 +125,7 @@ namespace YoKart.Services
 
             var productUpdate = await ProductSerializeImage(product);
 
-            var url = "https://localhost:44373/api/ProductApi/UpdateProduct";
+            var url = $"{baseUrl}UpdateProduct";
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
 
@@ -138,7 +139,7 @@ namespace YoKart.Services
             var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images\\products");
             var filePath = Path.Combine(uploadsFolder, product.ProductImage);
             if (System.IO.File.Exists(filePath)) { System.IO.File.Delete(filePath); }
-            var url = "https://localhost:44373/api/ProductApi/DeleteProduct?id=" + id;
+            var url = $"{baseUrl}DeleteProduct?id=" + id;
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response = _client.DeleteAsync(url).Result;
             return response;

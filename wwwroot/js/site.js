@@ -85,7 +85,7 @@ $(document).ready(function () {
         var page = $(this).data('page');
         var LowRange = $(this).find(':selected').data('low');
         var HighRange = $(this).find(':selected').data('high');
-   
+
         $.ajax({
             url: 'Index_Partial',
             type: 'GET',
@@ -157,6 +157,7 @@ $(document).ready(function () {
             }
         });
     })
+
 });
 
 //Show Product By there Subcategory Name
@@ -171,10 +172,10 @@ function showProductsForSubcategory(subcategoryId) {
         success: function (data) {
             $.each(data, function (index, product) {
                 $("#product-list").append(`<div class="col-sm-6 col-xl-3" ><div class="card overflow-hidden rounded-2">
-                    <div class="position-relative text-center"><a href="/Home/ProductIndex/`+product.productId + `"><img src=/images/products/` + product.productImage + ` ` +
-                    `class="card-img-top rounded-0 p-1" alt="..." style="width: 80% !important;"></a><a href="/Home/ProductIndex/`+product.productId + `" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
+                    <div class="position-relative text-center"><a href="/Home/ProductIndex/`+ product.productId + `"><img src=/images/products/` + product.productImage + ` ` +
+                    `class="card-img-top rounded-0 p-1" alt="..." style="width: 80% !important;"></a><a href="/Home/ProductIndex/` + product.productId + `" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
                         data-bstoggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4">
-                        </i></a></div><div class="card-body"><a href="/Home/ProductIndex/`+product.productId + `"><h6 class="fw-semibold fs-4">` + product.productName +
+                        </i></a></div><div class="card-body"><a href="/Home/ProductIndex/`+ product.productId + `"><h6 class="fw-semibold fs-4">` + product.productName +
                     `</h6></a><div class="d-flex align-items-center justify-content-between"><h6 class="fw-semibold fs-4 mb-0">`
                     + product.productPrice + ` &#8377;</h6></div></div></div></div>`);
             });
@@ -205,11 +206,11 @@ function PagerEvent() {
                     if ($(this).data('page') == page) {
                         $(this).addClass("activePage");
                     }
-                    else {  
+                    else {
                         $(this).removeClass("activePage");
                     }
                 })
-               
+
             },
             error: function (error) {
                 $("body").html(error);
@@ -225,7 +226,7 @@ function getSubCategories() {
         type: "GET",
         url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
         headers: {
-            "Authorization": "Bearer " +token
+            "Authorization": "Bearer " + token
         },
         success: function (data) {
             $(".SubCategoryDropDown").append('<option value="">--Select SubCategory--</option>');
@@ -269,4 +270,26 @@ function quantityUpdate(UserId, productId, updatedQuantity) {
         success: function () {
         }
     });
+}
+
+//Order placed Confirmartion
+function PlacedOrder() {
+    debugger;
+    var confirm = window.confirm("Confirm Order Placed");
+
+    if (confirm == true) {
+        $.ajax({
+            url: 'CheckOut',
+            type: 'POST',
+            data: {
+                UserId : userId
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (error) {
+                $("body").html(error);
+            }
+        });
+    }
 }

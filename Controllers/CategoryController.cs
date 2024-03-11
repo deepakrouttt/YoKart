@@ -10,6 +10,7 @@ using YoKart.Models;
 
 namespace YoKart.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         public HttpClient _client = new HttpClient();
