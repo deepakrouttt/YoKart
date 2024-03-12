@@ -282,14 +282,16 @@ function PlacedOrder() {
             url: 'CheckOut',
             type: 'POST',
             data: {
-                UserId : userId
+                UserId: userId
             },
             success: function (data) {
-                console.log(data);
+                location.reload(true);
             },
             error: function (error) {
                 $("body").html(error);
             }
         });
+
+
     }
 }

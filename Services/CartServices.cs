@@ -91,14 +91,21 @@ namespace YoKart.Services
             {
                 var result = await response.Content.ReadAsStringAsync();
                 var user = JsonConvert.DeserializeObject<User>(result);
-                if (user != null)
+                var order = JsonConvert.SerializeObject(await Index(UserId));
+
+                var PlacedUrl = $"{baseUrl}OrderPlaced";
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
+                var content = new StringContent(JsonConvert.SerializeObject(UserId), Encoding.UTF8, "application/json");
+                var responseOrder = await _client.PostAsync(PlacedUrl, content);
+
+                if (user != null && responseOrder.IsSuccessStatusCode)
                 {
                     var mailData = new MailData()
                     {
                         EmailToId = user.Email,
-                        EmailToName = user.Firstname + " "+ user.Lastname,
+                        EmailToName = user.Firstname + " " + user.Lastname,
                         EmailSubject = "Order Placed",
-                        EmailBody = "Your Order"
+                        EmailBody = order
                     };
                     var mailUrl = "https://localhost:44373/api/MailApi/SendMail";
                     StringContent stringContent = new StringContent(JsonConvert.SerializeObject(mailData), Encoding.UTF8, "application/json");

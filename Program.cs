@@ -25,6 +25,8 @@ namespace YoKart
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/User/Login";
+                    options.LogoutPath = "/User/Logout";
+                    options.AccessDeniedPath = options.LoginPath;
                 });
 
             builder.Services.AddSession(options =>

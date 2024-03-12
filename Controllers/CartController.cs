@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YoKart.IServices;
+using YoKart.Models;
 using static YoKartApi.Models.Order;
 
 namespace YoKart.Controllers
@@ -21,9 +22,13 @@ namespace YoKart.Controllers
             if (id != 0)
             {
                 var orders = await _service.Index(id);
+                if(orders.OrderId == 0)
+                {
+                    return View();
+                }
                 return View(orders);
             }
-            return View("Login");
+            return View();
         }
 
         [HttpPost]
@@ -67,9 +72,9 @@ namespace YoKart.Controllers
             var Message = await _service.Checkout(userId);
             if (Message == true)
             {
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Cart");
             }
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
