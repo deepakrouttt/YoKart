@@ -66,10 +66,10 @@ namespace YoKart.Controllers
             return "NotFound";
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CheckOut(int userId)
+        [HttpGet]
+        public async Task<IActionResult> CheckOut(int id)
         {
-            var Message = await _service.Checkout(userId);
+            var Message = await _service.Checkout(id);
             if (Message == true)
             {
                 return RedirectToAction("Index","Cart");

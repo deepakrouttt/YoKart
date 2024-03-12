@@ -61,7 +61,7 @@
                                     </td>
                                 </tr>
                             }
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -75,16 +75,8 @@
                         </div>
                     </div>
                     <div style="float:right;">
-                        <button class="btn btn-primary mt-2" onclick="PlacedOrder()">Checkout</button>
+                        <a asp-action="CheckOut" asp-route-id="@Model.UserId" class="btn btn-primary mt-2">Checkout</a>
                     </div>
-                </div>
-            }
-            else
-            {
-                <div style="text-align:center">
-                    <a asp-action="Index" asp-controller="Home" class="ToHome">
-                        <img src="~/images/backgrounds/assets_-Lz7UFvjOB-fzWNJ7GjT_-M6qLK-SWrk1gacEZduR_-M6qQ58_Pzi3bE2enWer_image.webp" style="width:50%;" />
-                    </a>
                 </div>
             }
         }

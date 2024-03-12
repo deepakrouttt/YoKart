@@ -271,27 +271,3 @@ function quantityUpdate(UserId, productId, updatedQuantity) {
         }
     });
 }
-
-//Order placed Confirmartion
-function PlacedOrder() {
-    debugger;
-    var confirm = window.confirm("Confirm Order Placed");
-
-    if (confirm == true) {
-        $.ajax({
-            url: 'CheckOut',
-            type: 'POST',
-            data: {
-                UserId: userId
-            },
-            success: function (data) {
-                location.reload(true);
-            },
-            error: function (error) {
-                $("body").html(error);
-            }
-        });
-
-
-    }
-}
