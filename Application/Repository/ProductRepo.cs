@@ -37,7 +37,6 @@ namespace Application.Repository
         }
         public async Task<IEnumerable<Product>> Index(filtering obj)
         {
-            var products = new List<Product>();
             var uploadsFolder = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "images", "products");
 
             var imageFiles = Directory.GetFiles(uploadsFolder);
@@ -47,27 +46,18 @@ namespace Application.Repository
                 YokartVar.imagePaths.Add(Path.GetFileName(image));
             }
 
-            var url = $"{baseUrl}GetProductsRange?Page={obj.page}&LowPrice={obj.LowRange}" +
-                $"&HighPrice={obj.HighRange}&Sort={obj.Sort}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            var response = await _client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<ProductPagingData>(result);
-                if (data != null)
-                {
-                    products = data.Product;
-                    YokartVar.pageCount = data.pageCount;
-                    YokartVar.pageSize = data.pageSize;
-                    YokartVar.totalProduct = data.totalProduct;
-                    YokartVar.currentPage = data.currentPage;
-                }
-            }
-            return products;
+            if (obj.HighRange is 0) { obj.HighRange = Decimal.MaxValue; }
+            ;
+
+            var products = Productpaging(_context.Products.ToList(), obj);
+            YokartVar.pageCount = products.pageCount;
+            YokartVar.pageSize = products.pageSize;
+            YokartVar.totalProduct = products.totalProduct;
+            
+            return products.Product;
         }
 
-        public async Task<HttpResponseMessage> Create(Product product)
+        public async Task<Product> AddProduct(Product product)
         {
             if (product.ProductImageFile.Length > 0)
             {
@@ -81,12 +71,11 @@ namespace Application.Repository
                     product.ProductImageFile.CopyTo(fileStream);
                 }
             }
-            var productUpdate = await ProductSerializeImage(product);
-            var url = $"{baseUrl}AddProduct";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
-            var response = _client.PostAsync(url, stringContent).Result;
-            return response;
+            product.ProductName = product.ProductImageFile.FileName;
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+            return product;
         }
 
         public async Task<Product> Edit(int id)
@@ -107,19 +96,16 @@ namespace Application.Repository
             return product;
         }
 
-        public async Task<HttpResponseMessage> Edit(Product product)
+        public async Task<Product> UpdateProduct(Product product)
         {
-            var productUpdate = await ProductSerialize(product);
+            product.ProductName = product.ProductImageFile.FileName;
+            _context.Update(product);
+            _context.SaveChanges();
 
-            var url = $"{baseUrl}UpdateProduct";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
-
-            var response = _client.PutAsync(url, stringContent).Result;
-            return response;
+            return product;
         }
 
-        public async Task<HttpResponseMessage> EditImage(Product product)
+        public async Task<Product> EditImage(Product product)
         {
             var uploadsFolder = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "images", "products");
 
@@ -138,27 +124,31 @@ namespace Application.Repository
                 }
             }
 
-            var productUpdate = await ProductSerializeImage(product);
+            product.ProductName = product.ProductImageFile.FileName;
 
-            var url = $"{baseUrl}UpdateProduct";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(productUpdate), Encoding.UTF8, "application/json");
-
-            var response = await _client.PutAsync(url, stringContent);
-            return response;
+            _context.SaveChanges();
+            return product;
         }
 
-        public async Task<HttpResponseMessage> Delete(int id)
+        public async Task<bool> DeleteProduct(int id)
         {
             var product = await Edit(id);
             var uploadsFolder = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "images", "products");
 
             var filePath = Path.Combine(uploadsFolder, product.ProductImage);
             if (System.IO.File.Exists(filePath)) { System.IO.File.Delete(filePath); }
-            var url = $"{baseUrl}DeleteProduct?id=" + id;
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            var response = _client.DeleteAsync(url).Result;
-            return response;
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+
+            return true;
+        }
+
+        public List<Product> GetProductsForSubcategory(int subcategoryId)
+        {
+            var products = _context.Products.Where(p => p.SubCategoryId == subcategoryId).ToList();
+
+            return products;
         }
 
         //Product Serialize
@@ -205,7 +195,7 @@ namespace Application.Repository
 
             var ProductList = Rangeproducts.ToList();
             YokartVar.pageCount = (int)Math.Ceiling(ProductList.Count / (double)YokartVar.pageSize);
-            YokartVar.currentPage = obj.page ?? 1;
+            YokartVar.currentPage = obj.page;
             var tempProduct = ProductList.Skip((YokartVar.currentPage - 1) * YokartVar.pageSize).Take(YokartVar.pageSize).ToList();
             YokartVar.totalProduct = ProductList.Count;
 

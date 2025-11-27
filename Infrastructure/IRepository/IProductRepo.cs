@@ -6,11 +6,12 @@ namespace Infrastructure.IRepository
     {
         Task<Product> GetProduct(int id);
         Task<IEnumerable<Product>> Index(filtering obj);
-        Task<HttpResponseMessage> Create(Product product);
+        Task<Product> AddProduct(Product product);
         Task<Product> Edit(int id);
-        Task<HttpResponseMessage> Edit(Product product);
-        Task<HttpResponseMessage> EditImage(Product product);
-        Task<HttpResponseMessage> Delete(int id);
+        Task<Product> UpdateProduct(Product product);
+        Task<Product> EditImage(Product product);
+        Task<bool> DeleteProduct(int id);
+        List<Product> GetProductsForSubcategory(int subcategoryId);
 
         //Product Serialization
         Task<ProductUpdate> ProductSerialize(Product product);

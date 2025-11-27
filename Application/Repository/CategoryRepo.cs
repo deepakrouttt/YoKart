@@ -35,64 +35,58 @@ namespace Application.Repository
             var subcategories = await _context.SubCategories.ToListAsync();
             return subcategories;
         }
-        public async Task<HttpResponseMessage> Create(Category category)
+        public async Task<bool> AddCategory(Category category)
         {
-            var _url = $"{baseUrl}addCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(_url, stringContent);
+            _context.Categories.Add(category);
+            _context.SaveChanges();
 
-            return response;
+            return true;
         }
-        public async Task<HttpResponseMessage> Exist(Category category)
+        public async Task<Category> Exist(Category category)
         {
 
-            var url = $"{baseUrl}existCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            var categoryWithSubCategories = new
+            var existingCategory = _context.Categories.Find(category.CategoryId);
+
+            if (existingCategory == null)
             {
-                categoryId = category.CategoryId,
-                CategoryName = category.CategoryName,
-                SubCategories = category.SubCategories.Select(sub => new { SubCategoryName = sub.SubCategoryName }).ToList()
-            };
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(categoryWithSubCategories), Encoding.UTF8, "application/json");
-            var response = await _client.PutAsync(url, stringContent);
-
-            return response;
-        }
-
-        public async Task<Category> Edit(int id)
-        {
-            var apiUrl = $"{baseUrl}{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            var response = _client.GetAsync(apiUrl).Result;
-            var category = new Category();
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<Category>(result);
-
-                if (data != null)
-                {
-                    category = data;
-                }
+                return null;
             }
+
+            existingCategory.CategoryName = category.CategoryName;
+            existingCategory.SubCategories = category.SubCategories;
+
+            _context.SaveChanges();
+
             return category;
         }
 
-        public async Task<HttpResponseMessage> Edit(Category category)
+        public async Task<Category> GetCategory(int id)
         {
-            var url = $"{baseUrl}editCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
-            var response = _client.PutAsync(url, stringContent).Result;
-            return response;
+            var categories = _context.Categories.Include(c => c.SubCategories).ToList();
+            var category = _context.Categories.FirstOrDefault(c => c.CategoryId == id);
+
+            return category;
+        }
+
+        public async Task<Category> UpdateCategory(Category category)
+        {
+            var existingCategory = _context.Categories.Find(category.CategoryId);
+
+            if (existingCategory == null)
+            {
+                return null;
+            }
+
+            existingCategory.CategoryName = category.CategoryName;
+
+            _context.SaveChanges();
+            return existingCategory;
         }
 
         public async Task<Category> IndexSub(int? id, int? page)
         {
             var apiUrl = $"{baseUrl}{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("B  earer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
             var response = await _client.GetAsync(apiUrl);
 
             var subCategory = new Category();
@@ -112,31 +106,42 @@ namespace Application.Repository
         public async Task<SubCategory> EditSub(int id)
         {
 
-            var apiUrl = $"{baseUrl}GetSubCategory/{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            var response = await _client.GetAsync(apiUrl);
-
-            var subcategory = new SubCategory();
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<SubCategory>(result);
-
-                if (data != null)
-                {
-                    subcategory = data;
-                }
-            }
+            var subcategory = _context.SubCategories.FirstOrDefault(c => c.SubCategoryId == id);
             return subcategory;
         }
 
-        public async Task<HttpResponseMessage> EditSub(SubCategory category)
+        public async Task<SubCategory> EditSub(SubCategory category)
         {
-            var url = $"{baseUrl}existSubCategories";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(category), Encoding.UTF8, "application/json");
-            var response = await _client.PutAsync(url, stringContent);
-            return response;
+            var existingCategory = _context.SubCategories.FirstOrDefault(c => c.SubCategoryId == category.SubCategoryId);
+
+            if (existingCategory == null)
+            {
+                return null;
+            }
+
+            existingCategory.SubCategoryName = category.SubCategoryName;
+
+            _context.SaveChanges();
+            return existingCategory;
+        }
+        public async Task<Category> RemoveCategories(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+
+            return category;
+        }
+
+        public async Task<SubCategory> RemoveSubCategories(int id)
+        {
+            var Subcategory = await _context.SubCategories.FindAsync(id);
+
+            _context.SubCategories.Remove(Subcategory);
+            await _context.SaveChangesAsync();
+
+            return Subcategory;
         }
     }
 }

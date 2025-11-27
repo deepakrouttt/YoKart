@@ -1,12 +1,502 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\infrastructure\\irepository\\iproductrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\irepository\\iproductrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2892BA56-65AD-467B-B0F9-DDC64C243560}|Application\\Application.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\application\\repository\\productrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2892BA56-65AD-467B-B0F9-DDC64C243560}|Application\\Application.csproj|solutionrelative:application\\repository\\productrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\controllers\\productapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\controllers\\productapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\wwwroot\\js\\quantity.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\wwwroot\\js\\quantity.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\views\\product\\_index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\views\\product\\_index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7962E234-CABB-4B90-9D5D-443E4CF2BC2E}|Domain\\Domain.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\domain\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7962E234-CABB-4B90-9D5D-443E4CF2BC2E}|Domain\\Domain.csproj|solutionrelative:domain\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7962E234-CABB-4B90-9D5D-443E4CF2BC2E}|Domain\\Domain.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\domain\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7962E234-CABB-4B90-9D5D-443E4CF2BC2E}|Domain\\Domain.csproj|solutionrelative:domain\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2892BA56-65AD-467B-B0F9-DDC64C243560}|Application\\Application.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\application\\repository\\orderrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2892BA56-65AD-467B-B0F9-DDC64C243560}|Application\\Application.csproj|solutionrelative:application\\repository\\orderrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\infrastructure\\irepository\\icategoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\irepository\\icategoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2892BA56-65AD-467B-B0F9-DDC64C243560}|Application\\Application.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\application\\repository\\categoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2892BA56-65AD-467B-B0F9-DDC64C243560}|Application\\Application.csproj|solutionrelative:application\\repository\\categoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7962E234-CABB-4B90-9D5D-443E4CF2BC2E}|Domain\\Domain.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\domain\\global\\yokartvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7962E234-CABB-4B90-9D5D-443E4CF2BC2E}|Domain\\Domain.csproj|solutionrelative:domain\\global\\yokartvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\infrastructure\\irepository\\iorderrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\irepository\\iorderrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E4DB1A0-B48B-4BFB-88E9-4B5D13E73CAC}|Services\\Services.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\services\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E4DB1A0-B48B-4BFB-88E9-4B5D13E73CAC}|Services\\Services.csproj|solutionrelative:services\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E4DB1A0-B48B-4BFB-88E9-4B5D13E73CAC}|Services\\Services.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\services\\extensions\\claimsprincipalextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E4DB1A0-B48B-4BFB-88E9-4B5D13E73CAC}|Services\\Services.csproj|solutionrelative:services\\extensions\\claimsprincipalextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\views\\home\\product.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\views\\home\\product.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E4DB1A0-B48B-4BFB-88E9-4B5D13E73CAC}|Services\\Services.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\services\\extensions\\stringextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E4DB1A0-B48B-4BFB-88E9-4B5D13E73CAC}|Services\\Services.csproj|solutionrelative:services\\extensions\\stringextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ABF75A8E-CD29-4D23-9001-8188F9CC9F51}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\infrastructure\\data\\yokartdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\yokartdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell-pc\\documents\\web page projects\\yokart\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{01124B4C-4881-48DC-8778-4A24AB50C4EB}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Web\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Web\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvx0AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T19:02:01.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "quantity.js",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\wwwroot\\js\\quantity.js",
+              "RelativeDocumentMoniker": "Web\\wwwroot\\js\\quantity.js",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\wwwroot\\js\\quantity.js",
+              "RelativeToolTip": "Web\\wwwroot\\js\\quantity.js",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-27T17:55:20.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductApiController.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\ProductApiController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\ProductApiController.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\ProductApiController.cs",
+              "RelativeToolTip": "Web\\Controllers\\ProductApiController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAwDcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:19:37.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Service.cs",
+              "RelativeDocumentMoniker": "Services\\Service.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Service.cs",
+              "RelativeToolTip": "Services\\Service.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T16:55:57.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "YokartVar.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Global\\YokartVar.cs",
+              "RelativeDocumentMoniker": "Domain\\Global\\YokartVar.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Global\\YokartVar.cs",
+              "RelativeToolTip": "Domain\\Global\\YokartVar.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwBIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T16:54:53.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\CartController.cs",
+              "RelativeToolTip": "Web\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAcwDgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:53:52.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Models\\OrderItem.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\OrderItem.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Models\\OrderItem.cs",
+              "RelativeToolTip": "Domain\\Models\\OrderItem.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAA8wDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:58:19.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Application\\Repository\\ProductRepo.cs",
+              "RelativeDocumentMoniker": "Application\\Repository\\ProductRepo.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Application\\Repository\\ProductRepo.cs",
+              "RelativeToolTip": "Application\\Repository\\ProductRepo.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAAAJoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:20:59.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "Web\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "Web\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAwwKUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-27T17:55:42.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IProductRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\IRepository\\IProductRepo.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\IRepository\\IProductRepo.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\IRepository\\IProductRepo.cs",
+              "RelativeToolTip": "Infrastructure\\IRepository\\IProductRepo.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:31:26.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Web\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAlwCQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:19:50.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CategoryRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Application\\Repository\\CategoryRepo.cs",
+              "RelativeDocumentMoniker": "Application\\Repository\\CategoryRepo.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Application\\Repository\\CategoryRepo.cs",
+              "RelativeToolTip": "Application\\Repository\\CategoryRepo.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAAwIUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:00:46.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "Web\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "Web\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAqwF0AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T17:51:05.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Product\\_index.cshtml",
+              "RelativeDocumentMoniker": "Web\\Views\\Product\\_index.cshtml",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Product\\_index.cshtml",
+              "RelativeToolTip": "Web\\Views\\Product\\_index.cshtml",
+              "ViewState": "AgIAABEAAAAAAAAAAADgvxkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T18:14:14.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Models\\Product.cs",
+              "RelativeToolTip": "Domain\\Models\\Product.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAEwCMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T18:00:32.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ICategoryRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\IRepository\\ICategoryRepo.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\IRepository\\ICategoryRepo.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\IRepository\\ICategoryRepo.cs",
+              "RelativeToolTip": "Infrastructure\\IRepository\\ICategoryRepo.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA9wBYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:03:29.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrderRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Application\\Repository\\OrderRepo.cs",
+              "RelativeDocumentMoniker": "Application\\Repository\\OrderRepo.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Application\\Repository\\OrderRepo.cs",
+              "RelativeToolTip": "Application\\Repository\\OrderRepo.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA3wCAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T16:32:27.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Web\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAD4vyoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T17:42:09.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Web\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAADwv3cAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T16:46:59.603Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IOrderRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\IRepository\\IOrderRepo.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\IRepository\\IOrderRepo.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\IRepository\\IOrderRepo.cs",
+              "RelativeToolTip": "Infrastructure\\IRepository\\IOrderRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T16:33:22.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Program.cs",
+              "RelativeDocumentMoniker": "Web\\Program.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Program.cs",
+              "RelativeToolTip": "Web\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAB8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:37:02.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "StringExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Extensions\\StringExtensions.cs",
+              "RelativeDocumentMoniker": "Services\\Extensions\\StringExtensions.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Extensions\\StringExtensions.cs",
+              "RelativeToolTip": "Services\\Extensions\\StringExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:50:09.45Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ClaimsPrincipalExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Extensions\\ClaimsPrincipalExtensions.cs",
+              "RelativeDocumentMoniker": "Services\\Extensions\\ClaimsPrincipalExtensions.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Extensions\\ClaimsPrincipalExtensions.cs",
+              "RelativeToolTip": "Services\\Extensions\\ClaimsPrincipalExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:50:34.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Product.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Home\\Product.cshtml",
+              "RelativeDocumentMoniker": "Web\\Views\\Home\\Product.cshtml",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Home\\Product.cshtml",
+              "RelativeToolTip": "Web\\Views\\Home\\Product.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T15:56:35.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Shared\\_Header.cshtml",
+              "RelativeDocumentMoniker": "Web\\Views\\Shared\\_Header.cshtml",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Shared\\_Header.cshtml",
+              "RelativeToolTip": "Web\\Views\\Shared\\_Header.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T15:48:38.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\appsettings.json",
+              "RelativeToolTip": "Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-27T15:37:22.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Web\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwEoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:34:12.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "YoKartDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\Data\\YoKartDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\YoKartDbContext.cs",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\Data\\YoKartDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\YoKartDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:26:12.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Infrastructure.csproj",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-27T15:25:38.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAFwAAAAAAAAAAADwvxIAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T15:17:39.097Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

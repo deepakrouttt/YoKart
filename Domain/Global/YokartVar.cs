@@ -16,15 +16,7 @@ namespace Domain.Global
         public static int currentPage { get; set; }
 
         //paging 
-        public static List<Category> PagingCategory(List<Category> categories, int? page)
-        {
-            pageSize = 3;
-            pageCount = (int)Math.Ceiling(categories.Count / (double)pageSize);
-            currentPage = page ?? 1;
-            var tempCategory = categories.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-
-            return tempCategory;
-        }
+ 
 
         public static Category PagingSubCategory(Category category, int? page)
         {

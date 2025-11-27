@@ -13,3 +13,4 @@ C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Infrastructure\obj\Release\n
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Infrastructure\obj\Release\net8.0\refint\Infrastructure.dll
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Infrastructure\obj\Release\net8.0\Infrastructure.pdb
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Infrastructure\obj\Release\net8.0\ref\Infrastructure.dll
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Infrastructure\obj\Release\net8.0\Infrastructure.sourcelink.json

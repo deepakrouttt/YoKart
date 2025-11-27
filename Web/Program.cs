@@ -20,7 +20,6 @@ builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddTransient<IMailRepo, MailRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
-builder.Services.AddScoped<ICartRepo, CartRepo>();
 
 
 builder.Services.AddDirectoryBrowser();

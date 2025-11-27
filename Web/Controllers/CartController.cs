@@ -1,6 +1,8 @@
-﻿using Infrastructure.IRepository;
+﻿using Application.Repository;
+using Infrastructure.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Extensions;
 using static Domain.Models.Order;
 
 namespace Web.Controllers
@@ -8,21 +10,19 @@ namespace Web.Controllers
     [Authorize]
     public class CartController : Controller
     {
-        private readonly ICartRepo _service;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOrderRepo _orderRepo;
 
-        public CartController(ICartRepo service, IHttpContextAccessor httpContextAccessor)
+        public CartController(IOrderRepo orderRepo)
         {
-            _service = service;
-            _httpContextAccessor = httpContextAccessor;
+            _orderRepo = orderRepo;
         }
 
         public async Task<IActionResult> Index()
         {
-            var id = Convert.ToInt32(_httpContextAccessor?.HttpContext?.Session.GetInt32("UserId"));
-            if (id != 0)
+            var userId = Convert.ToInt32(User.GetUserId());
+            if (userId != 0)
             {
-                var orders = await _service.Index(id);
+                var orders = await _orderRepo.GetOrders(userId);
                 if (orders.OrderId == 0)
                 {
                     return View();
@@ -35,11 +35,11 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProductOrder(OrderDetails orderDetails)
         {
-            var response = await _service.AddProductOrder(orderDetails);
-            var UserId = _httpContextAccessor?.HttpContext?.Session.GetInt32("UserId");
-            if (response.IsSuccessStatusCode)
+            var order = await _orderRepo.AddProductToOrder(orderDetails);
+
+            if (order != null)
             {
-                return RedirectToAction("Index", new { id = UserId });
+                return RedirectToAction("Index");
             }
             return View("Index", "Cart");
         }
@@ -47,30 +47,25 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> RemoveProduct(int id)
         {
-            var response = await _service.RemoveProductOrder(id);
-            var UserId = _httpContextAccessor.HttpContext.Session.GetInt32("UserId");
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", new { id = UserId });
-            }
+            var userId = Convert.ToInt32(User.GetUserId());
+            var response = await _orderRepo.RemoveProductToOrder(userId, id);
+       
             return RedirectToAction("Index", "Cart");
         }
 
-        [HttpGet]
-        public async Task<String> UpdateProduct(OrderDetails orderDetails)
+        [HttpPost]
+        public async Task<string> UpdateOrder(OrderDetails orderDetails)
         {
-            var response = await _service.UpdateProduct(orderDetails);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsStringAsync();
-            }
+            orderDetails.UserId = Convert.ToInt32(User.GetUserId());
+            var response = await _orderRepo.UpdateOrder(orderDetails);
+  
             return "NotFound";
         }
 
         [HttpGet]
         public async Task<IActionResult> CheckOut(int id)
         {
-            var Message = await _service.Checkout(id);
+            var Message = await _orderRepo.OrderPlaced(id);
             if (Message == true)
             {
                 return RedirectToAction("Index", "Cart");

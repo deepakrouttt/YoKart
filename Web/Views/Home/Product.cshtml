@@ -41,10 +41,9 @@
             {
                 <div class="row">
                     <form asp-action="AddProductOrder" asp-controller="Cart" method="Post">
-                        <div>
+                        <div class="d-none">
                             <input type="hidden" value="@Model.ProductId" name="ProductId" />
-                        </div>
-                        <div>
+                            <input type="hidden" value="@User.GetUserId()" name="UserId" />
                             <input type="hidden" value="Cart" name="OrderStatus" />
                         </div>
                         <div class="input-group">

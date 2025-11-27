@@ -93,3 +93,6 @@ C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\refin
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\Web.pdb
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\Web.genruntimeconfig.cache
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\ref\Web.dll
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\bin\Release\net8.0\Services.dll
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\bin\Release\net8.0\Services.pdb
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\Web.sourcelink.json

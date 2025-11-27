@@ -62,6 +62,8 @@ C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTm
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Application.dll
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Domain.dll
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Infrastructure.dll
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Services.dll
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Application.pdb
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Infrastructure.pdb
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Services.pdb
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Web\obj\Release\net8.0\PubTmp\Out\Domain.pdb

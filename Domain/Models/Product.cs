@@ -30,10 +30,10 @@ namespace Domain.Models
     //paging class 
     public class filtering
     {
-        public int? page { get; set; }
+        public int page { get; set; } = 1;
         public decimal LowRange { get; set; }
         public decimal HighRange { get; set; }
-        public String? Sort { get; set; }
+        public string? Sort { get; set; }
     }
     //Api class for fetch the data
     public class ProductPagingData

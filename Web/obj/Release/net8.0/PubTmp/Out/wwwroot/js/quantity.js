@@ -1,7 +1,6 @@
 ﻿$('.button-minus, .button-plus').on('click', function () {
     var qualityField = $(this).closest('.input-group').find('.quantity-field');
     var currentQuantity = parseInt(qualityField.val());
-    var UserId = parseInt(userId);
     var productId = parseInt($(this).parent().find("#quantity").attr("data-productId"));
 
     if ($(this).hasClass('button-minus')) {
@@ -17,7 +16,7 @@
             var unitPrice = parseFloat($(this).closest('tr').find('.UnitPrice').text());
             var totalPrice = updatedQuantity * unitPrice;
             $(this).closest('tr').find('.itemPrice').text(totalPrice.toFixed(2));
-            quantityUpdate(UserId,productId,updatedQuantity);
+            quantityUpdate(productId,updatedQuantity);
         }
     } else {
         var updatedQuantity = currentQuantity + 1;
@@ -25,7 +24,7 @@
         var unitPrice = parseFloat($(this).closest('tr').find('.UnitPrice').text());
         var totalPrice = updatedQuantity * unitPrice;
         $(this).closest('tr').find('.itemPrice').text(totalPrice.toFixed(2));
-        quantityUpdate(UserId, productId, updatedQuantity);     
+        quantityUpdate(productId, updatedQuantity);     
     }
     var grandTotal = 0;
     $('.itemPrice').each(function () {

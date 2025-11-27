@@ -280,7 +280,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Domain\\Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
