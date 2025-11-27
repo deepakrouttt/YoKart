@@ -1,0 +1,23 @@
+﻿@using Domain.Models
+@model List<Category>
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CategoryName
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                <a asp-action="IndexSub" asp-route-id="@item.CategoryId" class="btn btn-primary">SubCategory</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-success" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+            </td>
+        </tr>
+    }
+}

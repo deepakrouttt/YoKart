@@ -1,0 +1,85 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.sidebar-item > div > ul {
+    margin-top: 10px;
+    display: none;
+    padding: 10px 0px;
+    background-color: #f5f5f5;
+    border: 1px solid white;
+    border-radius: 7%;
+}
+
+.sidebar-item > div > ul > li {
+    padding: 7px 5px;
+}
+
+.sidebar-item > div > ul > li > a :hover,.hide-menu:hover{
+    color: black;
+}
+
+.subcat {
+    padding: 20px 5px;
+}
+.pager {
+    margin: 5px;
+    display: inline-block;
+}
+
+.pager a {
+        padding: 5px 7px !important;
+        margin: 2px !important;
+}
+.activePage {
+    color: white !important;
+    background: #68b1ff !important;
+}
+.col-xl-3 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 18% !important;
+}
+.card-body{
+    padding:10px !important;
+}
+.card-img, .card-img-bottom, .card-img-top {
+    height: 150px !important;
+}
+
+.hide-menu {
+    cursor: pointer;
+}
+table th {
+    user-select: none;
+    cursor:pointer;
+}
+
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 20px;
+    border:1px solid grey;
+}

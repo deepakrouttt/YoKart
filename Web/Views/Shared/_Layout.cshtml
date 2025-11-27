@@ -1,0 +1,111 @@
+﻿@using Domain.Global
+@using Infrastructure.IRepository
+@using Newtonsoft.Json
+@using System.Net.Http.Headers
+@using Microsoft.AspNetCore.Http;
+@inject ICategoryRepo _categoryRepo;
+@{
+    var categories = await _categoryRepo.GetCategories().ConfigureAwait(false);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - YoKart</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/simplebar/dist/simplebar.css" asp-append-version="true" />
+</head>
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar" style="width:250px !important;">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a asp-action="Index" asp-controller="Home" class="text-nowrap logo-img">
+                        <img src="~/images/logos/dark-logo.png" width="100" height="50" alt="" />
+                    </a>
+                    @if (Context.Session.GetString("Roles") == "Admin")
+                    {
+                        <a asp-controller="Category" asp-action="Index"><img src="~/images/Category/editCategory.png" /></a>
+                        <a asp-controller="Category" asp-action="Create"><img src="~/images/Category/addCategory.png" /></a>
+                    }
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Home</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <div class="ps-4 border p-3 rounded">
+                                <a asp-action="Index" asp-controller="Home">Today's' Deals</a>
+                            </div>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">categories</span>
+                        </li>
+                        @foreach (var category in categories)
+                        {
+                            <li class="sidebar-item">
+                                <div class="border p-2 m-1 rounded">
+                                    <a class="sidebar p-3 " aria-expanded="false">
+
+                                        @Html.Hidden("Category_id", @category.CategoryId)
+                                        <span class="hide-menu">@category.CategoryName</span>
+                                    </a>
+                                    <ul>
+                                        @foreach (var subcategory in category.SubCategories)
+                                        {
+                                            <li>
+                                                <a class="sidebar subcat" aria-expanded="false" href="#" data-subcategory-id="@subcategory.SubCategoryId">
+                                                    <span class="hide-menu" href="">@subcategory.SubCategoryName</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Main wrapper -->
+        <div class="body-wrapper" style="margin-left:250px !important;">
+            <!--  Header Start -->
+            <partial name="_Header.cshtml" />
+            <!--  Header End -->
+            <div class="container-fluid" style="padding-top: calc(60px + 15px) !important">
+                <div class="container">
+                    <main role="main">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version=true></script>
+    <script src="~/js/sidebarmenu.js"></script>
+    <script src="~/js/app.min.js"></script>
+    <script src="~/lib/simplebar/dist/simplebar.js"></script>
+    @*  <script src="~/js/dashboard.js"></script> *@
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

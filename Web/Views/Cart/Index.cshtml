@@ -1,0 +1,95 @@
+﻿@using Domain.Global
+@using Domain.Models
+@model Order
+@{
+    ViewData["Title"] = "Cart";
+    var filepath = YokartVar.imagePaths;
+}
+<link rel="stylesheet" href="~/css/Quantity.css" />
+
+<div class="container px-3 my-3 clearfix">
+    <div class="card p-2">
+        <div class="card-header">
+            <h2>Shopping Cart</h2>
+        </div>
+        @if (Model != null)
+        {
+            @if (Model.OrderId != 0)
+            {
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center py-3 px-3" style="width:40%;">Product Name &amp; Details</th>
+                                <th class="text-center" style="width:15%;">Order Date</th>
+                                <th class="text-right py-3 px-4" style="width:15%;">Price</th>
+                                <th class="text-center py-3 px-4">Quantity</th>
+                                <th class="text-right py-3 px-4" style="width:10%">Total</th>
+                                <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a asp-action="ProductIndex" asp-controller="Home" asp-route-id="@item.ProductId">
+                                                <input type="hidden" value="@item.Products.ProductId" class="productOrderId">
+                                                <img src="~/images/products/@item.Products.ProductImage" class="d-block" alt="" style="width:35px !important;">
+                                            </a>
+                                            <div class="text-left p-1 ps-2">
+                                                <a asp-action="ProductIndex" asp-controller="Home" asp-route-id="@item.ProductId" class="d-block text-dark">@item.Products.ProductName</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td class="font-weight-semibold align-middle">
+                                        @item.OrderDate.ToString("dd-MM-yyyy")
+                                    </td>
+                                    <td class="text-right font-weight-semibold align-middle UnitPrice">
+                                        @item.UnitPrice &#8377;
+                                    </td>
+                                    <td>
+                                        <div class="input-group" style="flex-wrap:unset;">
+                                            <input type="button" value="-" class="button-minus" data-field="quantity">
+                                            <input type="number" value="@item.Quantity" name="quantity" class="quantity-field" id="quantity" disabled data-productId="@item.Products.ProductId">
+                                            <input type="button" value="+" class="button-plus" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    <td class="text-right font-weight-semibold align-middle itemPrice">@item.Price</td>
+                                    <td class="text-center align-middle px-0">
+                                        <a asp-action="RemoveProduct" asp-route-id="@item.ProductId" class="shop-tooltip close float-none text-danger btn" title="" data-original-title="Remove" onclick="return confirm('Are you sure you want to remove this item?');">×</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+                    <div class="d-flex">
+                        <div class="text-right mt-4">
+                            <label class="text-muted font-weight-normal m-0">Total price</label>
+                            <div class="text-large "><strong class="TotalPrice">@Model.TotalPrice</strong></div>
+                        </div>
+                    </div>
+                    <div style="float:right;">
+                        <a asp-action="CheckOut" asp-route-id="@Model.UserId" class="btn btn-primary mt-2">Checkout</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div style="text-align:center">
+                <a asp-action="Index" asp-controller="Home" class="ToHome">
+                    <img src="~/images/backgrounds/assets_-Lz7UFvjOB-fzWNJ7GjT_-M6qLK-SWrk1gacEZduR_-M6qQ58_Pzi3bE2enWer_image.webp" style="width:50%;" />
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/js/quantity.js"></script>

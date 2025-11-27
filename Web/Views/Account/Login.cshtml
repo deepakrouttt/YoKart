@@ -1,0 +1,69 @@
+﻿@using Domain.Models
+@model LoginUser    
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - YoKart</title>
+    <link rel="shortcut icon" type="image/png" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/css/styles.min.css" />
+</head>
+
+<body>
+
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <img src="~/images/logos/dark-logo.png" width="100" alt="">
+
+                                </div>
+                                <p class="text-center">Choose your style</p>
+                                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                                {
+                                    <div class="mb-3">
+                                        @Html.Label("Username", "Username", new { @class = "form-label" })
+                                        @Html.TextBox("Username", null, new { @class = "form-control", type = "text"})
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-4">
+                                        @Html.Label("Password", "Password", new { @class = "form-label" })
+                                        @Html.Password("Password", null, new { @class = "form-control" })
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <div class="form-check">
+                                            @Html.CheckBox("rememberMe", true, new { @class = "form-check-input primary", id = "flexCheckChecked" })
+                                            @Html.Label("flexCheckChecked", "Remember this Device", new { @class = "form-check-label text-dark" })
+                                        </div>
+                                        <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
+                                        <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

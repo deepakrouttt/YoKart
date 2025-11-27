@@ -1,0 +1,388 @@
+[
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "GetCategory",
+    "RelativePath": "api/CategoryApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "AddCategories",
+    "RelativePath": "api/CategoryApi/addCategories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Domain.Models.Category",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "EditCategory",
+    "RelativePath": "api/CategoryApi/editCategories",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Domain.Models.Category",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "ExistCategory",
+    "RelativePath": "api/CategoryApi/existCategories",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Domain.Models.Category",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "ExistSubCategory",
+    "RelativePath": "api/CategoryApi/existSubCategories",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Domain.Models.SubCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "GetSubCategory",
+    "RelativePath": "api/CategoryApi/GetSubCategory/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "RemoveCategories",
+    "RelativePath": "api/CategoryApi/removeCategoryies",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.CategoryApiController",
+    "Method": "RemoveSubCategories",
+    "RelativePath": "api/CategoryApi/removeSubCategoryies",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.MailApiController",
+    "Method": "SendMail",
+    "RelativePath": "api/MailApi/SendMail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mailData",
+        "Type": "Domain.Mail.MailData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "YoKart.Controller.OrderApiController",
+    "Method": "AddProductToOrder",
+    "RelativePath": "api/OrderApi/addOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderDetails",
+        "Type": "Domain.Models.Order\u002BOrderDetails",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.OrderApiController",
+    "Method": "GetOrderbyUser",
+    "RelativePath": "api/OrderApi/GetOrderbyUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.OrderApiController",
+    "Method": "OrderPlaced",
+    "RelativePath": "api/OrderApi/OrderPlaced",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.OrderApiController",
+    "Method": "GetOrders",
+    "RelativePath": "api/OrderApi/Orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.OrderApiController",
+    "Method": "RemoveProductToOrder",
+    "RelativePath": "api/OrderApi/RemoveOrder",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controller.OrderApiController",
+    "Method": "UpdateOrder",
+    "RelativePath": "api/OrderApi/UpdateOrder",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderDetails",
+        "Type": "Domain.Models.Order\u002BOrderDetails",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "GetProducts",
+    "RelativePath": "api/ProductApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "AddProduct",
+    "RelativePath": "api/ProductApi/AddProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_product",
+        "Type": "Domain.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "Delete",
+    "RelativePath": "api/ProductApi/DeleteProduct",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "GetProducts",
+    "RelativePath": "api/ProductApi/GetProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "GetProductsBySearch",
+    "RelativePath": "api/ProductApi/GetProductsBySearch",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "GetProductsForSubcategory",
+    "RelativePath": "api/ProductApi/GetProductsForSubcategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subcategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "GetProductsRange",
+    "RelativePath": "api/ProductApi/GetProductsRange",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "LowRange",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "HighRange",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sort",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "YoKart.Controllers.ProductApiController",
+    "Method": "EditProduct",
+    "RelativePath": "api/ProductApi/UpdateProduct",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_product",
+        "Type": "Domain.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

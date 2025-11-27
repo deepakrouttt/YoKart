@@ -1,0 +1,64 @@
+﻿@using Domain.Global
+@using Domain.Models
+@model Category
+@{
+    ViewData["Title"] = "SubCategory";
+    var pageCount = YokartVar.pageCount;
+    var currentPage = YokartVar.currentPage;
+}
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    SubCategory Name
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="partial-container1">
+            await @Html.PartialAsync("_IndexSub")
+        </tbody>
+    </table>
+    <div class="pager" id="pager-container">
+        @for (var i = 1; i <= pageCount; i++)
+        {
+            <a data-page="@i" data-id="@Model.CategoryId" class="pager-link1 @(i == currentPage ? "activePage" : "") border">@i</a>
+
+        }
+    </div>
+    <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Back</a>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.pager-link1').click(function (e) {
+            e.preventDefault();
+
+            var id = $(this).attr('data-id');
+            var page = $(this).data('page');
+            $.ajax({
+                url: '/Category/IndexSub_Partial',
+                type: 'GET',
+                headers: {
+                    "Authorization": "Bearer " + token
+                },
+                data: { id: id, page: page },
+                success: function (data) {
+                    $('#partial-container1').html(data);
+                    $(".pager-link1").each(function (index) {
+                        if ($(this).data('page') == page) {
+                            debugger;
+                            $(this).addClass("activePage");
+                        }
+                        else {
+                            $(this).removeClass("activePage");
+                        }
+                    })
+                },
+                error: function (error) {
+                    $("body").html(error);
+                }
+            });
+        });
+    })
+</script>

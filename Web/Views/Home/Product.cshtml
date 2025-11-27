@@ -1,0 +1,87 @@
+﻿@using Domain.Models
+@using Services.Extensions
+@model Product
+@{
+    ViewData["Title"] = "Products";
+    var subcategories = ViewData["Subcategories"] as List<SubCategory>;
+}
+<link rel="stylesheet" href="~/css/Quantity.css" />
+<div>
+    <h4>@subcategories?.First(m => m.SubCategoryId == Model.SubCategoryId)?.SubCategoryName</h4>
+    <hr />
+    <div class="row">
+        <div class="col border">
+            <img src="~/images/products/@Model.ProductImage" alt="Product Image" width="300" class="m-3" />
+        </div>
+        <div class="col m-4" style="flex-grow:3">
+            <div class="row">
+                <table class="table">
+                    <tr>
+                        <th><h2>Product</h2></th>
+                        <td><h3>@Model.ProductName</h3><p class="text-success">In stock</p></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Price</h4></th>
+                        <td><h5 style="color:red;">@StringExtensions.FormatNumber(Model.ProductPrice)/-</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h5>Discription</h5></th>
+                        <td>
+                            <div style="max-height:15em; overflow-y:auto">
+                                @foreach (var Discription in StringExtensions.SplitDescription(Model.ProductDescription))
+                                {
+                                    <h5>@Discription</h5>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @if (User.GetRoles() == "User")
+            {
+                <div class="row">
+                    <form asp-action="AddProductOrder" asp-controller="Cart" method="Post">
+                        <div>
+                            <input type="hidden" value="@Model.ProductId" name="ProductId" />
+                        </div>
+                        <div>
+                            <input type="hidden" value="Cart" name="OrderStatus" />
+                        </div>
+                        <div class="input-group">
+                            <input type="button" value="-" class="button-minus" data-field="quantity">
+                            <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field" id="quantity">
+                            <input type="button" value="+" class="button-plus" data-field="quantity">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-danger">Add To Cart</button>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.button-minus, .button-plus').on('click', function () {
+            var qualityField = $(this).closest('.input-group').find('.quantity-field');
+            var currentQuantity = parseInt(qualityField.val());
+
+            if ($(this).hasClass('button-minus')) {
+                if (currentQuantity > 1) {
+                    qualityField.val(currentQuantity - 1);
+                    var unitPrice = parseFloat($(this).closest('tr').find('.UnitPrice').text());
+                    var totalPrice = (currentQuantity - 1) * unitPrice;
+                    $('#itemPrice').text(totalPrice.toFixed(2));
+
+                }
+            } else {
+                qualityField.val(currentQuantity + 1);
+                var unitPrice = parseFloat($(this).closest('tr').find('.UnitPrice').text());
+                var totalPrice = (currentQuantity + 1) * unitPrice;
+                $('#itemPrice').text(totalPrice.toFixed(2));
+            }
+        });
+    })
+</script>

@@ -1,0 +1,63 @@
+﻿@using Domain.Global
+@using Domain.Models
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    var categories = YokartVar.categories as List<Category>;
+    var subcategories = YokartVar.subcategories as List<SubCategory>;
+    var pageCount = YokartVar.pageCount;
+}
+<div class="container">
+    <hr />
+    <div class="d-flex justify-content-between">
+        <a asp-controller="Product" asp-action="Create" class="btn btn-success">Create New</a>
+        <div style="display:inline-flex">
+            <label class="m-2">Price</label>
+            <select class="form-control" id="priceRange" style="cursor:pointer;">
+                <option selected>Any</option>
+                <option data-low="98" data-high="500">100-500</option>
+                <option data-low="498" data-high="700">500-700</option>
+                <option data-low="698" data-high="1000">700-1000</option>
+                <option data-low="1000" data-high="">1000-upto</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="table-container">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => categories.FirstOrDefault(m => m.CategoryId == model.CategoryId).CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => subcategories.FirstOrDefault(m => m.SubCategoryId == model.SubCategoryId).SubCategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+                <th width="30%">
+                    @Html.DisplayNameFor(model => model.ProductDescription)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="partial-container">
+            await @Html.PartialAsync("_Index")
+        </tbody>
+    </table>
+    </div>
+    <div class="pager" id="pager-container">
+        @for (var i = 1; i <= pageCount; i++)
+        {
+            <a href="#" data-page="@i" class="pager-link @(i == YokartVar.currentPage ? "activePage" : "") border">@i</a>
+        }
+    </div>
+</div>
