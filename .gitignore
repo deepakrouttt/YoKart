@@ -10,3 +10,7 @@
 /Domain/obj
 /Web/bin/Debug
 /Web/bin/Debug/net8.0
+.vs/YoKart/v17/.suo
+/.vs/YoKart/v17
+*.cache
+/Application/obj/Debug/net8.0

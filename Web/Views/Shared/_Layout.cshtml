@@ -3,6 +3,7 @@
 @using Newtonsoft.Json
 @using System.Net.Http.Headers
 @using Microsoft.AspNetCore.Http;
+@using Services.Extensions;
 @inject ICategoryRepo _categoryRepo;
 @{
     var categories = await _categoryRepo.GetCategories().ConfigureAwait(false);
@@ -30,7 +31,7 @@
                     <a asp-action="Index" asp-controller="Home" class="text-nowrap logo-img">
                         <img src="~/images/logos/dark-logo.png" width="100" height="50" alt="" />
                     </a>
-                    @if (Context.Session.GetString("Roles") == "Admin")
+                    @if (User.GetRoles() == "Admin")
                     {
                         <a asp-controller="Category" asp-action="Index"><img src="~/images/Category/editCategory.png" /></a>
                         <a asp-controller="Category" asp-action="Create"><img src="~/images/Category/addCategory.png" /></a>

@@ -21,6 +21,7 @@ wwwroot\images\Category\trolley.png
 wwwroot\images\logos\dark-logo.png
 wwwroot\images\logos\favicon.png
 wwwroot\images\logos\Rolling-1s-200px.gif
+wwwroot\images\logos\yokart.png
 wwwroot\images\products\1-digital-kids-boys-g-sport-look-band-shock-chronograph-original-imagdx3feej5jtfg.webp
 wwwroot\images\products\4MSS2683-01-M6.webp
 wwwroot\images\products\4MST2094-10-M2.jpg

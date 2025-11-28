@@ -7,6 +7,7 @@ using Infrastructure.IRepository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Services.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +65,8 @@ app.UseDirectoryBrowser(new DirectoryBrowserOptions
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<RedirectionAuthMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

@@ -1,5 +1,11 @@
 ﻿
 $(document).ready(function () {
+    const subcat = sessionStorage.getItem("loadSubcategory");
+
+    if (subcat) {
+        sessionStorage.removeItem("loadSubcategory");
+        showProductsForSubcategory(subcat);
+    }
     PagerEvent();
     $(".sidebar-item > div > .sidebar").click(function (event) {
         event.preventDefault();
@@ -162,24 +168,50 @@ $(document).ready(function () {
 
 //Show Product By there Subcategory Name
 function showProductsForSubcategory(subcategoryId) {
+
+    const isHome = window.location.pathname.toLowerCase() === "/home/index" ||
+        window.location.pathname === "/";
+
+    if (!isHome) {
+        sessionStorage.setItem("loadSubcategory", subcategoryId);
+        window.location.href = "/home/index";
+        return;
+    }
+
+    // Only runs on Home page:
     $("#product-list").empty();
+
     $.ajax({
         url: "/Product/GetProductsForSubcategory?subcategoryId=" + subcategoryId,
         method: "GET",
         success: function (data) {
-            if (window.location.pathname !== "/home/index" && window.location.pathname !== "/") {
-                window.location.reload();
-            }
-
             $.each(data, function (index, product) {
-  
-                $("#product-list").append(`<div class="col-sm-6 col-xl-3" ><div class="card overflow-hidden rounded-2">
-                    <div class="position-relative text-center"><a href="/Home/ProductIndex/`+ product.productId + `"><img src=/images/products/` + product.productImage + ` ` +
-                    `class="card-img-top rounded-0 p-1" alt="..." style="width: 80% !important;"></a><a href="/Home/ProductIndex/` + product.productId + `" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                        data-bstoggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4">
-                        </i></a></div><div class="card-body"><a href="/Home/ProductIndex/`+ product.productId + `"><h6 class="fw-semibold fs-4">` + product.productName +
-                    `</h6></a><div class="d-flex align-items-center justify-content-between"><h6 class="fw-semibold fs-4 mb-0">`
-                    + product.productPrice + ` &#8377;</h6></div></div></div></div>`);
+
+                $("#product-list").append(`
+                    <div class="col-sm-6 col-xl-3">
+                      <div class="card overflow-hidden rounded-2">
+                        <div class="position-relative text-center">
+                          <a href="/Home/Product/${product.productId}">
+                              <img src="/images/products/${product.productImage}"
+                               class="card-img-top rounded-0 p-1" style="width: 80% !important;">
+                          </a>
+                          <a href="/Home/Product/${product.productId}"
+                             class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3">
+                             <i class="ti ti-basket fs-4"></i>
+                          </a>
+                        </div>
+                        <div class="card-body">
+                          <a href="/Home/Product/${product.productId}">
+                              <h6 class="fw-semibold fs-4">${product.productName}</h6>
+                          </a>
+                          <div class="d-flex align-items-center justify-content-between">
+                             <h6 class="fw-semibold fs-4 mb-0">${product.productPrice} &#8377;</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                `);
+
             });
         },
         error: function (error) {
