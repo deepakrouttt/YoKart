@@ -37,3 +37,70 @@
 
 });
 
+$(function () {
+    $("#checkOut").on("click", function (e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: "Proceed with Checkout?",
+            text: "Your order will be finalized and a confirmation email will be sent.",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, continue",
+            cancelButtonText: "Cancel",
+            reverseButtons: true
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                Swal.fire({
+                    title: "Processing...",
+                    text: "Please wait while we finalize your order.",
+                    allowOutsideClick: false,
+                    didOpen: () => Swal.showLoading()
+                });
+
+                $.ajax({
+                    url: "/Cart/CheckOut",
+                    type: "POST",
+                    success: function (response) {
+
+                        Swal.close();
+
+                        if (response.status) {
+                            Swal.fire({
+                                title: "Order Placed Successfully!",
+                                text: "Redirecting to your cart summary...",
+                                icon: "success",
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+
+                            setTimeout(() => {
+                                window.location.href = response.redirect;
+                            }, 1500);
+                        }
+                        else {
+                            Swal.fire({
+                                title: "Login Required",
+                                text: "You must be logged in to place an order.",
+                                icon: "warning"
+                            }).then(() => {
+                                window.location.href = response.redirect;
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Error",
+                            text: "Checkout failed. Please try again.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+        });
+
+    });
+});

@@ -22,12 +22,16 @@ namespace Web.Controllers
         }
         public async Task<IActionResult> Index(filtering obj)
         {
+            ViewData["categories"] = await _cateRepo.GetCategories();
+            ViewData["subcategories"] = await _cateRepo.GetCategories();
             var products = await _proRepo.Index(obj);
             return View("Index", products);
         }
 
         public async Task<IActionResult> Index_Partial(filtering obj)
         {
+            ViewData["categories"] = await _cateRepo.GetCategories();
+            ViewData["subcategories"] = await _cateRepo.GetCategories();
             var products = await _proRepo.Index(obj);
             return PartialView("_Index", products);
         }
@@ -42,6 +46,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            ViewData["Categories"] = await _cateRepo.GetCategories();
             return View();
         }
 

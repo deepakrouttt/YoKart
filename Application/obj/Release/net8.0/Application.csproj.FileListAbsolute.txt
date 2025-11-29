@@ -16,3 +16,5 @@ C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Application\obj\Release\net8
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Application\obj\Release\net8.0\Application.pdb
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Application\obj\Release\net8.0\ref\Application.dll
 C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Application\obj\Release\net8.0\Application.sourcelink.json
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Application\bin\Release\net8.0\Services.dll
+C:\Users\Dell-PC\Documents\Web Page Projects\YoKart\Application\bin\Release\net8.0\Services.pdb

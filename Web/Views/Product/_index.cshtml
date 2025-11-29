@@ -2,8 +2,8 @@
 @using Domain.Models
 @model List<Product>
 @{
-    var categories = YokartVar.categories as List<Category>;
-    var subcategories = YokartVar.subcategories as List<SubCategory>;
+    var categories = ViewData["categories"] as List<Category>;
+    var subcategories = ViewData["subcategories"] as List<SubCategory>;
     var filepath = YokartVar.imagePaths;
     var currentPage = YokartVar.currentPage;
 }
