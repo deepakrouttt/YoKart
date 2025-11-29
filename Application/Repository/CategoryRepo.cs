@@ -5,6 +5,7 @@ using Infrastructure.IRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Services;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -15,7 +16,6 @@ namespace Application.Repository
         HttpClient _client = new HttpClient();
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly YoKartDbContext _context;
-        private readonly string baseUrl = "https://localhost:44373/api/CategoryApi/";
 
         public CategoryRepo(HttpClient client, IHttpContextAccessor httpContextAccessor, YoKartDbContext context)
         {
@@ -83,24 +83,16 @@ namespace Application.Repository
             return existingCategory;
         }
 
-        public async Task<Category> IndexSub(int? id, int? page)
+        public async Task<Category> GetSubCategory(int? id, int? page)
         {
-            var apiUrl = $"{baseUrl}{id}";
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("B  earer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-            var response = await _client.GetAsync(apiUrl);
 
-            var subCategory = new Category();
-            if (response.IsSuccessStatusCode)
+            var data = await GetCategory(id ?? 1);
+            if (data != null)
             {
-                var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<Category>(result);
-                if (data != null)
-                {
-                    subCategory = YokartVar.PagingSubCategory(data, page);
-                }
-
+                var category = Service.PagingSubCategory(data, page);
+                return category;
             }
-            return subCategory;
+            return new Category();
         }
 
         public async Task<SubCategory> EditSub(int id)

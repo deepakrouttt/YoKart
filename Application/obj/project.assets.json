@@ -1500,6 +1500,19 @@
         "runtime": {
           "bin/placeholder/Infrastructure.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -3920,6 +3933,11 @@
       "type": "project",
       "path": "../Infrastructure/Infrastructure.csproj",
       "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3928,7 +3946,8 @@
       "MailKit >= 4.14.1",
       "Microsoft.AspNetCore.Hosting >= 2.3.0",
       "Microsoft.AspNetCore.Hosting.Abstractions >= 2.3.0",
-      "Newtonsoft.Json >= 13.0.4"
+      "Newtonsoft.Json >= 13.0.4",
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3968,6 +3987,9 @@
           "projectReferences": {
             "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Infrastructure\\Infrastructure.csproj"
+            },
+            "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Dell-PC\\Documents\\Web Page Projects\\YoKart\\Services\\Services.csproj"
             }
           }
         }

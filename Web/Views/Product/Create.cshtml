@@ -3,7 +3,7 @@
 @model Product
 @{
     ViewData["Title"] = "Create";
-    var categories = YokartVar.categories as List<Category>;
+    var categories = ViewData["Categories"] as List<Category>;
 }
 <h4>Add Product</h4>
 <hr />

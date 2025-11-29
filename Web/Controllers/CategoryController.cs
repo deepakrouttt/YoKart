@@ -23,14 +23,27 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Index(int? page)
         {
-            var tempCategory = Service.PagingCategory(YokartVar.categories, page);
+            var categories = await _cateRepo.GetCategories();
+            var tempCategory = Service.PagingCategory(categories, page);
             return View("Index", tempCategory);
         }
-
         [HttpGet]
-        public async Task<IActionResult> Index_Partial(int? page)
+        public async Task<IActionResult> GetCategories()
         {
-            var tempCategory = Service.PagingCategory(YokartVar.categories, page);
+            var categories = await _cateRepo.GetCategories();
+            return Ok(categories);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCategories(int id)
+        {
+            var categories = await _cateRepo.GetCategory(id);
+            return Ok(categories);
+        }
+        [HttpGet]
+        public async Task<IActionResult> _Index(int? page)
+        {
+            var categories = await _cateRepo.GetCategories();
+            var tempCategory = Service.PagingCategory(categories, page);
             return PartialView("_Index", tempCategory);
         }
 
@@ -79,7 +92,7 @@ namespace Web.Controllers
 
         public async Task<IActionResult> IndexSub(int? id, int? page)
         {
-            var subCategory = await _cateRepo.IndexSub(id, page);
+            var subCategory = await _cateRepo.GetSubCategory(id, page);
             if (subCategory != null) { return View("IndexSub", subCategory); }
             return View();
         }
@@ -87,7 +100,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> IndexSub_Partial(int? id, int? page)
         {
-            var subCategory = await _cateRepo.IndexSub(id, page);
+            var subCategory = await _cateRepo.GetSubCategory(id, page);
             return PartialView("_IndexSub", subCategory);
         }
         [HttpGet]

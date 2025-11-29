@@ -17,14 +17,13 @@
             </tr>
         </thead>
         <tbody id="partial-container1">
-            await @Html.PartialAsync("_IndexSub")
+            <partial name="_IndexSub" model="Model" />
         </tbody>
     </table>
     <div class="pager" id="pager-container">
         @for (var i = 1; i <= pageCount; i++)
         {
-            <a data-page="@i" data-id="@Model.CategoryId" class="pager-link1 @(i == currentPage ? "activePage" : "") border">@i</a>
-
+            <a href="#" data-page="@i" data-id="@Model.CategoryId" class="pager-link @(i == currentPage ? "activePage" : "") border">@i</a>
         }
     </div>
     <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Back</a>
@@ -39,9 +38,6 @@
             $.ajax({
                 url: '/Category/IndexSub_Partial',
                 type: 'GET',
-                headers: {
-                    "Authorization": "Bearer " + token
-                },
                 data: { id: id, page: page },
                 success: function (data) {
                     $('#partial-container1').html(data);

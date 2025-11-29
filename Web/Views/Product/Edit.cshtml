@@ -3,8 +3,8 @@
 @model Product
 @{
     ViewData["Title"] = "View";
-    var categories = YokartVar.categories as List<Category>;
-    var subcategories = YokartVar.subcategories as List<SubCategory>;
+    var categories = ViewData["Categories"] as List<Category>;
+    var subcategories = ViewData["Subcategories"] as List<SubCategory>;
 }
 
 <h4>Edit Product</h4>

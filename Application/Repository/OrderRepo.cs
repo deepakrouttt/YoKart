@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Infrastructure.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Services;
 using System.Net.Http.Headers;
 using System.Text;
 using static Domain.Models.Order;
@@ -139,39 +140,23 @@ namespace Application.Repository
             return false;
         }
 
-        //public async Task<bool> Checkout(int UserId)
-        //{
-        //    var url = $"https://localhost:44373/api/UserApi/{UserId}";
-        //    var response = await _client.GetAsync(url);
-        //    var mailMessage = false;
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var result = await response.Content.ReadAsStringAsync();
-        //        var user = JsonConvert.DeserializeObject<User>(result);
-        //        var order = JsonConvert.SerializeObject(await Index(UserId));
+        public async Task<MailData> Checkout(User user)
+        {
+            var order = await GetOrders(user.Id);
+            var isPlaced = await OrderPlaced(user.Id);
 
-        //        var PlacedUrl = $"{baseUrl}OrderPlaced";
-        //        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("JWToken"));
-        //        var content = new StringContent(JsonConvert.SerializeObject(UserId), Encoding.UTF8, "application/json");
-        //        var responseOrder = await _client.PostAsync(PlacedUrl, content);
-
-        //        if (user != null && responseOrder.IsSuccessStatusCode)
-        //        {
-        //            var mailData = new MailData()
-        //            {
-        //                EmailToId = user.Email,
-        //                EmailToName = user.Firstname + " " + user.Lastname,
-        //                EmailSubject = "Order Placed",
-        //                EmailBody = order
-        //            };
-        //            var mailUrl = "https://localhost:44373/api/MailApi/SendMail";
-        //            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(mailData), Encoding.UTF8, "application/json");
-        //            var mailResponse = await _client.PostAsync(mailUrl, stringContent);
-        //            var mailResult = await mailResponse.Content.ReadAsStringAsync();
-        //            mailMessage = JsonConvert.DeserializeObject<bool>(mailResult);
-        //        }
-        //    }
-        //    return mailMessage;
-        //}
+            if (isPlaced)
+            {
+                var mailData = new MailData()
+                {
+                    EmailToId = user.Email,
+                    EmailToName = user.Firstname + " " + user.Lastname,
+                    EmailSubject = "Your YoKart Order Confirmation",
+                    EmailBody = Service.BuildOrderEmailBody(order)
+                };
+                return mailData;
+            }
+            return null;
+        }
     }
 }

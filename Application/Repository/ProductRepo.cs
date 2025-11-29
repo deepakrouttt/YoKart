@@ -49,7 +49,8 @@ namespace Application.Repository
             if (obj.HighRange is 0) { obj.HighRange = Decimal.MaxValue; }
             ;
 
-            var products = Productpaging(_context.Products.ToList(), obj);
+            var productList = _context.Products.ToList();
+            var products = Productpaging(productList, obj);
             YokartVar.pageCount = products.pageCount;
             YokartVar.pageSize = products.pageSize;
             YokartVar.totalProduct = products.totalProduct;

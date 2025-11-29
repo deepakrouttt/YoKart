@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.Mail;
+using Domain.Models;
 using static Domain.Models.Order;
 
 namespace Infrastructure.IRepository
@@ -11,5 +12,6 @@ namespace Infrastructure.IRepository
         Task<OrderItem> UpdateOrder(OrderDetails orderDetails);
         Task<OrderItem> RemoveProductToOrder(int UserId, int ProductId);
         Task<bool>  OrderPlaced(int UserId);
+        Task<MailData> Checkout(User UserId);
     }
 }

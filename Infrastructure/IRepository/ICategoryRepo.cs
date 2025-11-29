@@ -14,7 +14,7 @@ namespace Infrastructure.IRepository
 
         Task<Category> Exist(Category category);
 
-        Task<Category> IndexSub(int? id, int? page);
+        Task<Category> GetSubCategory(int? id, int? page);
 
         Task<SubCategory> EditSub(int id);
         Task<SubCategory> EditSub(SubCategory category);

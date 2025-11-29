@@ -1,5 +1,8 @@
 ﻿using Application.Repository;
+using Domain.Models;
+using Infrastructure.IMailService;
 using Infrastructure.IRepository;
+using MailKit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Extensions;
@@ -11,10 +14,14 @@ namespace Web.Controllers
     public class CartController : Controller
     {
         private readonly IOrderRepo _orderRepo;
+        private readonly IUserRepo _userRepo;
+        private readonly IMailRepo _mailRepo;
 
-        public CartController(IOrderRepo orderRepo)
+        public CartController(IOrderRepo orderRepo, IUserRepo userRepo, IMailRepo mailRepo)
         {
             _orderRepo = orderRepo;
+            _userRepo = userRepo;
+            _mailRepo = mailRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -23,7 +30,7 @@ namespace Web.Controllers
             if (userId != 0)
             {
                 var orders = await _orderRepo.GetOrders(userId);
-                if (orders.OrderId == 0)
+                if (orders == null)
                 {
                     return View();
                 }
@@ -49,7 +56,7 @@ namespace Web.Controllers
         {
             var userId = Convert.ToInt32(User.GetUserId());
             var response = await _orderRepo.RemoveProductToOrder(userId, id);
-       
+
             return RedirectToAction("Index", "Cart");
         }
 
@@ -58,19 +65,32 @@ namespace Web.Controllers
         {
             orderDetails.UserId = Convert.ToInt32(User.GetUserId());
             var response = await _orderRepo.UpdateOrder(orderDetails);
-  
+
             return "NotFound";
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CheckOut(int id)
+        [HttpPost]
+        public async Task<IActionResult> CheckOut()
         {
-            var Message = await _orderRepo.OrderPlaced(id);
-            if (Message == true)
+            var userId = User.GetUserId();
+
+            if (!string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Cart");
+                var uid = Convert.ToInt32(userId);
+                var orders = await _orderRepo.GetOrders(uid);
+                var user = await _userRepo.GetUser(uid);
+
+                if (orders != null)
+                {
+                    var mail = await _orderRepo.Checkout(user);
+                    if (mail != null)
+                    {
+                        await _mailRepo.SendMailAsync(mail);
+                    }
+                    return Json(new { status = true, redirect = Url.Action("Index", "Cart") });
+                }
             }
-            return RedirectToAction("Index", "Home");
+            return Json(new { status = false, redirect = Url.Action("Index", "Home") });
         }
     }
 }

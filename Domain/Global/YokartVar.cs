@@ -10,27 +10,13 @@ namespace Domain.Global
         public static List<SubCategory> subcategories = new List<SubCategory>();
         //paging
         public static List<string> imagePaths = new List<string>();
-        public static int pageSize { get; set; }
+        public static int pageSize { get; set; } = 3;
         public static int pageCount { get; set; }
         public static int totalProduct { get; set; }
         public static int currentPage { get; set; }
 
         //paging 
  
-
-        public static Category PagingSubCategory(Category category, int? page)
-        {
-            pageSize = 3;
-            pageCount = (int)Math.Ceiling(category.SubCategories.Count / (double)pageSize);
-            currentPage = page ?? 1;
-            var tempSubCategory = category.SubCategories.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-            var tempCategory = new Category
-            {
-                CategoryId = category.CategoryId,
-                SubCategories = tempSubCategory
-            };
-
-            return tempCategory;
-        }   
+ 
     }
 }

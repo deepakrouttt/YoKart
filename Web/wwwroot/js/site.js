@@ -37,11 +37,8 @@ $(document).ready(function () {
     //click on Exist when Dynamic Subcategory Display
     $('#addExist').click(function () {
         $.ajax({
-            url: 'https://localhost:44373/api/CategoryApi/categories',
+            url: '/Category/GetCategories',
             type: 'GET',
-            headers: {
-                "Authorization": "Bearer " + token
-            },
             success: function (data) {
                 var dropdown = $('<select>').addClass('form-control p-1').attr('id', 'CategoryName').attr('name', 'CategoryName');
                 dropdown.append($('<option>').text('Choose Here').prop('selected', true).prop('disabled', true));
@@ -68,11 +65,8 @@ $(document).ready(function () {
         var subcategoryOption = "<option disabled selected>Choose Here</option>";
         if (categoryId) {
             $.ajax({
-                url: 'https://localhost:44373/api/CategoryApi/' + categoryId,
+                url: '/Category/GetCategories' + categoryId,
                 type: 'GET',
-                headers: {
-                    "Authorization": "Bearer " + token
-                },
                 success: function (data) {
                     data.subCategories.forEach(function (subcategory) {
                         subcategoryOption += `<option value="${subcategory.subCategoryId}">${subcategory.subCategoryName}</option>`;
@@ -228,11 +222,8 @@ function PagerEvent() {
         var LowRange = $("#priceRange").find(':selected').data('low');
         var HighRange = $("#priceRange").find(':selected').data('high');
         $.ajax({
-            url: 'Index_Partial',
+            url: '/Category/_Index',
             type: 'GET',
-            headers: {
-                "Authorization": "Bearer " + token
-            },
             data: { page: page, LowRange: LowRange, HighRange: HighRange },
             success: function (data) {
                 $('#partial-container').html(data);

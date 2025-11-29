@@ -14,3 +14,15 @@
 /.vs/YoKart/v17
 *.cache
 /Application/obj/Debug/net8.0
+*.bin
+/.vs/YoKart/v17
+/.vs/YoKart
+/Application/obj/Debug
+/.vs
+/.vs/ProjectEvaluation
+/.vs
+/.vs/YoKart
+/Services/obj/Release/net8.0
+/Services/obj/Debug/net8.0
+/Services/obj/Release/net8.0/ref
+/Web/obj/Release/net8.0/PubTmp/Out
